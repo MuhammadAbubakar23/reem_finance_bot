@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+div,
+ul,
+li,
+input,
+textarea,
+select,
+option,
+table,
+th,
+td,
+tr,
+button,
+input::placeholder,
+textarea::placeholder {
+  font-family: "Inter", sans-serif;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  color: $sky;
+  &:hover {
+    opacity: 0.8;
+    text-decoration: none;
+    color: $sky;
+  }
+}
+.font-italic {
+  font-family: "Rubik";
+  font-style: italic;
+}
+.section-heading {
+  h6 {
+    font-weight: 500;
+    padding: 40px 0 10px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+}
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.fa-twitter:before {
+  content: "" !important;
+}
+.list-unstyled-inner.collapse{
+  .fa-circle{
+      &:before{
+        content: "";
+      }
+  }
+}
+.fs-10{
+  font-size:10px;
+}

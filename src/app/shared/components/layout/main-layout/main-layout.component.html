@@ -1,0 +1,14 @@
+<main>
+  <div class="main-wrapper d-flex">
+    <app-sidenav></app-sidenav>
+    <template #container></template>
+    <div class="middle-wrapper d-flex w-100 flex-column">
+      <app-header></app-header>
+      <div class="content-box-wrapper d-flex w-100 ">
+        <div class="middle-content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

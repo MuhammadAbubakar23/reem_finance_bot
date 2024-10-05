@@ -1,0 +1,96 @@
+.listbtns {
+  position: absolute;
+  bottom: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  background: linear-gradient(180deg, #ebeef1, #ffffff);
+  padding: 10px 0;
+}
+.listbtns li .btn:hover {
+  background-color: #f8f8f8 !important;
+  color: #000;
+  border: 1px solid #f1f1f1;
+}
+.enteract-chatbot .chatbody {
+  padding-bottom: 60px;
+}
+.enteract-chatbot .chatbody .messagewrap .messagebody .messagebubble {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.input_group {
+  input {
+    text-indent: 30px;
+  }
+  i,
+  svg {
+    color: rgba(0, 0, 0, 0.5) !important;
+    left: 20px;
+    top: 24px;
+  }
+}
+.loginblock {
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .form-control {
+    padding: 16px;
+    font-size: 1.15rem;
+    color: #000;
+  }
+}
+.bgimg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  height: 100%;
+}
+
+.form-controlinput::placeholder {
+  font-weight: normal;
+  opacity: 0.5;
+  color: #888;
+  font-size: 15px;
+}
+/* rating.component.css */
+.ratings {
+  font-size: 2rem;
+}
+
+.ratings .fa-star {
+  color: #d3d3d3; /* Gray color for inactive stars */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.ratings .fa-solid {
+  color: #ffd700; /* Gold color for active stars */
+}
+
+.thank-you-message {
+  font-size: 1.5rem;
+  color: #28a745; /* Green color for the thank you message */
+  text-align: center;
+  margin-top: 20px;
+}
+
+.variable-binding {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+:host ::ng-deep .messagebubble markdown p {
+  padding: 0 !important;
+  margin: 0 !important;
+}

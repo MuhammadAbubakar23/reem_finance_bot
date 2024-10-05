@@ -1,0 +1,94 @@
+<div role="tabpanel" aria-labelledby="kbase-tab">
+  <form>
+    <div class="mb-1">
+      <label for="formFile" class="form-label">Choose File (pdf)</label>
+      <input
+        class="form-control"
+        type="file"
+        id="formFile"
+        (change)="onFileChange($event)"
+        multiple
+      />
+    </div>
+    @if(fileArray.length != 0){
+    <div class="icon-buttons-wrapper d-flex justify-content-start pt-3 pb-4">
+      <a
+        (click)="uploadFile()"
+        class="btn btn-primary btn-medium saveBtn newbtn"
+        id="generateButton"
+        >Upload File(s)
+      </a>
+    </div>
+    } @if(documents!=null){
+    <div class="table-section" id="tableview">
+      <table class="table mb-5 align-middle">
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th></th>
+
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(doc of documents; track doc){
+          <tr>
+            <td>
+              <a>
+                <span class="btn sky iconHover medium me-2">
+                  <i class="fas fa-file">&nbsp;</i>{{ doc?.file_name }}
+                </span>
+              </a>
+            </td>
+            <td></td>
+            <td>
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  [checked]="doc.is_active"
+                  (change)="updateDocStatus(doc, $event)"
+                />
+                <span class="slider round"></span>
+              </label>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+  </form>
+  @if(documents!=null){
+  <div class="row">
+    <div class="col-6 mb-3">
+      <a
+        (click)="createEmbeddings()"
+        class="btn btn-primary btn-small saveBtn newbtn"
+        id="generateButton"
+        >Create Embeddings
+      </a>
+    </div>
+    <div class="col-6 mb-3 d-flex justify-content-end">
+      <a
+        (click)="routeToCreate()"
+        class="btn btn-default btn-small cancelBtn newbtn"
+        id="generateButton"
+        style="background-color: grey; color: white"
+        >Cancel
+      </a>
+    </div>
+  </div>
+  } @if(documents==null){
+  <div class="row">
+    <div class="col-6 mb-3 d-flex">
+      <a
+        (click)="routeToCreate()"
+        class="btn btn-default btn-small cancelBtn newbtn"
+        id="generateButton"
+        style="background-color: grey; color: white"
+        >Cancel
+      </a>
+    </div>
+  </div>
+  }
+</div>

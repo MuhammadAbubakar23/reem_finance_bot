@@ -1,0 +1,431 @@
+<body class="agent-grid leftactive">
+  <main>
+    <div class="main-wrapper d-flex">
+      <div class="middle-wrapper d-flex w-100 flex-column">
+        <div class="content-box-wrapper d-flex w-100">
+          <div class="middle-content d-flex">
+            @if(!hasParent){
+            <div
+              class="chatbg"
+              style="
+                background: url(../../../../assets/images/chatbg.png) no-repeat
+                  top;
+              "
+            ></div>
+            }
+            <div
+              class="e-bot-icon"
+              [ngClass]="{ active: isOpen }"
+              style="right: 100px"
+            >
+              <div class="e_chat-icon" (click)="openChat()">
+                <img src="../../../../../assets/images/ebot.svg" />
+              </div>
+            </div>
+            <div
+              class="enteract-chatbot"
+              [ngClass]="{ active: isOpen, removebot: !isOpen }"
+              style="right: 430px"
+            >
+              <div class="e-chat-main">
+                <header>
+                  <div class="e_chat-icon">
+                    <img src="../../../../../assets/images/ebot.svg" />
+                  </div>
+                  <div>
+                    <h4>Reem Finance.Menu.bot</h4>
+                    <p class="coal">Online</p>
+                  </div>
+                  <div class="ebotclose mt-2" (click)="closeChat()">
+                    <i class="fa-light fa-minus"></i>
+                  </div>
+                </header>
+                <section
+                  class="chatbody"
+                  #chatBody
+                  style="overflow: auto"
+                  #scrollMe
+                  [scrollTop]="scrollMe.scrollHeight"
+                >
+                  <div [ngSwitch]="currentView">
+                    <ng-container *ngSwitchCase="'EmailForm'">
+                      <div class="messagewrap e-left" data-first="true">
+                        <div class="messagebody">
+                          <div class="caption">
+                            <div class="name">
+                              <div class="e_chat-icon">
+                                <img
+                                  src="../../../../../assets/images/ebot.svg"
+                                />
+                              </div>
+                              {{ bot_name }}
+                            </div>
+                            <div class="time">{{ getCurrentTime() }}</div>
+                          </div>
+
+                          <div class="messagebubble">
+                            Hi! I'm {{ bot_name }} 😎 Nice to meet you! 👋
+                            Please don't hesitate to ask us anything or share
+                            your feedback.
+                          </div>
+                          <div class="coal mb-5"></div>
+                          <div
+                            class="login-form main-login-form agentExtensionWrapper mb-5"
+                          >
+                            <div class="form w-100">
+                              <form [formGroup]="registerForm">
+                                <div class="form-floating">
+                                  <h6 class="coal">
+                                    Please enter full name and phone number to
+                                    start chatting!
+                                  </h6>
+                                </div>
+                                <div class="form-floating mb-2">
+                                  <input
+                                    class="form-control"
+                                    id="register-username"
+                                    formControlName="fullName"
+                                    required
+                                    [class.is-invalid]="
+                                      registerForm.controls['fullName']
+                                        .invalid &&
+                                      registerForm.controls['fullName'].touched
+                                    "
+                                    [class.is-valid]="
+                                      registerForm.controls['fullName'].valid &&
+                                      registerForm.controls['fullName'].touched
+                                    "
+                                  />
+                                  <label for="register-username">Name</label>
+                                  <div class="invalid-feedback">
+                                    @if(registerForm.controls['fullName'].errors?.['required']){
+                                    <div>Name is required.</div>
+                                    }
+                                  </div>
+                                </div>
+                                <div class="form-floating mb-2">
+                                  <input
+                                    class="form-control"
+                                    id="register-email"
+                                    formControlName="email"
+                                    required
+                                    type="email"
+                                    [class.is-invalid]="
+                                      registerForm.controls['email'].invalid &&
+                                      registerForm.controls['email'].touched
+                                    "
+                                    [class.is-valid]="
+                                      registerForm.controls['email'].valid &&
+                                      registerForm.controls['email'].touched
+                                    "
+                                  />
+                                  <label for="register-email"
+                                    >Phone Number</label
+                                  >
+                                  <div class="invalid-feedback">
+                                    @if(registerForm.controls['email'].errors?.['required']){
+                                    <div>Phone Number is required.</div>
+                                    }
+                                  </div>
+                                </div>
+                              </form>
+                              <div class="d-flex flex-column">
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value=""
+                                    id="flexCheckChecked"
+                                    [checked]="isParticipate"
+                                    (change)="toggleParticipation()"
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="flexCheckChecked"
+                                  >
+                                    Would you like to participate in a brief
+                                    satisfaction survey?
+                                  </label>
+                                </div>
+                                <div
+                                  class="col-12 d-flex justify-content-between mb-4"
+                                ></div>
+                              </div>
+                              <div class="form-btn">
+                                <button
+                                  type="submit"
+                                  class="btn btn-primary btn-lg loginbtn"
+                                  id="loginBtn"
+                                  tabindex="-1"
+                                  role="button"
+                                  (click)="submitCredentials()"
+                                >
+                                  <i class="fas fa-paper-plane-top"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'Messages'">
+                      <div class="messagewrap e-left" data-first="true">
+                        <div class="messagebody">
+                          <div class="caption">
+                            <div class="name">
+                              <div class="e_chat-icon">
+                                <img
+                                  src="../../../../../assets/images/ebot.svg"
+                                />
+                              </div>
+                              {{ bot_name }}
+                            </div>
+                            <div class="time">{{ getCurrentTime() }}</div>
+                          </div>
+
+                          <div class="messagebubble">
+                            Hi! I'm {{ bot_name }} 😎 Nice to meet you! 👋
+                            Please don't hesitate to ask us anything or share
+                            your feedback.
+                          </div>
+                          <div class="coal mb-5"></div>
+                        </div>
+                      </div>
+                      <div class="messagewrap e-left" data-first="true">
+                        <div class="messagebody">
+                          <div class="caption">
+                            <div class="name">
+                              <div class="e_chat-icon">
+                                <img
+                                  src="../../../../../assets/images/ebot.svg"
+                                />
+                              </div>
+                              {{ bot_name }}
+                            </div>
+                            <div class="time">{{ getCurrentTime() }}</div>
+                          </div>
+                          <div class="messagebubble">
+                            Hello {{ currentUserName }}! How can i help you?
+                          </div>
+                          <div class="coal mb-5"></div>
+                        </div>
+                      </div>
+                      @for(msg of chatMessages; track msg; let i = $index){
+                      <ng-container>
+                        <div
+                          class="messagewrap"
+                          [ngClass]="{
+                            'e-right': msg.type === 'human',
+                            'e-left':
+                              msg.type === 'ai-agent' ||
+                              msg.type == 'human-agent'
+                          }"
+                          [attr.data-first]="msg.type === 'human' ? true : null"
+                          [attr.data-last]="
+                            msg.type === 'ai-agent' ||
+                            msg.type === 'human-agent'
+                              ? true
+                              : null
+                          "
+                        >
+                          <div class="messagebody">
+                            <div class="caption">
+                              <div class="name">
+                                @if(msg.type === 'ai-agent' || msg.type ==
+                                'human-agent'){
+                                <div class="e_chat-icon">
+                                  <img
+                                    src="../../../../../assets/images/ebot.svg"
+                                  />
+                                </div>
+                                }
+
+                                {{
+                                  msg.type === "human"
+                                    ? "You"
+                                    : msg.type === "ai-agent"
+                                    ? bot_name
+                                    : msg.type === "human-agent"
+                                    ? msg.agent_name || "Human Agent"
+                                    : "Human Agent"
+                                }}
+                              </div>
+                              <div class="time">
+                                {{ msg.timestamp }}
+                              </div>
+                            </div>
+                            <div class="messagebubble">
+                              <!-- {{ msg.text }} -->
+                              <markdown
+                                [data]="msg.text"
+                                class="variable-binding"
+                              ></markdown>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                      } @if(typing){
+                      <div class="messagewrap e-left">
+                        <div class="messagebody">
+                          <div class="caption">
+                            <div class="name">
+                              <div class="e_chat-icon">
+                                <img
+                                  src="../../../../../assets/images/ebot.svg"
+                                />
+                              </div>
+                              {{ bot_name }}
+                            </div>
+                            <div class="time">
+                              {{ currentTimestamp | date : "shortTime" }}
+                            </div>
+                          </div>
+                          <div class="messagebubble">
+                            <div class="typing">
+                              <div class="dot"></div>
+                              <div class="dot"></div>
+                              <div class="dot"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      }
+
+                      <div class="d-flex flex-wrap justify-content-center">
+                        @if(buttons?.length > 0){
+                        <ng-container>
+                          @for(button of buttons; track button;let i = $index){
+                          <ng-container>
+                            @if(i % 3 === 0){
+                            <span class="w-100"></span>
+                            }
+                            <span
+                              class="badge badge-primary btn-primary m-2"
+                              (click)="
+                                chatForm.controls['message'].setValue(
+                                  button.payload.replace('/', '')
+                                );
+                                submitMessage(button.payload, true)
+                              "
+                            >
+                              {{ button.title }}
+                            </span>
+                          </ng-container>
+                          }
+                        </ng-container>
+                        }
+                      </div>
+                      <form [formGroup]="chatForm">
+                        @if(buttonAlreadyClicked == false){
+                        <ul
+                          class="list-inline d-flex align-items-center justify-content-center listbtns"
+                        >
+                          <li class="list-inline-item">
+                            <button
+                              class="btn btn-white px-3 rounded-pill bg-white"
+                              (click)="
+                                chatForm.controls['message'].setValue(
+                                  'Good Bye'
+                                );
+                                submitMessage('/bye')
+                              "
+                            >
+                              <i class="fas fa-sign-out"></i> Good Bye
+                            </button>
+                          </li>
+                          <li class="list-inline-item">
+                            <button
+                              class="btn btn-white px-3 rounded-pill bg-white"
+                              (click)="
+                                chatForm.controls['message'].setValue(
+                                  'Talk To Human'
+                                );
+                                submitMessage('/transfer')
+                              "
+                            >
+                              <i class="far fa-user-headset"></i> Talk To Human
+                            </button>
+                          </li>
+                        </ul>
+                        }
+                      </form>
+                      @if(addFeedBack){
+                      <ng-container>
+                        <div
+                          class="d-flex align-items-center justify-content-center flex-column text-center px-4 py-3"
+                        >
+                          <p>How satisfied are you with our chat service?</p>
+                          <div class="mb-3 ratings">
+                            @for(star of stars; track star;let i = $index){
+                            <i
+                              class="fa-star"
+                              [ngClass]="{
+                                'fa-solid': i < currentRating,
+                                'fa-regular': i >= currentRating
+                              }"
+                              (click)="setRating(i + 1)"
+                              [attr.data-value]="i + 1"
+                            ></i>
+                            }
+                          </div>
+                          <button
+                            class="btn btn-primary"
+                            (click)="submitFeedback()"
+                            [disabled]="feedBackEnabled"
+                          >
+                            Submit Feedback
+                          </button>
+                        </div>
+                      </ng-container>
+                      }
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="'FeedBack Message'">
+                      <div class="thank-you-message">
+                        Thank you for your feedback!
+                      </div>
+                    </ng-container>
+                  </div>
+                </section>
+                <div [ngSwitch]="currentView">
+                  <ng-container *ngSwitchCase="'Messages'">
+                    @if(conversation_end == 0 && byeClicked == false){
+                    <footer>
+                      <form [formGroup]="chatForm">
+                        <input
+                          class="form-control"
+                          placeholder="Send a message.."
+                          formControlName="message"
+                        />
+                        <button
+                          class="iconButton iconHover sendicon"
+                          (click)="submitMessage('')"
+                        >
+                          <i class="fa-light fa-paper-plane-top"></i>
+                        </button>
+                      </form>
+                    </footer>
+                    } 
+                    @if(conversation_end == 1){
+                    <footer>
+                      <ul
+                        class="list-inline d-flex align-items-center justify-content-center listbtns"
+                      >
+                        <li class="list-inline-item">
+                          <div class="justify-content-center">
+                            Conversation ended by Agent
+                          </div>
+                        </li>
+                      </ul>
+                    </footer>
+                    }
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>

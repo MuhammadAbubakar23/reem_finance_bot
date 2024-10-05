@@ -1,0 +1,96 @@
+<div
+  class="auth_wrapp h-100vh d-flex align-items-center justify-content-center flex-column overflow-hidden"
+>
+  <!-- <div
+    class="bgimg"
+    style="background-image: url('./images/gradient-background.jpg')"
+  ></div> -->
+
+  <div class="main-body d-flex align-items-center justify-content-center w-100">
+    <div class="login-form w-100">
+      <header class="text-center mb-5 w-100">
+        <img src="../../../../assets/images/entract-logo.svg" class="d-inline-block" alt="" />
+        <h1 class="fw-bold text-black my-3 display-4">Hello again!</h1>
+        <p class="text-secondary">Login with your enteract credentials.</p>
+      </header>
+      <div class="form w-100">
+        <form
+        [formGroup]="loginForm"
+        [formGroup]="loginForm" (keydown.enter)="onSubmit()" (submit)="onSubmit()">
+
+        <div class="iconholder mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInputPassword"
+            placeholder="Email"
+            [class.is-invalid]="
+            lF['userName'].invalid && lF['userName'].touched
+          "
+          [class.is-valid]="lF['userName'].valid && lF['userName'].touched"
+          id="register-username"
+          formControlName="userName"
+          />
+          <i class="fa-light fa-envelope"></i>
+        </div>
+
+        <div class="iconholder mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingInputPassword"
+            placeholder="Password"
+            [type]="show ? 'text' : 'password'"
+            [class.is-invalid]="
+              lF['password'].invalid && lF['password'].touched
+            "
+            [class.is-valid]="lF['password'].valid && lF['password'].touched"
+            formControlName="password"
+          />
+          <i class="fa-light fa-lock"></i>
+        </div>
+
+        <!-- <div class="col-12 d-flex justify-content-between mb-4">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Remeber me
+            </label>
+          </div>
+          <div id="register-link">
+            <a href="#" class="forgot-password-btn">Forget Password</a>
+          </div>
+        </div> -->
+        <div class="form-btn">
+          <button
+            type="submit"
+            class="w-100 btn btn-primary btn-lg"
+            >Sign In</button
+          >
+        </div>
+      </form>
+
+
+      </div>
+    </div>
+  </div>
+  <footer>
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <a href=""> Technical Support </a>
+      </li>
+      <li class="list-inline-item">
+        <a href=""> Privacy Policy </a>
+      </li>
+      <li class="list-inline-item">
+        <a href=""> Terms & Conditions </a>
+      </li>
+    </ul>
+    <p>2024 All Rights Reserved.</p>
+  </footer>
+</div>

@@ -1,0 +1,225 @@
+<div class="content-box-wrapper d-flex w-100">
+    <div class="middle-content d-flex">
+
+
+
+        <div class="p-4 d-grid w-100">
+            <div class="analytics-dashboard analytics-dashboard" data-scrollbar="true" tabindex="-1"
+                style="overflow: auto; outline: none;">
+                <div class="scroll-content">
+                    <div class="analytics executive-dashboard">
+                        <div class="filter-toolbar mb-3 border-0 d-flex align-items-center justify-content-between">
+                            <h6 class="text-uppercase">Bot KpI's </h6>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle fw-bold" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fal fa-calendar"></i> {{ selectedTimeLabel }}
+                            </button>
+                            <ul class="dropdown-menu assignFirstDropdownList1" aria-labelledby="dropdownMenuButton1">
+                                <!-- <li class="dropdown-item" (click)="refreshFilters(2000)">
+                                    <a> Any Time</a>
+                                </li> -->
+                                <li class="dropdown-item" (click)="refreshFilters(1, 'day', 'Last 24 hours')">
+                                    <a>Last 24 hours</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(7, 'week', 'Last 7 days')">
+                                    <a>Last 7 days</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(30, 'month', 'Older than a month')">
+                                    <a>Older than a month</a>
+                                </li>
+                                <li class="dropdown-item"
+                                    (click)="refreshFilters(180, '6 months', 'Older than a 6 months')">
+                                    <a> Older than a 6 months</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(365, 'year','Older than a year')">
+                                    <a>Older than a year</a>
+                                </li>
+                                <!-- <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="dropdown-item" id="customrange1">
+                                    <a>Custom Range</a>
+                                </li> -->
+                            </ul>
+                                        <div class="dropdown-menu end-0 assignSecondDropdownList1"
+                                            aria-labelledby="customrange1">
+                                            <form class="px-3 py-3">
+                                                <div class="d-flex mb-3">
+                                                    <div class="form-floating">
+                                                        <input type="date" class="form-control border-end-0 rounded-0"
+                                                            id="start-date" placeholder="Start Date">
+                                                        <label for="start-date">Start Date </label>
+                                                    </div>
+                                                    <div class="form-floating">
+                                                        <input type="date" class="form-control rounded-0" id="end-date"
+                                                            placeholder="End Date">
+                                                        <label for="end-date">End Date</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn skyBg btn-small">Apply</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row align-items-start mb-2">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h6 class="mb-3 text-uppercase">Bot Escalation Rate </h6>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <h3 class="m-0 fw-bold">{{getIntegerPart(botEsclationRate?.detail > 0 ?
+                                                    botEsclationRate?.detail : 0)}} <small>%</small></h3>
+                                                <small class="ms-2" style="font-size: 12px !important;">
+                                                    <i class="fa-light" [ngClass]="{
+                                                         'fa-arrow-up mint': botEsclationRate?.percentage > 0,
+                                                         'fa-arrow-down text-danger': botEsclationRate?.percentage < 0
+                                                       }"></i>
+                                                    <span
+                                                        [ngClass]="{'mint': botEsclationRate?.percentage > 0, 'text-danger': botEsclationRate?.percentage < 0}">
+                                                        {{ botEsclationRate?.percentage }}%
+                                                    </span> than last {{getTimeSpan}}
+                                                </small>
+    
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h6 class="mb-3 text-uppercase">Fall Back </h6>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <h3 class="m-0 fw-bold">{{fallbackRateCount > 0 ? fallbackRateCount : 0}}</h3>
+                                                <small style="font-size: 12px !important;"><i class="fa-light fa-arrow-up mint"></i> <span class="mint">100%</span>
+                                                    than last {{getTimeSpan}}</small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- <div class="card-body">
+                                        <h6 class="mb-3 text-uppercase">Fall Back</h6>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <h3 class="m-0 fw-bold">{{fallbackRateCount > 0 ? fallbackRateCount : 0}}</h3>
+                                                <small style="font-size: 12px !important;"><i class="fa-light fa-arrow-up mint"></i> <span class="mint">100%</span>
+                                                    than last {{getTimeSpan}}</small>
+                                            </div>
+                                            <div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h6 class="mb-3 text-uppercase">SESSION TIME OUT</h6>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <h3 class="m-0 fw-bold">{{sessiontimeout?.detail > 0 ? sessiontimeout?.detail : 0}}
+                                                    <!-- <small>%</small> -->
+                                                </h3>
+                                                <small style="font-size: 12px !important;">
+                                                    <i class="fa-light" [ngClass]="{
+                                                         'fa-arrow-up mint': sessiontimeout?.percentage > 0,
+                                                         'fa-arrow-down text-danger': sessiontimeout?.percentage < 0
+                                                       }"></i>
+                                                    <span
+                                                        [ngClass]="{'mint': sessiontimeout?.percentage > 0, 'text-danger': sessiontimeout?.percentage < 0}">
+                                                        {{ sessiontimeout?.percentage }}%
+                                                    </span> than last {{getTimeSpan}}
+                                                </small>
+                                            </div>
+                                            <!-- <div>
+                                                <div id="abadonRate" style="height: 100%; width: 100%; max-width:600px"></div>
+                                            </div> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h6 class="mb-3 text-uppercase">Average Wait Time </h6>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <h3 class="m-0 fw-bold">{{getIntegerPart(avgWaitTime?.detail > 0 ?
+                                                    avgWaitTime?.detail : 0)}} <small class="fs-12 coal"
+                                                        style="font-size: 12px !important;">min</small></h3>
+                                                <small style="font-size: 12px !important;">
+                                                    <i class="fa-light" [ngClass]="{
+                                                         'fa-arrow-up mint': avgWaitTime?.percentage > 0,
+                                                         'fa-arrow-down text-danger': avgWaitTime?.percentage < 0
+                                                       }"></i>
+                                                    <span
+                                                        [ngClass]="{'mint': avgWaitTime?.percentage > 0, 'text-danger': avgWaitTime?.percentage < 0}">
+                                                        {{ avgWaitTime?.percentage || 0 }}%
+                                                    </span> than last {{getTimeSpan}}
+                                                </small>
+            
+                                            </div>
+                                            <!-- <div>
+                                                <div id="waitTime" style="height: 100%; width: 100%; max-width:600px"></div>
+                                            </div> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <h6 class="text-uppercase"> Total bot sessions over time</h6>
+                                    <!-- <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <i class="fa-solid fa-square mint"></i>
+                                            Avg Handle Time
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa-solid fa-square lightorange2"></i>
+                                            Session time out
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa-solid fa-square cherry"></i>
+                                            Escalation to human rate
+                                        </li>
+                                    </ul> -->
+                                </div>
+                                <div class="chartcontainer d-flex justify-content-center">
+                                    <div id="sessionTime" style="height: 300px; width:100%; max-width:1000px"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="text-uppercase mb-4">PEAK HOURS</h6>
+                                <div class="chartcontainer d-flex justify-content-center">
+                                    <div id="heatMap" style="width: 100%; height: 550px;max-width : 1500px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

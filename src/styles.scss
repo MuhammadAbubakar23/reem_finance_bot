@@ -1,0 +1,47 @@
+@import "../src/assets/styles/scss/bootstrap.scss";
+//colors
+@import "../src/assets/styles/colors/_colors.scss";
+@import "../src/assets/styles/colors/_colors-classes.scss";
+@import "../src/assets/styles/chat-widget.css";
+//Typography
+@import "../src/assets/styles/base/_typography.scss";
+//Mixins
+@import "../src/assets/styles/mixins/mixins.scss";
+//Base
+@import "../src/assets/styles/base/base.scss";
+//Layouts
+@import "../src/assets/styles/layouts/_header.scss";
+@import "../src/assets/styles/layouts/_footer.scss";
+@import "../src/assets/styles/layouts/_search-bar.scss";
+//Components
+@import "../src/assets/styles/components/_avatar.scss";
+@import "../src/assets/styles/components/_breadcrumb.scss";
+@import "../src/assets/styles/components/_buttons.scss";
+@import "../src/assets/styles/components/_dropdown.scss";
+@import "../src/assets/styles/components/_leftbar.scss";
+
+@import "../src/assets/styles/components/_modal.scss";
+@import "../src/assets/styles/components/_sidebar.scss";
+@import "../src/assets/styles/components/_select2.scss";
+@import "../src/assets/styles/components/_toast.scss";
+@import "../src/assets/styles/components/_off-canvas.scss";
+@import "../src/assets/styles/components/_list.scss";
+@import "../src/assets/styles/components/_table.scss";
+// @import "./components/toggle-wrap.scss";
+@import "../src/assets/styles/components/_bootstrap-classes.scss";
+@import "../src/assets/styles/components/_chat-message.scss";
+@import "../src/assets/styles/components/_tooltip.scss";
+@import "../src/assets/styles/components/_searchbar.scss";
+@import "../src/assets/styles/components/_off-canvas.scss";
+
+@import "../src/assets/styles/components/_scroll.scss";
+//Pages CSS
+@import "../src/assets/styles/pages/_login.scss";
+@import "../src/assets/styles/pages/_console-page.scss";
+@import "../src/assets/styles/pages/_chatbot.scss";
+@import "../src/assets/styles/pages/_custom.scss";
+@import "../src/assets/styles/pages/_responsive.scss";
+
+@import "../src/assets/styles/components/_knowledgebase.scss";
+
+@import "../src/assets/styles/pages/_theme.scss";

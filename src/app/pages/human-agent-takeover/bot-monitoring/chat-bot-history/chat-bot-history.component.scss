@@ -1,0 +1,84 @@
+:host ::ng-deep .ngx-spinner-overlay {
+  z-index: auto !important;
+  position: relative !important;
+}
+.hidden {
+  display: none;
+}
+.knowledgebase{
+  border-left: 1px solid #CED4DA;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  .accordion{
+    .accordion-item{
+      margin-bottom: 16px;
+      border: 0;
+      border-radius: 8px;
+      .accordion-body{
+        background-color: #F8F8FF;
+        border-radius: 8px;
+        border: 1px solid #CED4DA;
+        ul{
+          li{
+            background-color: transparent;
+            border: 0;
+            padding: 0;
+          }
+        }
+      }
+      .accordion-header{
+        margin-bottom: 12px;
+        .accordion-button{
+          padding: 0.5rem;
+          background-color: #F5F5F5;
+          border-radius: 8px;
+          &:focus{
+            outline: none;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+  .cardslist{
+    height: calc(100vh - 270px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  footer{
+    margin-top: auto;
+    border-top: 1px solid #CED4DA;
+    padding-top: 8px;
+  }
+  .aicard{
+    border-bottom: 1px solid #CED4DA;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    .card{
+      background: linear-gradient(90deg, #FBE9E0 0%, #F3E8FC 100%);
+    border: 0;
+    border-radius: 12px;
+    color: #343A40;
+    }
+  }
+  header{
+    border-bottom: 1px solid #CED4DA;
+    padding-bottom: 30px;
+  }
+  .aiactions{
+    .btn{
+      min-width: 70px;
+    }
+    .btn-outline-secondary{
+      color: black;
+      &:hover{
+        color: white;
+      }
+    }
+  }
+}
+:host ::ng-deep .ngx-spinner-overlay {
+  z-index: auto !important;
+  position:  relative !important;
+}

@@ -1,0 +1,142 @@
+<div id="leftBarWrapper">
+  <div class="logo">
+    <a href="../analytics/analytics.html">
+      <p class="logoText">
+        <img src="../../../../../assets/images/logosm.svg" alt="..." />
+      </p>
+    </a>
+  </div>
+
+  <ul class="list-group agent_nav_bar" id="agent-list">
+
+  @for(menu of menus;track menu;let i=$index){
+    <a
+    (click)="activeMenu(i, menu.name)"
+    [routerLink]="[menu.link]"
+    [ngClass]="{ active: activeIndex === i }"
+    class="list-group-item bg-transparent"
+    >
+      <div class="list-group-text d-flex align-items-center">
+        <div class="iconButton medium">
+          <i [ngClass]="getFilteredIconClasses(menu.icon)"></i>
+        </div>
+        <div class="itemLabel"> {{ menu.name }}</div>
+      </div>
+    </a>
+  }
+    <!-- <a
+      href="../bot/conversations.html"
+      class="list-group-item bg-transparent active"
+    >
+      <div class="list-group-text d-flex align-items-center">
+        <div class="iconButton medium">
+          <i class="fa-solid fa-comments"></i>
+        </div>
+        <div class="itemLabel">Bot Interactions</div>
+      </div>
+    </a>
+
+    <a href="../bot/history.html" class="list-group-item bg-transparent">
+      <div class="list-group-text d-flex align-items-center">
+        <div class="iconButton medium">
+          <i class="fa-regular fa-clock-rotate-left"></i>
+        </div>
+        <div class="itemLabel">History</div>
+      </div>
+    </a>
+
+    <a href="../console/messenger.html" class="list-group-item bg-transparent">
+      <div class="list-group-text d-flex align-items-center">
+        <div class="iconButton medium">
+          <i class="fal fa-cog"></i>
+        </div>
+        <div class="itemLabel">Console</div>
+      </div>
+    </a>
+    <a href="../bot/history.html" class="list-group-item bg-transparent">
+      <div class="list-group-text d-flex align-items-center">
+        <div class="iconButton medium">
+          <i class="fa-light fa-users"></i>
+        </div>
+        <div class="itemLabel">Human Interactions</div>
+      </div>
+    </a> -->
+  </ul>
+  <div class="mt-auto">
+    <div
+      class="dropend w-auto mb-3 d-flex align-items-center justify-content-center"
+    >
+      <button
+        type="button"
+        class="btn iconButton medium bg-light"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <i class="far fa-user"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <div class="d-flex px-3 py-2 align-items-center">
+            <div class="flex-shrink-0">
+              <div class="iconButton medium bg-light">
+                <i class="far fa-user"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="m-0">{{username}}</h6>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <a href="" class="dropdown-item"
+            >Language: <span class="text-muted">English (US)</span></a
+          >
+        </li>
+        <li><a href="" class="dropdown-item">Terms &amp; policies</a></li>
+        <li><a href="" class="dropdown-item">Help Center</a></li>
+        <li>
+          <a (click)="signOut()" class="dropdown-item logout" data-channel="logout"
+            >Log out</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div
+      id="bd-theme"
+      class="dropend w-auto mb-3 d-flex align-items-center justify-content-center"
+      aria-label="
+
+       (light)"
+    >
+      <button
+        class="iconButton medium bg-light"
+        type="button"
+        id="bd-theme-text"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+      >
+        <i class="fa-light fa-sun-bright"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="bd-theme-text">
+        <button
+          class="dropdown-item active"
+          data-bs-theme-value="light"
+          aria-pressed="true"
+          (click)="changeColors('light')"
+        >
+          <i class="fa-light fa-sun-bright"></i> Light
+        </button>
+        <button
+          class="dropdown-item"
+          data-bs-theme-value="dark"
+          aria-pressed="false"
+          (click)="changeColors('dark')"
+        >
+          <i class="fa-light fa-moon"></i> Dark
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

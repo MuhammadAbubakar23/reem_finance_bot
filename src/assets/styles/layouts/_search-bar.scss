@@ -1,0 +1,85 @@
+/**************** Search Bar Styles *************/
+.search-btn {
+  width: 220px;
+  height: 40px;
+  border: 1px solid #e2e5e6;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  background-color: $white;
+  .bmd-form-group {
+    padding: 0;
+  }
+  .iconButton {
+    &:active {
+      background-color: transparent;
+    }
+  }
+  input {
+    border: 0;
+    width: 100%;
+    &:focus-visible {
+      outline: none;
+    }
+    &::placeholder {
+      color: $metal;
+    }
+  }
+  &.small-search-btn {
+    width: 115px;
+  }
+}
+.sort-name {
+  margin-right: 8px;
+}
+.search-wrap {
+  display: flex;
+  &.small-search {
+    width: 125px;
+  }
+  &.expand-search {
+    width: 125px;
+    transition: 0.5s;
+    &.expand {
+      width: 325px;
+    }
+    .search-btn {
+      width: 100%;
+      position: relative;
+      display: flex;
+      input {
+        width: 100%;
+        border-right: none;
+        height: 20px;
+        outline: none;
+      }
+      .searchButton {
+        cursor: pointer;
+      }
+    }
+  }
+}
+.console-document {
+  .searchbox {
+    &.searchbox-open {
+      input {
+        padding: 13px 15px;
+      }
+    }
+    input {
+      padding: 0;
+    }
+  }
+}
+.console-document{
+  .searchbox{
+    &.searchbox-open{
+      input{
+        padding: 13px 15px;
+      }
+    }
+    input{
+      padding: 0;  
+    }
+  }
+}

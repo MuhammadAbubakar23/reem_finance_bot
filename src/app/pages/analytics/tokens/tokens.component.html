@@ -1,0 +1,121 @@
+<div class="middle-content d-flex">
+
+
+
+    <div class="p-4 d-grid w-100">
+        <div class="analytics-dashboard analytics-dashboard" data-scrollbar="true" tabindex="-1"
+            style="overflow: auto; outline: none;">
+            <div class="scroll-content">
+                <div class="analytics executive-dashboard">
+                    <div class="filter-toolbar mb-3 border-0 d-flex align-items-center justify-content-between">
+                        <h6 class="text-uppercase">Tokens Analytics </h6>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle fw-bold" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fal fa-calendar"></i> {{ selectedTimeLabel }}
+                            </button>
+                            <ul class="dropdown-menu assignFirstDropdownList1" aria-labelledby="dropdownMenuButton1">
+                                <!-- <li class="dropdown-item" (click)="refreshFilters(2000)">
+                                    <a> Any Time</a>
+                                </li> -->
+                                <li class="dropdown-item" (click)="refreshFilters(1, 'day', 'Last 24 hours')">
+                                    <a>Last 24 hours</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(7, 'week', 'Last 7 days')">
+                                    <a>Last 7 days</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(30, 'month', 'Older than a month')">
+                                    <a>Older than a month</a>
+                                </li>
+                                <li class="dropdown-item"
+                                    (click)="refreshFilters(180, '6 months', 'Older than a 6 months')">
+                                    <a> Older than a 6 months</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(365, 'year','Older than a year')">
+                                    <a>Older than a year</a>
+                                </li>
+                                <!-- <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="dropdown-item" id="customrange1">
+                                    <a>Custom Range</a>
+                                </li> -->
+                            </ul>
+                                    <div class="dropdown-menu end-0 assignSecondDropdownList1"
+                                        aria-labelledby="customrange1">
+                                        <form class="px-3 py-3">
+                                            <div class="d-flex mb-3">
+                                                <div class="form-floating">
+                                                    <input type="date" class="form-control border-end-0 rounded-0"
+                                                        id="start-date" placeholder="Start Date">
+                                                    <label for="start-date">Start Date </label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <input type="date" class="form-control rounded-0" id="end-date"
+                                                        placeholder="End Date">
+                                                    <label for="end-date">End Date</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-end">
+                                                <button type="submit" class="btn skyBg btn-small">Apply</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row align-items-start mb-3">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-4 text-uppercase"> Average Token Per Chat</h6>
+                                    <div class="chartcontainer d-flex justify-content-center">
+                                        <div id="average" style="height: 300%; width: 100%; max-width:800px"></div>
+                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h6>Total Tokens</h6>
+                                    <h2>{{ (totalTokenCount > 0 ? totalTokenCount : 0 ) | thousandSuff  }}</h2>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h6>Average Token <small class="coal">per conversation</small></h6>
+                                    <h2>{{ (avgTokenCount > 0 ? avgTokenCount : 0) | number: '1.0-0' }}</h2>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h6>Tokens per day</h6>
+                                    <h2>{{(tokenPerDayCount > 0 ? tokenPerDayCount : 0 ) | thousandSuff  }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+            
+        </div>
+
+
+    </div>
+
+
+
+
+</div>

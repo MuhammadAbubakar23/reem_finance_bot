@@ -1,0 +1,209 @@
+<!-- <div class="team-user-wrap console-body-wrapper inbox-container" data-scrollbar="true" tabindex="-1"
+    style="overflow-y:auto; outline: none;"> -->
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="false"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+
+<div class="content-box-wrapper d-flex w-100">
+  <div class="middle-content d-flex">
+    <div
+      class="team-user-wrap console-body-wrapper inbox-container perfect-scrollbar"
+    >
+      <div class="wider-container pt-3">
+        <div class="w-100 inbox-container">
+          <div class="searchBar-wrapper mb-4">
+            <div class="row w-100">
+              <div class="col-md-5">
+                <ul class="list-group list-group-horizontal border-0">
+                  <li class="list-group-item border-0 p-0">
+                    <div class="icon-input">
+                      <i class="fa-light fa-magnifying-glass"></i>
+                      <input
+                        class="form-control"
+                        placeholder="Search users.. "
+                        [(ngModel)]="searchText"
+                        (input)="refreshMessages()"
+                      />
+                    </div>
+                  </li>
+                  <li
+                    class="list-group-item border-0 refreshicon iconHover iconButton medium rounded-circle"
+                    aria-label="..."
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    data-bs-original-title="Refresh"
+                    (click)="resetfilters()"
+                  >
+                    <i class="fal fa-redo"></i>
+                  </li>
+                  <li
+                    class="list-group-item after-select-fun iconHover iconButton medium rounded-circle"
+                    aria-label="..."
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    data-bs-original-title="Delete"
+                    style="display: none"
+                  >
+                    <i class="fal fa-trash"></i>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-7">
+                <div class="d-flex align-items-center justify-content-end">
+                  <a [routerLink]="['/bot/console/users/create']" class="me-2">
+                    <button type="button" class="btn btn-primary">
+                      <i class="fal fa-plus me-2"></i>
+                      Create User
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="query-container">
+            <div class="table-section">
+              <table class="table table-sm table-nowrap table-reset" id="table">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Team</th>
+                    <th>Roles</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(user of paginatedMessages; track user){
+                  <tr>
+                    <td>{{ user.firstName }}&nbsp;{{ user.lastName }}</td>
+                    <td>
+                      {{ user.email }}
+                    </td>
+                    <td>{{ user.teamId[0] }}</td>
+                    <td>
+                      {{ user.roleId[0] }}
+                      @if(user.roleId.length > 1){
+                      <div class="d-inline-block dropdown w-auto device-dd">
+                        <button
+                          class="d-inline-block dropdown w-auto btn ps-0"
+                          type="button"
+                          id="dropdownMenu2"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <span class="silver">
+                            + {{ user.roleId.length - 1 }}</span
+                          >
+                        </button>
+                        <ul
+                          class="dropdown-menu w-auto dd-scroll"
+                          aria-labelledby="dropdownMenu2"
+                        >
+                          @for(item of user.roleId; track item; let i = $index){
+                          <li>
+                            @if( i !== 0 ){
+                            <span class="silver">
+                              <li>
+                                <a
+                                  class="dropdown-item mt-1 justify-content-center"
+                                >
+                                  <span>
+                                    {{ item }}
+                                  </span>
+                                </a>
+                              </li>
+                            </span>
+                            }
+                          </li>
+                          }
+                        </ul>
+                      </div>
+                      }
+                    </td>
+                    <td>
+                      <div
+                        class="icons-list d-flex justify-content-end dropstart"
+                      >
+                        <button
+                          class="btn iconButton small iconHover btn-group"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <i class="far fa-ellipsis-v"></i>
+                        </button>
+                        <ul class="dropdown-menu fade">
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="editTemplate(user)"
+                              ><i class="fal fa-edit me-2"></i> Edit</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item delete-dd"
+                              (click)="deleteTemplate(user)"
+                              ><i class="fal fa-trash me-2"></i> Delete</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                  <li
+                    class="page-item"
+                    [ngClass]="{ disabled: currentPage === 1 }"
+                  >
+                    <a
+                      class="page-link"
+                      (click)="changePage(currentPage - 1)"
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  @for(page of [].constructor(totalPages); track page; let i =
+                  $index){
+                  <li
+                    class="page-item"
+                    [ngClass]="{ active: currentPage === i + 1 }"
+                  >
+                    <a class="page-link" (click)="changePage(i + 1)">{{
+                      i + 1
+                    }}</a>
+                  </li>
+                  }
+                  <li
+                    class="page-item"
+                    [ngClass]="{ disabled: currentPage === totalPages }"
+                  >
+                    <a
+                      class="page-link"
+                      (click)="changePage(currentPage + 1)"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

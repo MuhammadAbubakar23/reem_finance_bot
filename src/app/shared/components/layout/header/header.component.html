@@ -1,0 +1,35 @@
+<header class="main-header shadow-sm agent-header">
+  <div class="row justify-content-between">
+    <div class="col-lg-6">
+      <div class="dashboard-header-left d-flex align-items-center">
+        <button class="iconButton medium">
+          <i [ngClass]="headerData.class"></i>
+        </button>
+        <nav>
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item active" style="margin-right: 20px">
+              <span class="me-2" [innerHTML]="headerData.icon"> </span>
+              @if(headerData.tabs[0]?.url;){
+                <a (click)="navigateTab(headerData.tabs[0].url)" >{{ headerData.title }}
+                </a>
+              }
+              @else {
+                <a>{{ headerData.title }}</a>
+              }
+
+            </li>
+            @if(!headerData.isTab){
+              <li>
+                @if(headerData && headerData.tabs && headerData.tabs.length > 0){
+                  <a routerLink="{{ headerData.tabs[0].url }}">{{
+                    headerData.tabs[0].title
+                  }}</a>
+                }
+              </li>
+            }
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

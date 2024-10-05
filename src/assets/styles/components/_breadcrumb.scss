@@ -1,0 +1,28 @@
+// .breadcrumb {
+//     .breadcrumb-item {
+//       +.breadcrumb-item {
+//         &::before {
+//           content: '\f054';
+//           // font-size: 12px;
+//           font-family: "Font Awesome 6 Pro";
+//           color: $coal;
+//           display: flex;
+//           align-items: center;
+//           height: 100%;
+//           width: auto;
+//           font-weight: 100;
+//         }
+//       }
+//       color: $night;
+//       font-weight: normal;
+//       a {
+//         color: $coal;
+//       }
+//       &:first-child {
+//         color: $night;
+//         a {
+//           color: $night;
+//         }
+//       }
+//     }
+//   }

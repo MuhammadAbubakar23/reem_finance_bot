@@ -1,0 +1,165 @@
+<section
+  class="empty col d-flex flex-column justify-content-center h-100 align-items-center gap-3 d-none"
+>
+  <img
+    src=".../../../../.././../../../assets/images/empty.svg"
+    width="300px"
+    alt=""
+  />
+  <p class="m-0 coal">Select the conversation to load the messages</p>
+</section>
+<section class="chatitem col" id="chatitem1">
+  <div class="query-container chat-message-component p-0" data-scrollbar="true">
+    <header class="chat-header">
+      <div class="d-flex align-items-center">
+        <span class="iconButton medium bg-white fw-bold">{{
+          InitialsService.getInitials(currentUserName)
+        }}</span>
+        <div class="ms-3">
+          <h6 class="user-status m-0">
+            {{ currentUserName != "" ? currentUserName : chat.session_id }}
+            <!-- <i class="fa fa-circle user-status-icon sun" title="away"></i> -->
+          </h6>
+        </div>
+
+        <span class="iconButton medium ms-auto iconHover" id="minbutton">
+        </span>
+        <span
+          aria-label="End Conversation "
+          data-balloon-pos="left"
+          (click)="
+            chatForm.controls['message'].setValue('Chat Ended');
+            killChat('/kill')
+          "
+          class="iconButton medium iconHover ms-auto"
+          id="minbutton"
+        >
+          <i class="fa-regular fa-sign-out-alt"></i>
+        </span>
+        <span
+          (click)="removeScreen()"
+          class="iconButton medium iconHover"
+          aria-label=" Close "
+          data-balloon-pos="left"
+        >
+          <i class="fa-regular fa-times"></i>
+        </span>
+      </div>
+    </header>
+
+    <div class="chatsection" (scroll)="onScroll($event)" #scrollMe>
+      <div class="main-chat">
+        <div class="chat-box-wrap" #chatsection style="overflow: auto">
+          @for(msg of chat; track msg; let i = $index){
+          <ng-container>
+            <div
+              class="message-wrap agent-message-wrap"
+              [ngClass]="{
+                right: msg.type === 'human',
+                left: msg.type === 'ai-agent' || msg.type === 'human-agent'
+              }"
+            >
+              <div
+                class="d-flex align-items-center agent-container"
+                [ngClass]="{ 'mb-5': i === chat.length - 1 }"
+              >
+                <div
+                  class="card w-d-inline messageUpper"
+                  style="min-width: 250px !important"
+                >
+                  <div class="card-body">
+                    <div class="d-flex msg-user-info">
+                      <div class="d-flex align-items-center w-100">
+                        <h6
+                          class="card-title m-0 me-2"
+                          style="min-width: 100px !important"
+                        >
+                          {{
+                            msg.type === "ai-agent"
+                              ? bot_name
+                              : msg.type === "human-agent"
+                              ? msg.agent_name || "enteract.human"
+                              : currentUserName != ""
+                              ? currentUserName
+                              : chat.session_id
+                          }}
+                        </h6>
+                        @switch (msg.sentiment) { @case('Positive'){
+                        <span style="padding-left: 6px"
+                          ><img
+                            src="../../../../../../assets/images/positive.svg"
+                        /></span>
+                        } @case('Negative'){
+                        <span style="padding-left: 6px"
+                          ><img
+                            src="../../../../../../assets/images/negative.svg"
+                        /></span>
+                        } @case('Neutral'){
+                        <span style="padding-left: 6px"
+                          ><img
+                            src="../../../../../../assets/images/neutral.svg"
+                        /></span>
+                        } }
+
+                        <small
+                          class="silver ms-auto"
+                          style="min-width: 80px !important"
+                        >
+                          &nbsp;&nbsp;{{ msg.timestamp }}</small
+                        >
+                      </div>
+                    </div>
+                    <p class="card-text nignt">
+                      <markdown [data]="msg.text"></markdown>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="chatfooter">
+    <form [formGroup]="chatForm">
+      <input
+        class="form-control chat-input"
+        rows="1"
+        placeholder="Click on related Query"
+        formControlName="message"
+      />
+      <div class="icons-list">
+        <button
+          class="btn btn-primary btn-sm"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          type="submit"
+          id="commentSendbtn"
+          aria-label="Send"
+          data-bs-original-title="Send"
+          (click)="submitMessage('')"
+          (keydown)="onKeydown($event)"
+        >
+          <i class="fa-light fa-paper-plane"></i> Send
+        </button>
+      </div>
+    </form>
+  </footer>
+  <!-- <footer>
+        <form>
+          <input
+            class="form-control"
+            placeholder="Send a message.."
+            formControlName="message"
+          />
+          <button
+            class="iconButton iconHover sendicon"
+            (click)="submitMessage('')"
+          >
+            <i class="fa-light fa-paper-plane-top"></i>
+          </button>
+        </form>
+      </footer> -->
+</section>

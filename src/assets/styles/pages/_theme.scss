@@ -1,0 +1,630 @@
+[data-bs-theme="dark"] {
+
+  $dark1: #0f1014;
+  $border-dark: #1e2027;
+
+  body {
+    background-color: $dark1;
+    color: #9A9CAE;
+  }
+
+  .agent-grid .rightbar-expanded-wrapper .expended-rigth-sidebar {
+    background-color: #0f1014;
+  }
+
+  .agent-grid .rightbar-expanded-wrapper .expended-rigth-sidebar .profile table {
+    background-color: #1c1c21;
+  }
+
+  .msgTypingField .card .card-body {
+    background: $dark1;
+  }
+
+  .dashboard-header-left .navbar .nav-item .nav-link.active {
+    color: $white;
+  }
+
+
+
+  #left-sidebar-expand .multiple-screens ul.list-group .list-group-item.all-inboxes-menu {
+    color: #889CAE;
+
+    &.active {
+      color: $white;
+    }
+
+    &:hover {
+      background-color: #1C1C21 !important;
+    }
+
+    .iconButton {
+      background-color: #1C1C21 !important;
+      color: #889CAE;
+    }
+  }
+
+  #leftBarWrapper {
+    background-image: linear-gradient(6deg, #0D0E12, #0D0E12);
+
+    .collapsible__header {
+      border-color: #282a33;
+    }
+
+    .list-group-item {
+      color: #889CAE;
+
+      &:hover {
+        background-color: #1C1C21 !important;
+      }
+
+      &.active {
+        background-color: #1C1C21 !important;
+        color: $white;
+      }
+    }
+  }
+
+  .agent-grid .content-box-wrapper,
+  .middle-content {
+    background-color: $dark1;
+  }
+
+  .main-header {
+    border-bottom: 1px solid #282a33;
+    background: #0d0e12;
+  }
+
+  .breadcrumb .breadcrumb-item:first-child a {
+    color: #9A9CAE;
+  }
+
+  .user-profile-dropdown li.user-dropdown-header {
+    background: #1c1d22;
+  }
+
+  .dropdown-item.active,
+  .dropdown-item:active {
+    background: #0d0e12;
+    color: $sky;
+  }
+
+
+
+  .coal {
+    color: #9B9B9B !important;
+  }
+
+  .right-header-components .dropdown a .name-n-info span {
+    color: #9A9CAE;
+  }
+
+  #left-sidebar-expand {
+
+    border-right: 1px solid #282a33;
+    background: #0d0e12;
+
+  }
+
+  #left-sidebar-expand ul.list-group li a {
+    color: #9A9CAE;
+  }
+
+  #left-sidebar-expand ul.list-group li:hover {
+    background-color: $dark1;
+
+    a {
+      color: #9A9CAE;
+    }
+  }
+
+  #left-sidebar-expand ul.list-group li.active {
+    background-color: #1d1f27;
+  }
+
+
+
+  .right-header-components .dropdown .dropdown-menu .card-footer,
+  .right-header-components .notify .notification-header {
+    background-color: #1d1f27;
+  }
+
+  .form-control,
+  .form-select {
+    border-color: #3f3f3f;
+  }
+
+
+
+  .list-group-item {
+    border-color: #222;
+  }
+
+  .botleft .sidebar-search {
+    background-color: #0d0e12;
+    border-bottom: 1px solid $border-dark !important;
+  }
+
+  .botleft .sidebar-search .form-control {
+    background-color: #1B1C22;
+    border-color: $border-dark;
+  }
+
+  .shortcut-box .iceBg {
+    background-color: #15171C !important;
+  }
+
+  .chat-header {
+    background: #1d1f27;
+  }
+
+  .chatbot-main .chat-message-component {
+    background-color: #15171C;
+
+  }
+
+  .chat-message-component .message-wrap.agent-message-wrap.left .card .card-body {
+    background-color: #1d1f27 !important;
+    color: $white;
+  }
+  .chat-message-component .message-wrap.agent-message-wrap .card .card-body{
+    color: $white;
+  }
+
+  .filter-container {
+    border-bottom: 1px solid $border-dark;
+    background: #1c1c21;
+
+  }
+
+  .inbox-container table tbody tr {
+    border-bottom: 1px solid #1e20272f;
+  }
+
+  #leftBarWrapper .leftBarDivider {
+    background-color: $border-dark !important;
+  }
+
+  .inbox-container table tbody tr td .email-tag {
+    background: #1B1C22;
+    color: $white;
+  }
+
+  .chat-message-component .date-wrap .date {
+    background: #1B1C22;
+    color: $white;
+  }
+
+  .conversation-list .panelMain ul.list-group .postBox.unRead {
+    background: #1C1C21;
+  }
+
+  .conversation-list .panelMain ul.list-group .postBox {
+    .iconButton {
+      background-color: $dark1;
+      color: #9A9CAE;
+    }
+  }
+
+  .chat-message-component .headerWrap {
+    background-color: #1c1c21;
+  }
+
+  .chat-message-component {
+    background-color: $dark1;
+  }
+
+  .conversation-list .panelMain ul.list-group .postBox .boxMiddle .boxContent {
+    color: #cbcbcb;
+  }
+
+  .darkblue {
+    color: #b1b4b5 !important;
+  }
+
+  .iconButton.iconHover:hover {
+    color: rgba(255, 255, 255, 0.80);
+    background-color: hsl(228deg 14.29% 6.86%);
+  }
+
+  .iconButton {
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .chat-message-component .message-wrap.agent-message-wrap .card .card-body,
+  .agent-grid .rightbar-expanded-wrapper .expended-rigth-sidebar .profile table tr td .card,
+  .agent-grid .rightbar-expanded-wrapper .expended-rigth-sidebar .profile ul.center-social-wrapper .list-group-item {
+
+    background-color: #111212 !important;
+  }
+
+  .msgTypingField {
+    background: #101010;
+  }
+
+  .chatfooter {
+    background: #1d1f27;
+  }
+
+  .rightbarNav {
+    background: #0d0e12;
+    border-left: 1px solid #575757;
+  }
+
+  #left-sidebar-expand .multiple-screens ul.list-group .list-group-item.all-inboxes-menu.active {
+    color: $white;
+    background: #1C1C21;
+
+    .iconButton {
+      color: $white;
+    }
+  }
+
+  .list-group-followup a {
+    color: $white;
+  }
+
+  .inbox-container table tbody tr:hover {
+    background: #1c1c21 !important;
+  }
+
+  .bg-white,
+  .iceBg {
+    background-color: #000 !important;
+  }
+
+  .btn-success {
+    background-color: #323b36 !important;
+    border-color: #416a56 !important;
+    color: #3cc480 !important;
+  }
+
+  .search-btn {
+    border: 1px solid #464f59;
+    background-color: #212529;
+  }
+
+  .btn-outline-success {
+    background-color: #292e2b !important;
+    border-color: #416a56 !important;
+    color: #3cc480 !important;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  #left-sidebar-expand ul.list-group::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Track */
+  #left-sidebar-expand ul.list-group::-webkit-scrollbar-track {
+    background: #555555;
+  }
+
+  /* Handle */
+  #left-sidebar-expand ul.list-group::-webkit-scrollbar-thumb {
+    background: #666b70;
+    border-radius: 15px !important;
+  }
+
+  /* Handle on hover */
+  #left-sidebar-expand ul.list-group::-webkit-scrollbar-thumb:hover {
+    background: #797f85;
+  }
+
+  #left-sidebar-expand ul.list-group.console-list li.active {
+    background-color: rgb(33 37 41);
+    border: 1px solid rgb(84, 84, 251);
+  }
+
+  #left-sidebar-expand .collapsible__header {
+    border-bottom: 1px solid #282a33;
+  }
+
+  .table-section table thead tr th {
+    color: $white;
+  }
+
+  #left-sidebar-expand ul.list-group.console-list ul>li {
+    background: rgb(115 114 114 / 54%);
+    border-radius: 8px;
+  }
+
+  .text-dark,
+  .charcoal {
+    color: $white !important;
+  }
+
+  .inbox-container table tbody tr.alert.alert-danger {
+    background: rgb(26 26 26 / 80%);
+  }
+
+  .chat-message-component .nav .nav-item .nav-link.active {
+    background-color: #28282b;
+    color: $white;
+  }
+
+  .sentiments .bgpositive {
+    color: #53C485 !important;
+    background-color: #192b1f !important;
+  }
+
+  .main-header .social-header-left .nav-item .nav-link {
+    background-color: #28282b !important;
+  }
+
+  .bg-light {
+    background-color: rgb(40 40 43) !important;
+  }
+
+  .inbox-container table tbody tr.alert.alert-danger {
+    background: rgb(13 14 18);
+  }
+
+  .markAs-dropdown .btn {
+    background-color: #1c1c21;
+    border: 1px solid #282a33;
+    color: $white;
+  }
+
+  .markAs-dropdown .btn .dropdown-title {
+    color: $white;
+  }
+
+  .rightaction .respondeddd .btn {
+    background: #262d3f;
+
+  }
+
+  .filter-toolbar ul.list-inline>li .toggle-check-btn,
+  .filter-toolbar ul.list-inline>li .dropdown .dropdown-toggle {
+    background: #1c1c21;
+    border-color: transparent;
+    color: $white;
+
+    i {
+      color: $white;
+    }
+
+    &:hover {
+      background: #1c1c21;
+      border-color: transparent;
+      color: $white;
+    }
+  }
+
+  .linetabs.nav-tabs .nav-item .nav-link.active {
+    color: $white;
+    border-bottom: 2px solid rgb(66 66 127);
+    background: #0f1014;
+  }
+
+  .linetabs.nav-tabs .nav-item .nav-link {
+    color: #9A9CAE;
+  }
+
+  .linetabs.nav-tabs {
+    border-bottom: 1px solid #444445;
+  }
+
+  #left-sidebar-expand .panelToggle {
+    background: rgb(33 37 41);
+    border-color: rgb(100 104 122);
+    color: $white;
+    opacity: 1;
+
+    &:hover {
+      background: rgb(21, 22, 23);
+      border-color: rgb(100 104 122);
+      color: $white;
+    }
+  }
+
+  #bd-theme-text {
+    color: $white;
+  }
+
+  [aria-label][data-balloon-pos]:after {
+    background: rgb(255 255 255 / 95%);
+    color: #000000;
+  }
+
+  [aria-label][data-balloon-pos][data-balloon-pos^=down]:before {
+    border: 5px solid transparent;
+    border-bottom-color: rgb(255 255 255 / 95%);
+  }
+
+  #left-sidebar-expand .multiple-screens {
+    background: #0D0E12 !important;
+  }
+
+  .enteract-chatbot {
+    background-color: $dark1;
+    box-shadow: 0 5px 40px rgba(84, 84, 251, 0.25);
+
+    header {
+      background-color: #1c1c21;
+    }
+
+    .chatbody .messagewrap.e-left .messagebody .messagebubble {
+      background-color: #262d3f;
+      color: $white;
+    }
+
+    footer {
+      background: #1c1c21;
+      border-color: transparent;
+
+      input {
+        background: #1c1c21;
+        border-color: transparent;
+      }
+    }
+  }
+
+  .listbtns {
+    background: linear-gradient(180deg, #181a1f, #000);
+  }
+
+  .ng-select .ng-select-container {
+    color: #c1c1c1;
+    background-color: #212529;
+    border: 1px solid #454545;
+  }
+
+  .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+    color: $white;
+    background-color: #5454fb;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-header {
+    border-bottom: 1px solid #4e4e4e;
+    background: #212529;
+  }
+
+  .ng-dropdown-panel {
+    background-color: #16171d;
+    border: 1px solid #484747;
+    box-shadow: none;
+  }
+
+  #left-sidebar-expand .multiple-screens ul.list-group.all-inboxes-menu .list-group-item.active {
+    background-color: #18191b !important;
+    color: $white;
+  }
+
+  #left-sidebar-expand .multiple-screens ul.list-group.all-inboxes-menu .list-group-item.itemopen {
+    border: 1px solid #7777ce;
+    background-color: #18191b !important;
+    color: $white;
+  }
+
+  #left-sidebar-expand .multiple-screens ul.list-group.all-inboxes-menu .list-group-item:hover {
+    background-color: #191a1c !important;
+    color: $white;
+  }
+
+  .badge-parrot {
+    background: #1f212a;
+    border: 1px solid #2b4440 !important;
+  }
+
+  .badge-success {
+    background: #1f212a;
+    border: 1px solid #3f6652 !important;
+  }
+
+  .badge-danger {
+    background: rgb(48 32 36) !important;
+    border-color: rgb(48, 32, 36) !important;
+  }
+
+  #left-sidebar-expand .sidebar-header {
+    border-bottom: 1px solid $border-dark;
+    background: #0d0e12;
+
+  }
+
+  .night {
+    color: $ice !important;
+  }
+
+  .chat-message-component .chatsection.botchat .message-wrap.agent-message-wrap.right .card .card-body {
+    color: $ice;
+  }
+
+  .chat-message-component .chatsection.botchat .message-wrap.agent-message-wrap.right .card .card-body {
+    background-color: #263634 !important;
+  }
+
+  .perfect-scrollbar::-webkit-scrollbar-track {
+    background-color: #383535;
+  }
+
+  .perfect-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(83, 83, 83);
+  }
+
+  .bg-dark-subtle {
+    background: #0a0b0e !important;
+  }
+
+  .botgreenbg {
+    background-color: #3a7f7b !important;
+  }
+
+  .catchup {
+    background: #3d4f4c;
+    border-bottom: 1px solid #535353;
+    color: $white;
+  }
+
+  .replybox {
+    border: 1px solid #2b2b2b;
+    background: #0d0e12;
+  }
+
+  .knowledgebase .aiactions .btn-outline-secondary {
+    color: $white;
+  }
+
+  .knowledgebase .aicard {
+    border-bottom: 1px solid #2b2b2b;
+  }
+
+  .chat-message-component .chatsection .flagmessage .card .card-body {
+    background-color: #37342a !important;
+    color: $white;
+  }
+
+  .chat-message-component .chatsection .flagmessage .flagreply {
+    background-color: #211e17 !important;
+  }
+
+  .botleft {
+    .nav-pills {
+      border: 1px solid #15161b;
+      background-color: #1b1c22;
+
+      .nav-link {
+        background-color: #18191b;
+        color: $white;
+
+        &.active {
+          background-color: $brand-primary;
+        }
+      }
+    }
+  }
+
+  .knowledgebase .aicard .card {
+    background: linear-gradient(90deg, #4d4642 0%, #514859 100%);
+    color: #e7ebef;
+  }
+
+  .lineseperator .date-wrap {
+    background: #1f2229;
+  }
+  .historyinfo {
+    background: linear-gradient(85deg, #242431 -1.45%, #020202 110.08%);
+    border-bottom: 1px solid #1d1f27;
+}
+.bot-wrapper {
+
+  background: radial-gradient(179.91% 117.9% at 87.24% 116.87%, #292123 0%, #2a2837 54.5%, #040404 100%);
+ 
+}
+.bot-wrapper .bot-footer {
+  background: rgb(34 30 39);
+
+}
+.knowledgebase .accordion .accordion-item .accordion-body {
+  background-color: #0f1014;
+  border: 1px solid #383535;
+}
+.knowledgebase .accordion .accordion-item .accordion-header .accordion-button {
+  background-color: #1d1f27;
+}
+}

@@ -1,0 +1,36 @@
+.bgimg{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.auth_wrapp{
+  .main-body{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    flex: 1;
+    
+    .form {
+      .iconholder{
+        i{
+          left: 16px;
+          top: 20px;
+          font-size: 18px;
+        }
+      }
+     .form-control{
+        height: 56px;
+        padding-left: 44px;
+     }
+    }
+  }
+  footer{
+    position: relative;
+    z-index: 1;
+  }
+}

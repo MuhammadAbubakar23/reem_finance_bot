@@ -1,0 +1,70 @@
+.table-section{
+    table{
+        thead {
+            border-bottom: 2px solid $sky;
+            border-color: $sky;
+            tr{
+                th{
+                    color: $charcoal;
+                    font-weight: 500;
+                }
+            }
+        }
+        tbody{
+            tr{
+                th{
+                    .list-group{
+                        .list-group-item{
+                            padding: 1rem 0rem;
+                        }
+                    }
+                }
+                .icons-list{
+                    opacity: 0;
+                    visibility: hidden;
+                    -webkit-transition: 0.5s;
+                    transition: 0.5s;
+                }
+                &:hover{
+                    border-color: $sky;
+                    .icons-list{
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+}
+// Disable Items
+.disable-item{
+    pointer-events: none;
+    opacity: 0.4;
+}
+.table-section.table-white{
+     table{
+         tbody{
+             tr{
+                background-color: #fff;
+             }
+         }
+        thead {
+            tr {
+                th{
+                    color: #2E4453;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    background: #fff;
+                    padding: 0.8rem 0.5rem;
+                }
+            }
+        }
+     }
+}
+.table-middle{
+    tr{
+        td{
+            vertical-align: middle;
+        }
+    }
+}

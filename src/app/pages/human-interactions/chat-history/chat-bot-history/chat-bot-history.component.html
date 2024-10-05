@@ -1,0 +1,30 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.75)" size="small" color="#fff" type="ball-clip-rotate" [fullScreen]="false"
+    [name]="'chat-history1'">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<main class="">
+    <div class="page-content-wrapper custom-scroll chatbot-main" [ngClass]="{ thirdactive: chats.length === 3 }">
+        @if(chats.length === 0){
+            <div class="row" >
+                <div class="col-sm-12">
+                    <section class="empty col d-flex flex-column justify-content-center h-100 align-items-center gap-3">
+                        <img src="../../../../../assets/images/empty.svg" width="300px" alt="" />
+                        <p class="m-0 coal">Select the conversation to load the messages</p>
+                    </section>
+                </div>
+            </div>
+        }
+        @if(chats.length > 0){
+            <div class="chatlisting row align-items-start px-3 pt-3 pb-3">
+                @for(chat of chats; track chat; let i = $index){
+                    <div class="chatitem col">
+
+                        <app-chat-history [chat]="chat"></app-chat-history>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</main>
+<app-chat-widget2 [hasParent]="true"></app-chat-widget2>

@@ -1,0 +1,81 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.75)" size="small" color="#fff" type="ball-clip-rotate" [fullScreen]="false">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="page-content-wrapper console-body-wrapper perfect-scrollbar" data-scrollbar="true" tabindex="-1"
+  style="overflow: auto; outline: none">
+  <div class="scroll-content" style="transform: translate3d(0px, 0px, 0px)">
+
+    <div class="p-4">
+      <div class="row align-items-start justify-content-between">
+        <div class="col-md-5">
+          <div class="tab-content" id="myTabContent">
+            @if(ValueSettingServiceService.default == 'create'){
+              <div><app-conversational-bot-configuration></app-conversational-bot-configuration></div>
+            }
+            @if(ValueSettingServiceService.default == 'upload'){
+              <div><app-conversational-bot-upload-files></app-conversational-bot-upload-files></div>
+            }
+            @if(ValueSettingServiceService.default == 'time'){
+              <div><app-configurations></app-configurations></div>
+            }
+          </div>
+        </div>
+
+        <div class="col-md-5 ps-5">
+          <ul class="list-group list-group-flush bg-white rounded" id="botList">
+            <li class="list-group-item d-flex align-items-center border-bottom-0 py-3">
+              <h5 class="m-0 ps-3">Agents</h5>
+            </li>
+            @for(bot of bots; track bot; let i = $index){
+              <li class="list-group-item d-flex align-items-center">
+                <span class="iconButton medium berryTransBg"><i [ngClass]="bot.icon"></i></span>
+                <h6 class="m-0 ps-3">{{ bot.workspace_name }}</h6>
+                <div class="ms-auto d-flex">
+                  <a data-bs-toggle="modal" data-bs-target="#createtags" class="ms-2">
+                    <span class="iconButton small night" aria-label="Create Tokens" data-balloon-pos="up"  (click)="getToken(bot.workspace_id)"><i
+                        class="fa-regular fa-coin"></i></span></a>
+                  <span class="iconButton small night" (click)="loadTimeComponent()" aria-label="Set Hours" data-balloon-pos="up" ><i
+                      class="fa-light fa-clock">‌</i></span>
+                  <span class="iconButton small night" (click)="getDocuments(bot.workspace_id)"  aria-label="Upload Hours" data-balloon-pos="up" ><i
+                      class="fa-light fa-upload"></i></span>
+                  <span class="iconButton small night" (click)="patchWorkspace(bot.workspace_id)" aria-label="Edit Bot" data-balloon-pos="up"><i
+                      class="fa-light fa-edit"></i></span>
+                  <span class="iconButton small night"><i class="fa-light fa-trash"></i></span>
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="createtags" tabindex="-1" aria-labelledby="createtagsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="createtagsLabel">Create Token </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      @if(currentToken){
+        <div class="modal-body">
+          <label for="floatingInputValue">Active Token</label>
+          <div>
+            <input class="form-control" [(ngModel)]="currentToken" disabled/>
+          </div>
+        </div>
+      }
+      <div class="modal-body">
+        <label for="floatingInputValue">Expiry Date</label>
+        <div>
+          <input class="form-control" type="datetime-local" placeholder="Expiry Date" [(ngModel)]="tokenExpiryDate"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createToken()">Create</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

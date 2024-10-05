@@ -1,0 +1,159 @@
+#left-sidebar-expand.botleft {
+  min-width: 420px;
+  max-width: 420px;
+  &.thirdactive {
+    min-width: 320px;
+    max-width: 320px;
+    .last-chatmsg {
+      width: 200px;
+    }
+  }
+  &.toggled {
+    min-width: 17px;
+    max-width: 17px;
+  }
+  .last-chatmsg {
+    width: 320px;
+    font-size: 13px;
+    color: $coal;
+  }
+}
+.chat-message-component .message-wrap.agent-message-wrap .card .card-body {
+  background-color: #f8f5ff !important;
+  border: none;
+}
+.chat-message-component .message-wrap.agent-message-wrap.left .card .card-body {
+  background-color: rgb(233, 243, 255) !important;
+  border: none;
+}
+.chatbot-main {
+  height: calc(100vh - 60px);
+  &.secondactive {
+    .historyinfo{
+      .row{
+        .col-md-6{
+          width: 100%;
+        }
+      }
+    }
+    .chatsection {
+      padding: 0 0.5rem;
+    }
+    .chat-message-component .message-wrap {
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+  .chat-message-component {
+    background-color: $ice;
+    width: 100%;
+    height: calc(100vh - 160px);
+    padding: 0 15px;
+  }
+  &.thirdactive {
+    .chatsection {
+      padding: 0 0.5rem;
+    }
+    .chat-message-component .message-wrap p {
+      font-size: 13px;
+    }
+  }
+}
+.botleft {
+  .nav-pills .nav-link {
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    &.active {
+      color: $sky;
+      border-bottom: 2px solid $sky;
+      background: rgba(29, 161, 242, 0.1);
+      i {
+        font-weight: bold !important;
+      }
+    }
+  }
+  
+  ul.list-group {
+    height: 86vh !important;
+  }
+  .sidebar-header {
+    height: 64px;
+    background-color: #E6E6E6;
+  }
+  .sidebar-search {
+    .form-control {
+      background-color: #f8f8f8;
+      
+    }
+  }
+  .list-group-item {
+    margin-bottom: 2px;
+    &.active {
+      color: #212529;
+      border: none;
+      background-color: #eef8ff;
+    }
+  }
+}
+
+.chat-message-component .message-wrap.agent-message-wrap:last-child {
+  padding-bottom: 0 !important;
+}
+.chat-header {
+  background: #eeeeee;
+  padding: 0.75rem 1rem;
+  border-radius: 10px 10px 0 0;
+}
+
+.chatfooter {
+  border-radius: 0 0 10px 10px;
+  transition: all 0.5s ease;
+  border-top: none;
+  padding: 0.75rem 1rem;
+  background: #eee;
+  position: relative;
+  .icons-list{
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+    z-index: 1;
+  }
+  .form-control {
+    outline: 0 !important;
+    box-shadow: none;
+    min-height: 90px;
+    resize: none;
+  }
+
+}
+.chatlisting {
+  .chatitem {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s ease;
+    align-self: flex-end;
+    overflow: hidden;
+    height: 100%;
+    &.minimized {
+      height: 64px;
+      .chatfooter {
+        opacity: 0;
+      }
+    }
+  }
+}
+.chat-message-component .message-wrap.agent-message-wrap .card .card-body {
+  border-radius: 0 10px 10px 10px;
+}
+.chat-message-component .message-wrap.agent-message-wrap.left .card .card-body {
+  border-radius: 10px 10px 0 10px;
+}
+.botleft .list-group-item {
+  height: auto !important;
+}
+.thirdactive .message-wrap.agent-message-wrap.left .card .card-body > div {
+  max-width: 220px !important;
+}

@@ -1,0 +1,73 @@
+export const environment = {
+
+  production: true,
+  //baseUrl: "https://connectapi-staging.highnoon.com.pk/api/",
+  //imageBaseUrl: "https://connectapi-staging.highnoon.com.pk/",
+  baseUrl: "https://quality_engageui.enteract.app/api/",
+  baseUrlAI: "http://52.77.162.250:5005/",
+  imageBaseUrl: "https://hnbackend.enteract.app:8445",
+  visitorUrl: "LogsHub",
+  chatBotBaseUrl: 'https://ai-bot.enteract.app/',
+  composeUrl: 'https://engage10aicomposerbackend-api.enteract.app/',
+  //chatBotBaseUrl: "https://reemfinancebotbackend-llamaapi.enteract.app/",
+  conversationBotBaseUrl: "https://ai-bot.enteract.app/",
+  //conversationBotBaseUrl:"https://reemfinancebotbackend-llamaapi.enteract.app/",
+  link: {
+    analytics: {
+      getTotalBotConversation: `analytics/total_bot_conversations`,
+      sessionExpiryReason: 'dashboard/session_expiry_reason',
+      botCsat: 'analytics/bot_csat',
+      messages: 'dashboard/messages',
+      totalMessages: 'dashboard/total_messages',
+      totalUsers: 'dashboard/users',
+      totalUsersCount: 'dashboard/total_users',
+      sessionContainmentRate: 'dashboard/session_containment_rate',
+      userRetentionRate: 'dashboard/user_retention_rate',
+      sessionDuration: 'dashboard/session_duration',
+      getTotalAgents: `analytics/total_bots_agent`,
+      avgBotConversationTime: `analytics/avg_bot_conversation_time`,
+      botEsclationRate: `analytics/bot_escalation_rate`,
+      avgWaitTime: `analytics/avg_wait_time`,
+      sentimentAnalysis: `analytics/sentiments_analysis_bot_csat`,
+      humanAgentCsat: 'analytics/sentiments_analysis_agent_csat',
+      tagsAnalatics: `analytics/tags_analytics`,
+      peakHours: `analytics/peak_hours`,
+      totalToken: `analytics/total_tokens`,
+      conversationOverTime: 'analytics/conversations_over_time',
+      totalSessionsData: 'dashboard/total_sessions_graph',
+      totalSessions: 'dashboard/total_sessions',
+      engagedSessionRate: 'dashboard/engaged_session_rate',
+      sessionsSummary: 'dashboard/session_summary',
+      averageSessionPerUser: 'dashboard/average_session_per_user',
+      avgToken: `analytics/average_tokens_per_conversation`,
+      timeoutCount: `analytics/session_time_out`,
+      tokenPerDay: `analytics/tokens_per_day`,
+      humanTransferRate: "analytics/human_transfer_rate",
+      averageTokenPerChat: "analytics/average_token_per_chat",
+      totalBotSessionsOvertime: "analytics/total_bot_sessions_over_time",
+
+      fallBackCount: 'escalatecount',
+    }
+  },
+  entertainer_bot: {
+    bot_id: "1",
+    workspace_id: "6",
+    bot_name: "Entertainer.Bot",
+    path: "chats/batch"
+  },
+  reem_finance: {
+    bot_id: "2",
+    workspace_id: "1",
+    bot_name: "Reem.Finance.Bot",
+    path: "anythingllm/batch"
+  },
+  default:{
+    bot_id: "1",
+    workspace_id: "6",
+    bot_name: "Enteract.Bot",
+    path: "chats/batch"
+  },
+  superTeam: "1001",
+  superTeam1: "1001",
+  appKey: "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibXVoYW1tYWQucml4dmFuLndhaGVlZEBnbWFpbC5jb20iLCJleHAiOjE2NzYyMzA4MjYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzY5LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQyMDAifQ.NlSFdJSUQfDF0_hbXkfL_smZkfV8b9KFt4ToBFZDzO0",
+};

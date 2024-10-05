@@ -1,0 +1,85 @@
+.avatar {
+  display: block;
+  position: relative;
+  border-radius: 100%;
+  border: 0;
+  font-size: 20px;
+  font-family: 'robotobold', sans-serif;
+  font-weight: normal !important;
+  position: relative;
+  // font-size: 14px;
+  &.verySmall {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  &.small {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  &.medium {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  &.large {
+    flex: 0 0 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.exlarge {
+    flex: 0 0 55px;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.xxl {
+    flex: 0 0 125px;
+    width: 125px;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.xxl {
+    flex: 0 0 125px;
+    width: 125px;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    @include objectFit();
+    border-radius: 100%;
+  }
+  .online {
+    width: 10px;
+    height: 10px;
+    background: $emerald;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    border: 2px solid $ice;
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}

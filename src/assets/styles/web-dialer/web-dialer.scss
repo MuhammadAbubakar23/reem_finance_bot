@@ -1,0 +1,2092 @@
+.dialer-wrapper {
+    position: absolute;
+    bottom: 20px;
+    right: 6px;
+    z-index: 9999;
+    height: 48px;
+    width: 48px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: #452778;
+    border-radius: 20px;
+    -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  button, select {
+    text-transform: none;
+  }
+  button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  *, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+  }
+  .dialer-wrapper.blinddialer .blind-header,
+  .dialer-wrapper.confactive .conference-header {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dialer-wrapper.blinddialer .mergeicon {
+    display: none;
+  }
+
+  .dialer-wrapper.attendedactive .attended-header {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dialer-wrapper .dialer-btn {
+    color: #fff;
+    font-size: 18px;
+    height: 100%;
+    width: 100%;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-btn button {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .dialer-wrapper .dialer-btn #dialer-disabled {
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    background-color: #a1a1a1;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .dialer-wrapper .dialer-btn #dialer-disabled,
+  .dialer-wrapper .dialer-btn .dialer-connecting {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .dialer-wrapper .dialer-btn .dialer-connecting {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 20px;
+    color: #fff;
+    width: 140px;
+    padding: 0 16px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .dialer-wrapper .dialer-btn .dialer-connecting p {
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper .dialer-btn #dialer-connected-time {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0 16px;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-btn #dialer-connected-time,
+  .dialer-wrapper .dialer-btn #dialer-connected-time p {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .dialer-wrapper .dialer-btn #dialer-connected-time p {
+    margin-bottom: 0;
+    position: relative;
+    padding-left: 15px;
+    font-size: 15px;
+  }
+
+  .dialer-wrapper .dialer-btn #dialer-connected-time p:before {
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    border-radius: 5px;
+    background-color: #ffc107;
+    content: "";
+    left: 0;
+  }
+
+  .dialer-wrapper .dialer-body {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 48px;
+    width: 140px;
+    background-color: #452778;
+    border-radius: 24px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 50px;
+    height: 100%;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu .dialer-menu-btn {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu .dialer-menu-btn i {
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu .dialer-menu-btn.active,
+  .dialer-wrapper .dialer-body .dialer-menu .dialer-menu-btn:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section {
+    background-color: #241243;
+    border-radius: 24px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+    z-index: 9;
+    width: 240px;
+    -webkit-box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4);
+    border: 2px solid #241243;
+    overflow: hidden;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-header {
+    height: 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-header .dialer-header-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-header .dialer-header-btn i {
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-header .dialer-connection-chipset {
+    border-radius: 30px;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    padding: 3px 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-header .dialer-connection-chipset .dialer-connection-time {
+    font-size: 10px;
+    color: #fff;
+    margin: 0;
+    margin-left: 12px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-header .dialer-connection-chipset:before {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    background-color: #ffc107;
+    border-radius: 6px;
+    content: "";
+    left: 7px;
+  }
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-header .dialer-connection-chipset.isLoggedIn:before{
+    background-color: #3cc480 !important;
+
+  }
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-header .dialer-connection-chipset.offline:before{
+    background-color: #dc3545 !important;
+
+  }
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 20px;
+    padding-top: 10px;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-initial-screen {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 10px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .connected-call-journey {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .connected-call-journey ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .connected-call-journey ul li {
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, 0.7);
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .connected-call-journey ul li:after {
+    position: absolute;
+    content: "\f054";
+    font-family: Font Awesome\6 Pro;
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, 0.7);
+    right: -4px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .connected-call-journey ul li:last-child:after {
+    display: none;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .call-connectivity-time {
+    background-color: hsla(0, 0%, 100%, 0.2);
+    border-radius: 50px;
+    padding: 0px 10px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 10px;
+    color: #3cc480;
+    margin-top: 10px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    height: 24px;
+    line-height: 24px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .call-connectivity-time p {
+    margin-left: 5px;
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .call-connected-actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    max-width: 170px;
+    gap: 8px;
+    margin-top: 40px;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .call-connected-actions .callaction,
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .call-connected-actions .rightactions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 8px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .call-completed-actions {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    margin-top: 24px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .call-completed-actions .feedback-item {
+    background-color: hsla(0, 0%, 100%, 0.1);
+    padding: 7px 12px;
+    font-size: 12px;
+    color: #fff;
+    width: 200px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 34px;
+    border: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-outgoing-call .outgoing-call .call-completed-actions .feedback-item:before {
+       position: absolute;
+    left: 12px;
+    content: "";
+    color: #fff;
+    background-image: url(/assets/images/circle.svg);
+    background-repeat: no-repeat;
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component#dialer-incoming-call .incoming-call {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component .secondcall .call-going-loader {
+    height: 40px !important;
+    width: 40px !important;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component .call-going-loader {
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    background-color: #452778;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0 auto 16px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component .pre-heading {
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, 0.7);
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component .user-name {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 0;
+    margin: 4px 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-component .user-number {
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, 0.7);
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn {
+    margin: auto auto 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn button {
+    background-color: hsla(0, 0%, 100%, 0.1);
+    height: 40px;
+    width: 40px;
+    border-radius: 12px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    position: absolute;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn button i {
+    -webkit-transition: inherit;
+    transition: inherit;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn button#call-dial-btn {
+    background-color: #3cc480;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn button#call-hangup-btn {
+    background-color: #ff505c;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn button#call-hangup-btn svg {
+    -webkit-transition: -webkit-transform 0.5s ease;
+    transition: -webkit-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn button#call-ivr-btn {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    background-color: transparent;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn button#submit-feedback-btn {
+    visibility: hidden;
+    opacity: 0;
+    font-size: 12px;
+    background-color: #3cc480;
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-main-body .dialer-main-btn button#submit-feedback-btn:disabled {
+    background-color: hsla(0, 0%, 72%, 0.6);
+    color: #333;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-main-section .dialer-bg {
+    background-image: url(/assets/images/dialer-bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    mix-blend-mode: luminosity;
+    z-index: -9;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items {
+    width: 0;
+    height: 100%;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content {
+    height: 100%;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content#logs-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content#logs-content .h3,
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content#logs-content h3 {
+    font-size: 12px;
+    text-align: center;
+    color: hsla(0, 0%, 100%, 0.7);
+    margin: 20px 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content#logs-content .call-logs-data {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-bottom: 15px;
+    overflow-y:auto ;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content#logs-content .call-logs-data p {
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, 0.6);
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .nav {
+    border-bottom-color: hsla(0, 0%, 100%, 0.2);
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .nav .nav-link {
+    border: 0;
+    font-size: 10px;
+    color: hsla(0, 0%, 100%, 0.6);
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .nav .nav-link.active {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+  }
+
+  .dialer-calllogs-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .dialer-calllogs-list::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .dialer-calllogs-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list {
+    margin-top: 20px;
+    height: 420px;
+    overflow-y: auto;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 5px;
+    margin-bottom: 18px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 25px;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    -webkit-object-fit: contain;
+    -moz-object-fit: contain;
+    -ms-object-fit: contain;
+    object-fit: contain;
+    border-radius: 100%;
+    width: 16px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .avatar p {
+    margin: 0;
+    font-size: 12px;
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .avatar i {
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .contact-detail {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    margin-left: 12px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .contact-detail .h3,
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .contact-detail h3 {
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 90%;
+    overflow: hidden;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .contact-detail p {
+    font-size: 10px;
+    color: hsla(0, 0%, 100%, 0.7);
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .contact-detail p i {
+    margin-right: 5px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .call-time {
+    font-size: 10px;
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem .call-time p {
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem.outgoing .contact-detail p i {
+    color: #3cc480;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem.incoming .contact-detail i {
+    color: #0a66c2;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-content .dialer-calllogs-list .dialer-calllog-listitem.missed .contact-detail i {
+    color: #ff505c;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-item {
+    opacity: 0;
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+    -webkit-transition-property: opacity;
+    transition-property: opacity;
+    visibility: hidden;
+    position: absolute;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-item .close-menu-item {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    border: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-item .close-menu-item i {
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-item.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-menu-items .dialer-menu-item.ivr-input .dialer-menu-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .dialer-wrapper .dialer-body .block-btn {
+    height: 32px;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 0;
+    font-size: 12px;
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .block-btn.greenBorder {
+    border: 1px solid #3cc480;
+    color: #3cc480;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    margin-top: auto;
+  }
+
+  .dialer-wrapper .dialer-body .block-btn.greenBorder:hover {
+    background-color: #3cc480;
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-input-wrapper {
+    margin-bottom: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-input-wrapper input {
+    background-color: transparent;
+    font-size: 16px;
+    border: 0;
+    color: #fff;
+    outline: 0;
+    margin-right: 10px;
+    max-width: 110px;
+    text-align: center;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-input-wrapper button {
+    background-color: transparent;
+    border: 0;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-input-wrapper button i {
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-numpad-btn {
+    background-color: hsla(0, 0%, 100%, 0.1);
+    height: 40px;
+    width: 40px;
+    border-radius: 12px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transition: all 0.31s ease-in;
+    transition: all 0.31s ease-in;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-numpad-btn:hover {
+    background-color: #8a5cda;
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-numpad-btn.active {
+    background-color: #6e36cd;
+    color: #fff;
+  }
+
+  .dialer-wrapper .dialer-body .dialer-numpad {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .dialer-wrapper .dialer-incoming-call-chip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .dialer-wrapper.connecting {
+    width: 140px;
+  }
+
+  .dialer-wrapper.connecting .dialer-btn #dialer-disabled {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dialer-wrapper.connecting .dialer-btn .dialer-connecting {
+    opacity: 1;
+    visibility: visible;
+    font-size: 14px;
+  }
+
+  .dialer-wrapper.dialer-ready {
+    width: 140px;
+  }
+
+  .dialer-wrapper.dialer-ready .dialer-btn #dialer-disabled {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dialer-wrapper.dialer-ready .dialer-btn #dialer-connected-time {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dialer-wrapper.dialer-connected {
+    width: 290px;
+    height: 500px;
+  }
+
+  .dialer-wrapper.dialer-connected .dialer-btn #dialer-disabled {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dialer-wrapper.dialer-connected .dialer-body {
+    visibility: visible;
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+  }
+
+  .dialer-wrapper.menu-item-open {
+    width: 530px;
+  }
+
+  .dialer-wrapper.menu-item-open .dialer-menu-items {
+    width: 240px;
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  .dialer-wrapper.call-dialing .dialer-main-section .dialer-main-body #dialer-initial-screen {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .dialer-wrapper.call-dialing .dialer-main-section .dialer-main-body #dialer-outgoing-call {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dialer-wrapper.call-dialing .dialer-main-section .dialer-main-body .dialer-main-btn {
+    width: 100%;
+  }
+
+  .dialer-wrapper.call-dialing .dialer-main-section .dialer-main-body .dialer-main-btn button {
+    width: 100% !important;
+  }
+
+  .dialer-wrapper.call-dialing .dialer-main-section .dialer-main-body .dialer-main-btn button #call-hangup-btn {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dialer-wrapper.call-dialing .dialer-main-section .dialer-main-body .dialer-main-btn button#call-hangup-btn {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dialer-wrapper.call-dialing .dialer-main-section .dialer-main-body .dialer-main-btn button#call-hangup-btn svg {
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+
+  .dialer-wrapper.call-connected .dialer-main-section .dialer-main-body .call-going-loader {
+    height: 0 !important;
+    width: 0 !important;
+  }
+
+  .dialer-wrapper.call-connected .dialer-main-section .dialer-main-body .dialer-main-btn button {
+    width: 40px !important;
+  }
+
+  .dialer-wrapper.call-connected .dialer-main-section .dialer-main-body .dialer-main-btn button#call-ivr-btn {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateX(-50px);
+    transform: translateX(-50px);
+  }
+
+  .dialer-wrapper.call-connected .dialer-main-section .dialer-main-body #dialer-outgoing-call .outgoing-call .call-connected-actions,
+  .dialer-wrapper.call-connected .dialer-main-section .dialer-main-body #dialer-outgoing-call .outgoing-call .call-connectivity-time,
+  .dialer-wrapper.call-connected .dialer-main-section .dialer-main-body #dialer-outgoing-call .outgoing-call .connected-call-journey {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body .dialer-main-btn button {
+    width: 100% !important;
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body .dialer-main-btn button#call-dial-btn {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body .dialer-main-btn button#call-ivr-btn {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body .dialer-main-btn button#call-hangup-btn {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body .dialer-main-btn button#submit-feedback-btn {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body #dialer-outgoing-call .outgoing-call .call-connectivity-time {
+    color: #ff505c !important;
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body #dialer-outgoing-call .outgoing-call .call-connected-actions {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body #dialer-outgoing-call .outgoing-call .call-completed-actions {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .dialer-wrapper.call-completed .dialer-main-section .dialer-main-body #dialer-outgoing-call .outgoing-call .call-completed-actions .feedback-item.active:before {
+        background-image: url(/assets/images/circle-check.svg);
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed {
+    width: 290px;
+    height: 84px;
+    border: 2px solid #452778;
+    background-color: #241243;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-btn {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip,
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .icon-avatar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .icon-avatar {
+    height: 32px;
+    width: 32px;
+    background-color: #452778;
+    border-radius: 10px;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .caller-details {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-left: 10px;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .caller-details .pre-heading {
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, 0.7);
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .caller-details .user-name {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .caller-details .user-number {
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .incoming-call-actions button {
+    height: 32px;
+    width: 32px;
+    border-radius: 10px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 12px;
+    border: 0;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .incoming-call-actions button i {
+    color: #fff;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .incoming-call-actions button#hang-up-btn-small {
+    background-color: #ff505c;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-closed .dialer-incoming-call-chip .incoming-call-actions button#call-pick-btn-small {
+    background-color: #3cc480;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-opened .dialer-main-section #dialer-initial-screen {
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-opened .dialer-main-section #dialer-incoming-call {
+    visibility: visible !important;
+    opacity: 1;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-opened .dialer-main-section .dialer-main-body .dialer-main-btn,
+  .dialer-wrapper.incoming-call-dialer-opened .dialer-main-section .dialer-main-body .dialer-main-btn button {
+    width: 100% !important;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-opened .dialer-main-section .dialer-main-body .dialer-main-btn button#call-dial-btn {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px);
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-opened .dialer-main-section .dialer-main-body .dialer-main-btn button#call-hangup-btn {
+    opacity: 1 !important;
+    visibility: visible;
+  }
+
+  .dialer-wrapper.incoming-call-dialer-opened .dialer-main-section .dialer-main-body .dialer-main-btn button#call-hangup-btn i {
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+
+  .d-header {
+    position: absolute;
+    top: 0;
+    background: #362455;
+    width: 85%;
+    height: 40px;
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border: 1px solid #241243;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.31s ease-in;
+    transition: all 0.31s ease-in;
+  }
+
+  .d-header .h6,
+  .d-header h6 {
+    font-size: 14px;
+    font-weight: 400 !important;
+  }
+
+  .dialermerge {
+    padding-top: 40px;
+  }
+
+  .dialermerge .call-merged-dots {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .dialermerge .call-merged-dots .dot {
+    color: #fff;
+    line-height: 5px;
+    position: relative;
+    top: -4px;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot1 {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot1.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot2 {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot2.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot3 {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot3.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot4 {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 1.1s;
+    transition: all 1.1s;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot4.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot5 {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 1.4s;
+    transition: all 1.4s;
+  }
+
+  .dialermerge .call-merged-dots .dot.dot5.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .merge-card {
+    background-color: #241243;
+    border: 0;
+  }
+
+  .merge-card .card-body {
+    background: #37205f;
+    padding: 0.35rem;
+  }
+  .merge-card .card-header {
+    padding: 6px 12px;
+  }
+
+
+  .merge-card .card-body .h6,
+  .merge-card .card-body h6 {
+    font-size: 14px;
+  }
+
+  .merge-card .card-body .pauseicon {
+    color: #fd0;
+    background: none;
+    border: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .merge-card .card-body .callactive {
+    color: #1dd75b;
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+    font-size: 14px;
+  }
+
+  .merge-card .call-connectivity-time {
+    border-radius: 50px;
+    padding: 0px 10px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 10px;
+    color: #3cc480;
+    margin-top: 10px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    height: 24px;
+    line-height: 24px;
+      background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .merge-card .call-connectivity-time p {
+    margin-left: 5px;
+    margin-bottom: 0;
+  }
+
+  .merge-card .user-number {
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, 0.7);
+    margin-bottom: 0;
+  }
+
+  .merge-card .user-name {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 0;
+    margin: 4px 0;
+  }
+
+  .second-dialer {
+    padding-top: 100px;
+  }
+
+  .second-dialer .dialer-main-btn {
+    margin: auto auto 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .second-dialer .dialer-main-btn button {
+    background-color: hsla(0, 0%, 100%, 0.1);
+    height: 40px;
+    width: 40px;
+    border-radius: 12px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    position: absolute;
+  }
+
+  .second-dialer .dialer-main-btn button#call-dial-btn-second {
+    background-color: #3cc480;
+    -webkit-transform: translateY(60px);
+    transform: translateY(60px);
+  }
+
+  .topbtns {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .topbtns .btn {
+    font-size: 11px;
+    border-radius: 50px;
+    color: #6e36cd;
+    border-color: #6e36cd;
+    padding: 4px 12px 2px;
+  }
+
+  .topbtns .btn.active,
+  .topbtns .btn:hover {
+    background-color: #6e36cd;
+    color: #fff;
+  }
+
+  .topbtns .btn:hover {
+    border-color: #6e36cd;
+  }
+
+  .mergebtns {
+    border: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 24px;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+
+  .mergebtns,
+  .mergebtns .buttonholder {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .mergebtns .buttonholder {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .mergebtns button {
+    text-align: center;
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-size: 13px;
+  }
+
+  .mergebtns button:hover span.iconButton {
+    background-color: #8a5cda;
+    color: #fff;
+  }
+
+  .mergebtns button span.iconButton {
+    background-color: rgba(222, 225, 230, 0.25);
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 8px;
+    -webkit-transition: all 0.31s ease-in;
+    transition: all 0.31s ease-in;
+  }
+
+  .mergeicon.active span.iconButton {
+    background-color: #6e36cd;
+  }
+
+  .dialingstatus {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  .call-end-toast,
+  .conf-inp-status,
+  .conf-inp-status-end,
+  .trasfer-completed-toast {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    background: -webkit-gradient(linear, left top, left bottom, from(#4f3183), to(#6e36cd));
+    background: -webkit-linear-gradient(top, #4f3183, #6e36cd);
+    background: linear-gradient(180deg, #4f3183, #6e36cd);
+    width: 90%;
+    margin: 0 auto;
+    padding: 8px 4px;
+    border-radius: 4px;
+    font-weight: 400 !important;
+    position: absolute;
+    bottom: -10px;
+    border-radius: 8px 8px 0 0;
+    width: 80%;
+  }
+
+  .conf-inp-status-end,
+  .trasfer-completed-toast {
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .conf-inp-status-end span,
+  .trasfer-completed-toast span {
+    z-index: 1;
+    opacity: 0;
+  }
+
+  .conf-inp-status-end.active,
+  .trasfer-completed-toast.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .conf-inp-status-end.active span,
+  .trasfer-completed-toast.active span {
+    -webkit-transition-delay: 1.75s;
+    transition-delay: 1.75s;
+    opacity: 1;
+  }
+
+  .conf-inp-status-end:before,
+  .trasfer-completed-toast:before {
+    background: -webkit-linear-gradient(181deg, #382657, rgba(14, 6, 26, 0.95));
+    background: linear-gradient(269deg, #382657, rgba(14, 6, 26, 0.95));
+  }
+
+  .conf-inp-status-end:after,
+  .conf-inp-status-end:before,
+  .trasfer-completed-toast:after,
+  .trasfer-completed-toast:before {
+    content: "";
+    position: absolute;
+    opacity: 1;
+    visibility: visible;
+    width: 0;
+    height: 500px;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    right: 0;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .conf-inp-status-end:after,
+  .trasfer-completed-toast:after {
+    background: -webkit-linear-gradient(181deg, #24163d, rgba(35, 32, 41, 0.95));
+    background: linear-gradient(269deg, #24163d, rgba(35, 32, 41, 0.95));
+    -webkit-transition-delay: 0.75s;
+    transition-delay: 0.75s;
+  }
+
+  .conf-inp-status-end.active:after,
+  .conf-inp-status-end.active:before,
+  .trasfer-completed-toast.active:after,
+  .trasfer-completed-toast.active:before {
+    width: 230px;
+  }
+
+  .mergecall {
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .mergecall.call-disconnect .call-end-toast {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+
+  .mergecall.call-connected .mergebtns {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  .mergecall.call-merged .conf-inp-status {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+
+  .mergecall.call-merged .callactive {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  .mergecall.call-merged .dialingstatus {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
+
+  .mergecall.call-merged .call-merged-dots .dot {
+    color: #3bd692;
+  }
+
+  .dialer-wrapper.second-call-connected .dialer-body .dialer-main-section .dialer-main-body .dialer-component .secondcall .call-going-loader {
+    height: 0 !important;
+    width: 0 !important;
+  }
+
+  .tabscroll {
+    height: -webkit-calc(100vh - 100px);
+    height: calc(100vh - 100px);
+  }
+
+  .custom-tooltip .tooltip-inner {
+    border-radius: 4px;
+    -webkit-box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.8) !important;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  .custom-tooltip .tooltip-arrow,
+  .custom-tooltip .tooltip-inner {
+    background: -webkit-linear-gradient(181deg, #24163d, rgba(35, 32, 41, 0.99));
+    background: linear-gradient(269deg, #24163d, rgba(35, 32, 41, 0.99));
+  }
+
+  .custom-tooltip .tooltip-arrow {
+    border-bottom: 24163d;
+  }
+
+  .loader-wrapper {
+    width: 25px;
+    position: relative;
+  }
+
+  .loader-wrapper {
+    width: 25px;
+    position: relative;
+  }
+
+  .blob-1,
+  .blob-2 {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .blob-1 {
+    left: 20%;
+    -webkit-animation: o 2s ease infinite;
+    animation: o 2s ease infinite;
+    background: hsla(0, 0%, 100%, 0.7);
+  }
+
+  .blob-2 {
+    left: 80%;
+    -webkit-animation: p 2s ease infinite;
+    animation: p 2s ease infinite;
+    background: #fff;
+  }
+
+  @-webkit-keyframes o {
+    0% {
+        left: 20%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    to {
+        left: 20%;
+    }
+  }
+
+  @keyframes o {
+    0% {
+        left: 20%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    to {
+        left: 20%;
+    }
+  }
+
+  @-webkit-keyframes p {
+    0% {
+        left: 80%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    to {
+        left: 80%;
+    }
+  }
+
+  @keyframes p {
+    0% {
+        left: 80%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    to {
+        left: 80%;
+    }
+  }
+  .showoption {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.51s ease-in-out;
+    transition: all 0.51s ease-in-out;
+    -webkit-transform: translate3d(0, 20%, 0);
+    transform: translate3d(0, 20%, 0);
+    margin-top: 10px;
+  }
+  .showoption.active {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .showoption .form-select {
+    background: #291748;
+    border-color: transparent;
+    color: #fff;
+    font-size: 12px;
+    height: 44px;
+    min-height: 44px;
+    padding-top: 1.25rem;
+    padding-bottom: 0.325rem;
+  }
+  .showoption .form-select:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .showoption label {
+    color: #fff !important;
+    opacity: 0.7;
+    font-size: 11px;
+  }
+  .showoption label:after {
+    background: #291748 !important;
+  }
+  .ice {
+    color: #fff !important;
+  }
+
+  .iconButton {
+    color: rgb(107, 121, 131);
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 50%;
+    margin: 0px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0px !important;
+  }
+
+  .iconButton.medium {
+    width: 40px;
+    height: 40px;
+    -webkit-box-flex: 0;
+    flex: 0 0 40px;
+  }
+
+  .iconButton.small {
+    width: 28px;
+    height: 28px;
+    -webkit-box-flex: 0;
+    flex: 0 0 28px;
+  }
+
+  .radicalBg {
+    background-color: #5454fb !important;
+    color: #fff !important;
+  }
+
+  .cherryBg {
+    background-color: #cf61ea !important;
+    color: #fff !important;
+  }
+
+  .iconButton.active,
+  .skyBg {
+    background-color: rgb(84, 84, 251);
+    color: #fff !important;
+  }
+
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+  .dialer-wrapper .dialer-btn #dialer-connected-time p.offline:before {
+    background-color: #dc3545 !important;
+  }
+  .dialer-wrapper .dialer-btn #dialer-connected-time p.isLoggedIn:before {
+    background-color: #3cc480 !important;
+  }
+
+  .tab-content .avatar:hover{
+    background-color: #3cc480 !important;
+  }
+
+  /* //bootstrap classes */
+  /*
+
+
+  .flex-column {
+    flex-direction: column;
+  }
+
+  .text-center {
+    text-align: center !important
+  }
+
+  .m-0 {
+    margin: 0 !important
+  }
+
+  .list-inline,
+  .list-unstyled {
+    padding-left: 0;
+    list-style: none
+  }
+
+  .list-inline-item {
+    display: inline-block
+  }
+
+  .list-inline-item:not(:last-child) {
+    margin-right: .5rem
+  }
+
+  .flex-column {
+    flex-direction: column
+  }
+
+  .d-flex {
+    display: flex
+  }
+  .align-items-center {
+    -webkit-box-align: center!important;
+    -ms-flex-align: center!important;
+    align-items: center!important;
+  }
+
+  .justify-content-center {
+    -webkit-box-pack: center!important;
+    -ms-flex-pack: center!important;
+    justify-content: center!important;
+  }
+  .text-left {
+    text-align: left
+  }
+
+  .mb-2 {
+    margin-bottom: .5rem !important
+  }
+
+  .mb-3 {
+    margin-bottom: 1rem !important
+  }
+
+  .mt-1 {
+    margin-top: .25rem !important
+  }
+
+  .d-none {
+    display: none !important
+  }
+
+  .btn-outline-secondary {
+    color: #6b7983;
+    border-color: #b7bdc1
+  }
+
+  .btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #6b7983;
+    border-color: #b7bdc1
+  }
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-weight:400;
+  }
+  .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .mb-0 {
+    margin-bottom: 0!important;
+  }
+  .ms-2 {
+    margin-left: 0.5rem!important;
+  }
+  .me-2 {
+    margin-right: 0.5rem!important;
+  }
+  .ice, .metalBg {
+    color: #fff!important;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .ms-auto {
+    margin-left: auto!important;
+  }
+  .merge-card .card-header{
+    padding: 0.5rem 0.75rem;
+  }
+  .flex-shrink-0 {
+    -ms-flex-negative: 0!important;
+    flex-shrink: 0!important;
+  }
+  .flex-grow-1 {
+    -webkit-box-flex: 1!important;
+    -ms-flex-positive: 1!important;
+    flex-grow: 1!important;
+  }
+
+  .ms-3 {
+    margin-left: 1rem!important;
+  }
+  .merge-card .card-body {
+    flex: 1 1 auto;
+  } */

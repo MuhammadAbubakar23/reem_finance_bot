@@ -1,0 +1,165 @@
+<div role="tabpanel" aria-labelledby="create-post-tab">
+    <div class="col">
+        <form [formGroup]="conversationalBotForm">
+            <div class="mb-3 mt-3">
+                <label for="">Name</label>
+                <input name="" class="form-control" formControlName="botName"
+                    [class.is-invalid]="cBF['botName'].invalid && cBF['botName'].touched"
+                    [class.is-valid]="cBF['botName'].valid && cBF['botName'].touched" />
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label> LLM</label>
+                    <select name="" formControlName="LLM" class="form-select"
+                        [class.is-invalid]="cBF['LLM'].invalid && cBF['LLM'].touched"
+                        [class.is-valid]="cBF['LLM'].valid && cBF['LLM'].touched">
+                        <option [value]=null selected disabled>Select LLM</option>
+                        @for(llm of llms;track llm){
+                            <option [value]="llm">{{ llm }}
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="">LLM Api Key </label>
+                    <input name="" class="form-control" formControlName="llmApiKey" />
+                </div>
+            </div>
+
+            <!-- <div class="row">
+                <div class="mb-3">
+                    <label for="">LLM URL </label>
+                    <input name="" class="form-control" formControlName="llm_url" />
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label> Model</label>
+                    <select name="" formControlName="model" class="form-select"
+                        [class.is-invalid]="cBF['model'].invalid && cBF['model'].touched"
+                        [class.is-valid]="cBF['model'].valid && cBF['model'].touched">
+                        <option [value]=null selected disabled>Select Model</option>
+                        @for(model of models; track model){
+                            <option [value]="model">{{ model }}
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                        <label for="">LLM URL </label>
+                        <input name="" class="form-control" formControlName="llm_url" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label> Embeddings</label>
+                    <select name="" formControlName="Embeddings" class="form-select"
+                        [class.is-invalid]="cBF['Embeddings'].invalid && cBF['Embeddings'].touched"
+                        [class.is-valid]="cBF['Embeddings'].valid && cBF['Embeddings'].touched">
+                        <option [value]=null selected disabled>Select Embedding</option>
+                        @for(embedding of embeddings; track embedding){
+                            <option [value]="embedding">{{ embedding }}
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="">Embeddings Api Key </label>
+                    <input name="" class="form-control" formControlName="EmbeddingsApiKey" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3">
+                    <label for="">Embeddings URL </label>
+                    <input name="" class="form-control" formControlName="embeddings_url" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label> Vector Database</label>
+                    <select name="" formControlName="vectorDB" class="form-select"
+                        [class.is-invalid]="cBF['vectorDB'].invalid && cBF['vectorDB'].touched"
+                        [class.is-valid]="cBF['vectorDB'].valid && cBF['vectorDB'].touched">
+                        <option [value]=null selected disabled>Select Vector DB</option>
+                        @for(v of vdb; track v){
+                            <option [value]="v">{{ v }}
+                        }
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="">Vector DB Api Key </label>
+                    <input name="" class="form-control" formControlName="vectordb_api_key" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3">
+                    <label for="">Vector DB URL </label>
+                    <input name="" class="form-control" formControlName="vectordb_url" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="">Chat Limit (min) </label>
+                    <input name="" class="form-control" formControlName="chatLimit"
+                        [class.is-invalid]="cBF['chatLimit'].invalid && cBF['chatLimit'].touched"
+                        [class.is-valid]="cBF['chatLimit'].valid && cBF['chatLimit'].touched" />
+                </div>
+
+                <div class="col">
+                    <label for="twoDigitInput">Max Session Count</label>
+                    <input 
+                      type="text" 
+                      id="twoDigitInput" 
+                      class="form-control" 
+                      formControlName="sessionLimit"
+                        [class.is-invalid]="cBF['sessionLimit'].invalid && cBF['sessionLimit'].touched"
+                        [class.is-valid]="cBF['sessionLimit'].valid && cBF['sessionLimit'].touched"
+                      maxlength="2"
+                      pattern="\d*"
+                      (keypress)="validateInput($event)" >
+                  </div>
+                  
+            </div>
+
+            <div class="mb-3">
+                <label for="">Prompt </label>
+                <textarea name="" class="form-control" formControlName="prompt"
+                    [class.is-invalid]="cBF['prompt'].invalid && cBF['prompt'].touched"
+                    [class.is-valid]="cBF['prompt'].valid && cBF['prompt'].touched" style="height: 100px;"></textarea>
+            </div>
+
+            <div class="icon-buttons-wrapper d-flex justify-content-start pt-3 pb-4">
+                @if(editButtonClicked==false){
+                    <a (click)="createWorkspace()"
+                        class="btn btn-primary btn-small saveBtn newbtn" id="generateButton">Create Workspace
+                    </a>
+                }
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    @if(editButtonClicked==true){
+                        <a (click)="updateWorkspace()"
+                            class="btn btn-primary btn-small saveBtn newbtn" id="generateButton">Update Workspace
+                        </a>
+                    }
+                </div>
+                <div class="col-6 mb-3 d-flex justify-content-end">
+                    @if(editButtonClicked==true){
+                        <a (click)="cancel()" class="btn btn-default btn-small cancelBtn newbtn"
+                            id="generateButton" style="background-color: grey; color: white;">Cancel
+                        </a>
+                    }
+                </div>      
+            </div>
+        </form>
+
+
+    </div>
+
+</div>

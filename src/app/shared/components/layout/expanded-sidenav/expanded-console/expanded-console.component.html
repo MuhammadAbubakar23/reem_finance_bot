@@ -1,0 +1,58 @@
+<nav id="left-sidebar-expand" class="botleft">
+  <div class="multiple-screens secondary-bg">
+    <div id="all-inboxes-wrapper secondary-bg">
+      <div class="collapsible__header p-3">
+        <h3 class="fw-bold mt-3 ms-1">
+          <a>{{ headerTitle }}</a>
+        </h3>
+      </div>
+    </div>
+    <ul class="list-group console-list mt-2" data-scrollbar="data-scrollbar">
+      @for(menu of subMenus;track menu; let i = $index){
+      <li
+        class="list-group-item list-group-item-action"
+        type="button"
+        [class.active]="activeParentIndex == i && menu.isChild == false"
+        [ngClass]="{
+          collapsed: expandedIndex !== i,
+          background: activeParentIndex === i && menu.isChild == false
+        }"
+      >
+        <a
+          class="d-flex align-items-center"
+          [routerLink]="menu['RouteName'] ? ['console/',menu['RouteName']] : null"
+          [ngClass]="menu.isChild ? 'chevron-icon' : ''"
+          type="button"
+          (click)="toggleCollapse(i)"
+        >
+          <i [ngClass]="menu.class"></i>
+          {{ menu["DisplayName"] }}
+        </a>
+        @if(menu.Children){
+        <ul
+          class="list-unstyled-inner collapse"
+          [ngClass]="{ show: expandedIndex === i }"
+        >
+          @for(child of menu.Children;track child; let j = $index){
+          <li
+            class="list-group-item list-group-item-action"
+            [class.active]="activeParentIndex == null && activeChildIndex == j"
+          >
+            <a
+              [routerLinkActive]="'active'"
+              [routerLink]="['console', menu['RouteName'], child['RouteName']]"
+              class="d-flex align-items-center"
+              (click)="activeMenu(j)"
+            >
+              {{ child["DisplayName"] }}
+            </a>
+          </li>
+          }
+        </ul>
+        }
+      </li>
+      }
+    </ul>
+  </div>
+  <a class="panelToggle" (click)="toggleNavTest()"></a>
+</nav>

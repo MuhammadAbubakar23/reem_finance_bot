@@ -1,0 +1,35 @@
+.chat-message-component .message-wrap.agent-message-wrap .card {
+  min-width: 150px !important;
+}
+.chatsection {
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
+
+.listbtns{
+  position: absolute;
+  bottom: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  background: linear-gradient(180deg, #ebeef1, #ffffff);
+  padding: 10px 0;
+}
+.listbtns li .btn:hover{
+  background-color: #f8f8f8 !important;
+  color: #000;
+  border: 1px solid #f1f1f1;
+}
+.enteract-chatbot .chatbody{
+  padding-bottom: 60px;
+}
+.enteract-chatbot .chatbody .messagewrap .messagebody .messagebubble {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+:host ::ng-deep .ngx-spinner-overlay {
+  z-index: auto !important;
+  position:  relative !important;
+}

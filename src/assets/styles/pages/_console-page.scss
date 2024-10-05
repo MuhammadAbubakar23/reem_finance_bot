@@ -1,0 +1,141 @@
+.console-create-contact {
+  .profile table {
+    background-color: $white;
+    tr {
+      border: transparent;
+      background-color: $white;
+      td {
+        padding: 1.5rem 1rem;
+        .card {
+          background-color: $white;
+          border: none;
+        }
+      }
+    }
+  }
+}
+.console-contact-detail {
+  .about-profile {
+    padding: 2rem;
+  }
+  table {
+    tr {
+      td {
+        .card {
+          background-color: #0d6efd !important;
+          border: 0;
+        }
+      }
+    }
+  }
+}
+.contact-social-list {
+  li {
+    background: $white;
+    .form-control {
+      border: none;
+      &:focus {
+        background: #f8f8f8;
+      }
+    }
+  }
+}
+.prt-20 {
+  position: relative;
+  top: 20px;
+}
+.file-card-view {
+  .card {
+    &:hover {
+      .card-body {
+        .form-check-input {
+          opacity: 1;
+        }
+      }
+    }
+    .card-body {
+      text-align: center;
+      padding: 20px;
+      h6 {
+        margin: 15px 0 10px;
+      }
+      .form-check-input {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        opacity: 0;
+        transition: all 0.31s ease-in;
+        &.active {
+          opacity: 1;
+        }
+      }
+      .iconButton {
+        font-size: 30px;
+      }
+    }
+  }
+}
+.add-file{
+  position: relative;
+  cursor: pointer;
+  input.add-file-input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+}
+.upload-list{
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0 0;
+  li{
+    background-color: #f5f8fa;
+    border-radius: 0.475rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 8px;
+    .dropzone-delete{
+      color: #7e8299;
+      cursor: pointer;
+      &:hover{
+        color: #009ef7;
+      }
+    }
+  }
+}
+
+.bot-wrapper{
+  width: 350px;
+  height: 600px;
+  background: radial-gradient(179.91% 117.9% at 87.24% 116.87%, #F1C6D3 0%, #E1DCF9 54.5%, #FFF 100%);
+  border-radius: 20px;
+box-shadow: 0px 0px 70px 16px rgba(90, 82, 128, 0.22);
+  padding: 20px;
+  .bot-footer{
+    background: rgba(255, 255, 255, 0.38);
+    box-shadow: 0px 20px 50px 16px rgba(90, 82, 128, 0.07);
+    border-radius: 12px;
+    padding: 8px;
+    position: relative;
+    .iconButton{
+      position: absolute;
+      right: 12px;
+      top: 18px;
+    }
+  }
+}
+.colordot{
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-left: 6px;
+}
+.btn-check:checked + .btn{
+  border-color: $brand-primary;
+}

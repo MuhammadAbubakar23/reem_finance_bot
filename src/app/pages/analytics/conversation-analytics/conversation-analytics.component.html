@@ -1,0 +1,286 @@
+
+
+            <div class="p-4 d-grid w-100">
+                <div class="analytics-dashboard " data-scrollbar="true" >
+                    <div class="analytics executive-dashboard">
+                        <div class="filter-toolbar mb-3 border-0 d-flex align-items-center justify-content-between">
+                            <h6 class="text-uppercase">Conversations Analytics </h6>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle fw-bold" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fal fa-calendar"></i> {{ selectedTimeLabel }}
+                            </button>
+                            <ul class="dropdown-menu assignFirstDropdownList1" aria-labelledby="dropdownMenuButton1">
+                                <!-- <li class="dropdown-item" (click)="refreshFilters(2000)">
+                                    <a> Any Time</a>
+                                </li> -->
+                                <li class="dropdown-item" (click)="refreshFilters(1, 'day', 'Last 24 hours')">
+                                    <a>Last 24 hours</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(7, 'week', 'Last 7 days')">
+                                    <a>Last 7 days</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(30, 'month', 'Older than a month')">
+                                    <a>Older than a month</a>
+                                </li>
+                                <li class="dropdown-item"
+                                    (click)="refreshFilters(180, '6 months', 'Older than a 6 months')">
+                                    <a> Older than a 6 months</a>
+                                </li>
+                                <li class="dropdown-item" (click)="refreshFilters(365, 'year','Older than a year')">
+                                    <a>Older than a year</a>
+                                </li>
+                                <!-- <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="dropdown-item" id="customrange1">
+                                    <a>Custom Range</a>
+                                </li> -->
+                            </ul>
+                                        <div class="dropdown-menu end-0 assignSecondDropdownList1"
+                                            aria-labelledby="customrange1">
+                                            <form class="px-3 py-3">
+                                                <div class="d-flex mb-3">
+                                                    <div class="form-floating">
+                                                        <input type="date" class="form-control border-end-0 rounded-0"
+                                                            id="start-date" placeholder="Start Date">
+                                                        <label for="start-date">Start Date </label>
+                                                    </div>
+                                                    <div class="form-floating">
+                                                        <input type="date" class="form-control rounded-0" id="end-date"
+                                                            placeholder="End Date">
+                                                        <label for="end-date">End Date</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn skyBg btn-small">Apply</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row align-items-start mb-3">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="mb-5 text-uppercase"> Total conversations</h6>
+                                        <div class="mb-5">
+                                            <h1 class="m-0 fw-bold">{{botConversation?.detail > 0 ? botConversation?.detail : 0}}</h1>
+                                            <small>
+                                                <i class="fa-light" 
+                                                   [ngClass]="{
+                                                     'fa-arrow-up mint': botConversation?.percentage >= 0,
+                                                     'fa-arrow-down text-danger': botConversation?.percentage < 0
+                                                   }"></i>
+                                                <span [ngClass]="{'mint': botConversation?.percentage >= 0, 'text-danger': botConversation?.percentage < 0}">
+                                                  {{ botConversation?.percentage }}%
+                                                </span> than last {{getTimeSpan}}
+                                              </small>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="mb-1">
+                                                        <i class="fa-brands fa-facebook facebook fs-4"></i>
+                                                    </div>
+                                                    <p class="mb-1 ms-2">Facebook</p>
+                                                </div>
+                                                <h4 class="m-0 fw-bold">0</h4>
+                                            </div>
+
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="mb-1">
+                                                        <i class="fa-brands fa-whatsapp mint fs-4"></i>
+                                                    </div>
+                                                    <p class="mb-1 ms-2">Whatsapp</p>
+                                                </div>
+                                                <h4 class="m-0 fw-bold">0</h4>
+                                            </div>
+
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="mb-1">
+                                                        <i class="fa-light fa-globe cherry fs-4"></i>
+                                                    </div>
+                                                    <p class="mb-1 ms-2">Website</p>
+                                                </div>
+                                                <h4 class="m-0 fw-bold">{{botConversation?.detail > 0 ? botConversation.detail : 0}}</h4>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6 class="mb-4 text-uppercase">AGENTS AVAILABILITY  </h6>
+                                        </div>
+                                        <div class="row my-4">
+                                            <div class="col-md-6">
+                                                <ul class="list-group list-group-flush">
+                                                    <li
+                                                        class="list-group-item d-flex align-items-center justify-content-between">
+
+                                                        <span>
+                                                            <i class="fa-regular fa-circle me-2 sky"></i> Total Agent
+                                                        </span>
+                                                        <strong>{{agents?.total_agents}}</strong>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item d-flex align-items-center justify-content-between">
+
+                                                        <span>
+                                                            <i class="fa-regular fa-circle me-2 cherry"></i>Available
+                                                            Agent
+                                                        </span>
+                                                        <strong>{{agents?.available_agents}}</strong>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="text-center">
+
+                                                    <div id="fallbackrate"
+                                                        style="height: 155px; width: 100%; max-width:800px"></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h6 class="mb-4 text-uppercase">Avg BOT Conversation Time</h6>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <h3 class="m-0 fw-bold">
+                                                    {{ getIntegerPart(avgBotConversationTime?.detail > 0 ?
+                                                    avgBotConversationTime?.detail : 0) }}
+                                                    <small class="fs-12 coal"
+                                                        style="font-size: 12px !important;">min</small>
+                                                </h3>
+    
+                                                <small class="ms-2" style="font-size: 12px !important;">
+                                                    <i class="fa-light" [ngClass]="{
+                                                     'fa-arrow-up mint': avgBotConversationTime?.percentage >= 0,
+                                                     'fa-arrow-down text-danger': avgBotConversationTime?.percentage < 0
+                                                   }"></i>
+                                                    <span
+                                                        [ngClass]="{'mint': avgBotConversationTime?.percentage >= 0, 'text-danger': avgBotConversationTime?.percentage < 0}">
+                                                        {{ avgBotConversationTime?.percentage }}%
+                                                    </span> than last {{getTimeSpan}}
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row align-items-start mb-3">
+                            <div class="col-md-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="mb-4 text-uppercase"> CONVERSATIONS OVER TIME</h6>
+                                        <div class="chartcontainer d-flex justify-content-center">
+                                            <!-- <img src="../images/aig1.svg" alt=""> -->
+                                            <!-- <div class="graphcontainer align-items-end mb-5"> -->
+                                            <div id="main" style="height: 250px; width: 100%; max-width:800px"></div>
+                                            <!-- </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="mb-4 text-uppercase"> HUMAN TRANSFER</h6>
+                                        <div class="chartcontainer d-flex justify-content-center">
+                                            <div id="BotRate" style="height: 250px; width: 100%; max-width:500px"></div>
+            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-4 text-uppercase"> Tags Analytics</h6>
+                                <div class="row p-5">
+                                    <div class="col-md-4 text-center">
+                                        <div id="Botatgs" style="height: 250%; width: 100%; max-width:800px"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-group list-group-flush">
+                                            <li
+                                                class="list-group-item d-flex align-items-center justify-content-between">
+
+                                                <span>
+                                                    <i class="fa-regular fa-circle me-2 sky"></i> Information
+                                                </span>
+                                                <strong>{{tagsAnalatics?.Information}}</strong>
+                                            </li>
+                                            <li
+                                                class="list-group-item d-flex align-items-center justify-content-between">
+
+                                                <span>
+                                                    <i class="fa-regular fa-circle me-2 cherry"></i> Sell
+                                                </span>
+                                                <strong>{{tagsAnalatics?.Sell}}</strong>
+                                            </li>
+                                            <li
+                                                class="list-group-item d-flex align-items-center justify-content-between">
+
+                                                <span>
+                                                    <i class="fa-regular fa-circle me-2 berry"></i> Analysis
+                                                </span>
+                                                <strong>{{tagsAnalatics?.Analysis}}</strong>
+                                            </li>
+                                            <li
+                                                class="list-group-item d-flex align-items-center justify-content-between">
+
+                                                <span>
+                                                    <i class="fa-regular fa-circle me-2 radical"></i> Reservation
+                                                </span>
+                                                <strong>{{tagsAnalatics?.Reservation}}</strong>
+                                            </li>
+                                            <li
+                                                class="list-group-item d-flex align-items-center justify-content-between">
+
+                                                <span>
+                                                    <i class="fa-regular fa-circle me-2 pearl"></i> Complaint
+                                                </span>
+                                                <strong>{{tagsAnalatics?.Complaint}}</strong>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+            </div>
+        </div>
+
+

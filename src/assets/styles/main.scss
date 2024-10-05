@@ -1,0 +1,48 @@
+
+@import "./scss/bootstrap.scss";
+//colors
+@import "./colors/colors.scss";
+@import "./colors/colors-classes.scss";
+
+//Typography
+@import "./base/typography.scss";
+//Mixins
+@import "./mixins/mixins.scss";
+//Base
+@import "./base/base.scss";
+//Layouts
+@import "./layouts/header.scss";
+@import "./layouts/footer.scss";
+@import "./layouts/search-bar.scss";
+//Components
+@import "./components/avatar.scss";
+@import "./components/breadcrumb.scss";
+@import "./components/buttons.scss";
+@import "./components/dropdown.scss";
+@import "./components/leftbar.scss";
+
+@import "./components/modal.scss";
+@import "./components/sidebar.scss";
+@import "./components/select2.scss";
+@import "./components/toast.scss";
+@import "./components/off-canvas.scss";
+@import "./components/list.scss";
+@import "./components/table.scss";
+// @import "./components/toggle-wrap.scss";
+@import "./components/bootstrap-classes.scss";
+@import "./components/chat-message.scss";
+@import "./components/tooltip.scss";
+@import "./components/searchbar.scss";
+@import "./components/off-canvas.scss";
+
+@import "./components/scroll.scss";
+//Pages CSS
+@import "./pages/login.scss";
+@import "./pages/console-page.scss";
+@import "./pages/chatbot.scss";
+@import "./pages/custom.scss";
+@import "./pages/responsive.scss";
+
+@import "./components/knowledgebase.scss";
+
+@import "./pages/theme.scss";

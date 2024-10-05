@@ -1,0 +1,97 @@
+.loader-wrapper {
+    width: 25px;
+    position: relative;
+}
+
+.blob-1,
+.blob-2 {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    background: $ice;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.blob-1 {
+    left: 20%;
+    animation: osc-l 2s ease infinite;
+    background: $ice70;
+}
+
+.blob-2 {
+    left: 80%;
+    animation: osc-r 2s ease infinite;
+    background: $ice;
+}
+
+@keyframes osc-l {
+    0% {
+        left: 20%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    100% {
+        left: 20%;
+    }
+}
+
+@keyframes osc-r {
+    0% {
+        left: 80%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    100% {
+        left: 80%;
+    }
+}
+.ailoader{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    height: 0;
+    transition: all 0.31s ease-in-out;
+    opacity: 0;
+    z-index: -1;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    &.active{
+      opacity: 1;
+      z-index: 0;
+      visibility: visible;
+      height: 38px;
+      .loadingbtn{
+        position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            inset: 0px;
+            border: 3px solid transparent;
+            border-top-color: $sky;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite;
+            animation: rotation 1s linear infinite;
+          }
+      }
+    }
+  }

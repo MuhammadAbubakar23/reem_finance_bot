@@ -1,0 +1,93 @@
+.console-landing-page {
+  .heading {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .text {
+    font-size: 14px;
+  }
+  .btn-text {
+    font-size: 11px;
+  }
+  .small-text {
+    font-size: 10px;
+  }
+  .console-landing-shortcuts {
+    margin-top: 20px;
+    height: 290px;
+    .user-profile-dropdown {
+      background-color: $ice;
+      position: relative;
+      padding-bottom: 15px !important;
+      ul {
+        padding-left: 0;
+      }
+      .user-dropdown-header {
+        position: relative;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        a {
+          @include flex();
+          position: relative;
+          .profile-pic {
+            margin-right: 15px;
+          }
+        }
+      }
+      .user-dropdown-body {
+        ul {
+          width: 100%;
+          li {
+            padding: 0;
+            .dropdown-item {
+              padding: 0.4rem 0.8rem;
+              .form-check{
+                position: relative;
+                .form-check-input{
+                  position: absolute;
+                  right: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .card-body{
+      .iconButton{
+        background-color: $emerald20;
+        color: $emerald;
+      }
+    }
+    .shortcut-box {
+      height: 47%;
+    }
+  }
+}
+.list-cards{
+  height: 130px;
+  overflow-y: auto !important;
+  position: relative;
+  .list-group-item{
+    padding: 0.5rem 0.6rem 0.5rem 0;
+    .badge{
+      font-size: 0.6rem !important;
+    }
+  }
+}
+.list-cards::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #E4E4E4;
+}
+.list-cards::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
+  background-color: #E4E4E4;
+  border-radius: 10px;
+}
+.list-cards::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #B7BDC1;
+}

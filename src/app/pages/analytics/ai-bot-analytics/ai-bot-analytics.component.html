@@ -1,0 +1,1295 @@
+<div class="py-4 ps-4 pe-2 d-grid w-100">
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-clip-rotate"
+    [fullScreen]="false"
+  >
+    <p style="color: white">Loading...</p>
+  </ngx-spinner>
+  <div class="analytics-dashboard" data-scrollbar="true">
+    <div class="analytics executive-dashboard">
+      <div
+        class="filter-toolbar border-0 d-flex align-items-center justify-content-between"
+      >
+        <h6 class="text-uppercase">Conversations</h6>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <div class="dropdown">
+              <button
+                class="btn dropdown-toggle fw-bold bg-white"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fal fa-calendar"></i> {{ selectedTimeLabel }}
+              </button>
+              <ul
+                class="dropdown-menu assignFirstDropdownList1"
+                aria-labelledby="dropdownMenuButton1"
+              >
+                <li
+                  class="dropdown-item"
+                  (click)="refreshFilters(1, 'day', 'Last 24 hours')"
+                >
+                  <a>Last 24 hours</a>
+                </li>
+                <li
+                  class="dropdown-item"
+                  (click)="refreshFilters(7, 'week', 'Last 7 days')"
+                >
+                  <a>Last 7 days</a>
+                </li>
+                <li
+                  class="dropdown-item"
+                  (click)="refreshFilters(30, 'month', 'Older than a month')"
+                >
+                  <a>Older than a month</a>
+                </li>
+                <li
+                  class="dropdown-item"
+                  (click)="
+                    refreshFilters(180, '6 months', 'Older than a 6 months')
+                  "
+                >
+                  <a> Older than a 6 months</a>
+                </li>
+                <li
+                  class="dropdown-item"
+                  (click)="refreshFilters(365, 'year', 'Older than a year')"
+                >
+                  <a>Older than a year</a>
+                </li>
+              </ul>
+              <div
+                class="dropdown-menu end-0 assignSecondDropdownList1"
+                aria-labelledby="customrange1"
+              >
+                <form class="px-3 py-3">
+                  <div class="d-flex mb-3">
+                    <div class="form-floating">
+                      <input
+                        type="date"
+                        class="form-control border-end-0 rounded-0"
+                        id="start-date"
+                        placeholder="Start Date"
+                      />
+                      <label for="start-date">Start Date </label>
+                    </div>
+                    <div class="form-floating">
+                      <input
+                        type="date"
+                        class="form-control rounded-0"
+                        id="end-date"
+                        placeholder="End Date"
+                      />
+                      <label for="end-date">End Date</label>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <button type="submit" class="btn skyBg btn-small">
+                      Apply
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="row align-items-start mb-2">
+        <div class="col-md-3">
+          <div class="card" style="min-height: 358px">
+            <div class="card-body">
+              <h6 class="mb-4">Total Conversations</h6>
+              <div class="mb-5">
+                <h3 class="mb-2 fw-bold">
+                  {{
+                    botConversation?.detail > 0 ? botConversation?.detail : 0
+                  }}
+                </h3>
+                <small>
+                  <i
+                    class="fa-light"
+                    [ngClass]="{
+                      'fa-arrow-up mint': botConversation?.percentage >= 0,
+                      'fa-arrow-down text-danger':
+                        botConversation?.percentage < 0
+                    }"
+                  ></i>
+                  <span
+                    [ngClass]="{
+                      mint: botConversation?.percentage >= 0,
+                      'text-danger': botConversation?.percentage < 0
+                    }"
+                  >
+                    {{ botConversation?.percentage }}%
+                  </span>
+                  than
+                  <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                    >last {{ getTimeSpan }}</span
+                  >
+                  <ng-template #yesterday>Yesterday</ng-template>
+                </small>
+              </div>
+              <div class="mb-4">
+                <ul class="list-group list-group-flush mb-1">
+                  <li
+                    class="list-group-item d-flex align-items-center justify-content-between"
+                  >
+                    <div class="d-flex align-items-center">
+                      <span class="mb-1">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                      </span>
+                      <p class="mb-1 ms-2">SDK</p>
+                    </div>
+
+                    <strong class="m-0">0</strong>
+                  </li>
+                  <li
+                    class="list-group-item d-flex align-items-center justify-content-between"
+                  >
+                    <div class="d-flex align-items-center">
+                      <span class="mb-1">
+                        <i class="fa-brands fa-whatsapp mint fs-5"></i>
+                      </span>
+                      <p class="mb-1 ms-2">Whatsapp</p>
+                    </div>
+
+                    <strong class="m-0">0</strong>
+                  </li>
+                  <li
+                    class="list-group-item d-flex align-items-center justify-content-between"
+                  >
+                    <div class="d-flex align-items-center">
+                      <span class="mb-1">
+                        <i class="fa-light fa-globe cherry fs-5"></i>
+                      </span>
+                      <p class="mb-1 ms-2">Website</p>
+                    </div>
+
+                    <strong class="m-0"
+                      >{{
+                        botConversation?.detail > 0 ? botConversation.detail : 0
+                      }}
+                    </strong>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <h6 class="mb-4">Agents Availability</h6>
+              </div>
+              <div class="row my-3">
+                <div class="text-left mb-2">
+                  <div
+                    id="fallbackrate"
+                    style="height: 160px; width: 100%; max-width: 300px"
+                  ></div>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li
+                    class="list-group-item d-flex align-items-center justify-content-between"
+                  >
+                    <span>
+                      <i class="fa-regular fa-circle me-2 sky"></i> Total Agent
+                    </span>
+                    <strong>{{
+                      agents?.total_agents > 0 ? agents?.total_agents : 0
+                    }}</strong>
+                  </li>
+                  <li
+                    class="list-group-item d-flex align-items-center justify-content-between"
+                  >
+                    <span>
+                      <i class="fa-regular fa-circle me-2 mint"></i>Available
+                      Agent
+                    </span>
+                    <strong>{{
+                      agents?.available_agents > 0
+                        ? agents?.available_agents
+                        : 0
+                    }}</strong>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card" style="min-height: 355px">
+            <div class="card-body">
+              <h6 class="mb-1">BOT CSAT</h6>
+              <div class="row p-4">
+                <div class="col-md-5 text-center">
+                  <div
+                    id="donut-chart"
+                    style="height: 200px; width: 100%; max-width: 800px"
+                  ></div>
+                  <!-- <div> <img src="../../../../../../assets/Images/temporary.png" style="height: 260px; width: 100%; max-width: 800px"></div> -->
+                </div>
+                <div class="col-md-7">
+                  <ul class="list-group list-group-flush">
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span style="width: 50px"
+                        ><i class="fa-light fa-star" aria-hidden="true"></i>
+                        5</span
+                      >
+                      <span style="width: 80%; align-items: left !important">
+                        <!-- <progress
+                          class="progress is-link"
+                          value="{{ csat?.five }}"
+                          max="{{ csatCount }}"
+                        >
+                          15%
+                        </progress> -->
+                        <!-- <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar nightBg" style="width: 35%"></div>
+                        </div> -->
+                        <!-- progress.component.html -->
+                        <div
+                          class="progress"
+                          role="progressbar"
+                          [attr.aria-valuenow]="csat?.five"
+                          [attr.aria-valuemin]="0"
+                          [attr.aria-valuemax]="csatCount"
+                        >
+                          <div
+                            class="progress-bar yellow"
+                            style="background-color: #076322"
+                            [style.width.%]="(csat?.five / csatCount) * 100"
+                          ></div>
+                        </div>
+                      </span>
+                      <span class="ms-2 text-secondary"
+                        >{{
+                          (csat?.five / csatCount) * 100 | number : "1.0-2"
+                        }}%</span
+                      >
+                    </li>
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span style="width: 50px"
+                        ><i class="fa-light fa-star" aria-hidden="true"></i>
+                        4</span
+                      >
+                      <span style="width: 80%; align-items: left !important">
+                        <!-- <progress
+                          class="progress light-green"
+                          value="{{ csat?.four }}"
+                          max="{{ csatCount }}"
+                        >
+                          15%
+                        </progress> -->
+                        <div
+                          class="progress"
+                          role="progressbar"
+                          [attr.aria-valuenow]="csat?.four"
+                          [attr.aria-valuemin]="0"
+                          [attr.aria-valuemax]="csatCount"
+                        >
+                          <div
+                            class="progress-bar yellow"
+                            style="background-color: #25d366"
+                            [style.width.%]="(csat?.four / csatCount) * 100"
+                          ></div>
+                        </div>
+                      </span>
+                      <span class="ms-2 text-secondary"
+                        >{{
+                          (csat?.four / csatCount) * 100 | number : "1.0-2"
+                        }}%</span
+                      >
+                    </li>
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span style="width: 50px"
+                        ><i class="fa-light fa-star" aria-hidden="true"></i>
+                        3</span
+                      >
+                      <span style="width: 80%; align-items: left !important">
+                        <!-- <progress
+                          class="progress yellow"
+                          value="{{ csat?.three }}"
+                          max="{{ csatCount }}"
+                        >
+                          15%
+                        </progress> -->
+                        <div
+                          class="progress"
+                          role="progressbar"
+                          [attr.aria-valuenow]="csat?.three"
+                          [attr.aria-valuemin]="0"
+                          [attr.aria-valuemax]="csatCount"
+                        >
+                          <div
+                            class="progress-bar yellow"
+                            style="background-color: #e8b500"
+                            [style.width.%]="(csat?.three / csatCount) * 100"
+                          ></div>
+                        </div>
+                      </span>
+                      <span class="ms-2 text-secondary"
+                        >{{
+                          (csat?.three / csatCount) * 100 | number : "1.0-2"
+                        }}%</span
+                      >
+                    </li>
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span style="width: 50px"
+                        ><i class="fa-light fa-star" aria-hidden="true"></i>
+                        2</span
+                      >
+                      <span style="width: 80%; align-items: left !important">
+                        <!-- <progress
+                          class="progress orange"
+                          value="{{ csat?.two }}"
+                          max="{{ csatCount }}"
+                        >
+                          15%
+                        </progress> -->
+                        <div
+                          class="progress"
+                          role="progressbar"
+                          [attr.aria-valuenow]="csat?.two"
+                          [attr.aria-valuemin]="0"
+                          [attr.aria-valuemax]="csatCount"
+                        >
+                          <div
+                            class="progress-bar yellow"
+                            style="background-color: #d65500"
+                            [style.width.%]="(csat?.two / csatCount) * 100"
+                          ></div>
+                        </div>
+                      </span>
+                      <span class="ms-2 text-secondary"
+                        >{{
+                          (csat?.two / csatCount) * 100 | number : "1.0-2"
+                        }}%</span
+                      >
+                    </li>
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span style="width: 50px"
+                        ><i class="fa-light fa-star" aria-hidden="true"></i>
+                        1</span
+                      >
+                      <span style="width: 80%; align-items: left !important">
+                        <!-- <progress
+                          class="progress cherry"
+                          value="{{ csat?.one }}"
+                          max="{{ csatCount }}"
+                        >
+                          15%
+                        </progress> -->
+                        <div
+                          class="progress"
+                          role="progressbar"
+                          [attr.aria-valuenow]="csat?.one"
+                          [attr.aria-valuemin]="0"
+                          [attr.aria-valuemax]="csatCount"
+                        >
+                          <div
+                            class="progress-bar yellow"
+                            style="background-color: #c71616"
+                            [style.width.%]="(csat?.one / csatCount) * 100"
+                          ></div>
+                        </div>
+                      </span>
+                      <span class="ms-2 text-secondary"
+                        >{{
+                          (csat?.one / csatCount) * 100 | number : "1.0-2"
+                        }}%</span
+                      >
+                    </li>
+                  </ul>
+                  <!-- <div>Based on {{csatCount}} chats</div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col">
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">Avg. BOT Conversation Time</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{
+                      getIntegerPart(
+                        avgBotConversationTime?.detail > 0
+                          ? avgBotConversationTime?.detail
+                          : 0
+                      )
+                    }}
+                    <small
+                      class="fs-12 coal"
+                      style="font-size: 12px !important"
+                      >{{ avgBotConversationTime?.unit || "min" }}</small
+                    >
+                  </h3>
+
+                  <small class="" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint':
+                          avgBotConversationTime?.percentage >= 0,
+                        'fa-arrow-down text-danger':
+                          avgBotConversationTime?.percentage < 0
+                      }"
+                    ></i>
+                    <span
+                      [ngClass]="{
+                        mint: avgBotConversationTime?.percentage >= 0,
+                        'text-danger': avgBotConversationTime?.percentage < 0
+                      }"
+                    >
+                      {{ avgBotConversationTime?.percentage }}%
+                    </span>
+                    than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">BOT Containment Rate</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{ sessionContainmentRate?.containment_rate || 0 }}
+                    <small>{{ sessionContainmentRate?.unit || "%" }}</small>
+                  </h3>
+                  <small class="ms-2" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint':
+                          sessionContainmentRate?.percentage_change >= 0,
+                        'fa-arrow-down text-danger':
+                          sessionContainmentRate?.percentage_change < 0
+                      }"
+                    ></i
+                    ><span
+                      [ngClass]="
+                        sessionContainmentRate?.percentage_change >= 0
+                          ? 'mint'
+                          : 'text-danger'
+                      "
+                      >{{ sessionContainmentRate?.percentage_change }}%</span
+                    >
+                    &nbsp; than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div> -->
+        <!-- <div class="col">
+
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">User Retention Rate</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{ userRetentionRate?.retention_rate || 0
+                    }}<small>{{ userRetentionRate?.unit || "%" }}</small>
+                  </h3>
+                  <small class="ms-2" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint':
+                          userRetentionRate?.percentage_change >= 0,
+                        'fa-arrow-down text-danger':
+                          userRetentionRate?.percentage_change < 0
+                      }"
+                    ></i
+                    ><span
+                      [ngClass]="
+                        userRetentionRate?.percentage_change >= 0
+                          ? 'mint'
+                          : 'text-danger'
+                      "
+                      >{{ userRetentionRate?.percentage_change }}%</span
+                    >&nbsp; than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">Handover Rate</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{
+                      getIntegerPart(
+                        botEsclationRate?.detail > 0
+                          ? botEsclationRate?.detail
+                          : 0
+                      )
+                    }}
+                    <small>%</small>
+                  </h3>
+                  <small class="" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint': botEsclationRate?.percentage >= 0,
+                        'fa-arrow-down text-danger':
+                          botEsclationRate?.percentage < 0
+                      }"
+                    ></i>
+                    <span
+                      [ngClass]="{
+                        mint: botEsclationRate?.percentage >= 0,
+                        'text-danger': botEsclationRate?.percentage < 0
+                      }"
+                    >
+                      {{ botEsclationRate?.percentage }}%
+                    </span>
+                    than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <!-- <div class="row align-items-start mb-3">
+                <div class="col-md-6">
+                    <div class="card p-3">
+                        <div class="card-body">
+                            <h6> Conversations Over Time</h6>
+                            <div class="chartcontainer d-flex justify-content-center">
+                                <div id="main" style="height: 250px; width: 100%; max-width:800px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-3">
+                        <div class="card-body">
+                            <h6 class="">Total Messages Over Time</h6>
+                            <div class="chartcontainer d-flex justify-content-center">
+                                <div id="totalMessages" style="height: 250px; width: 100%; max-width:800px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+      <div class="row align-items-start mb-4">
+        <div class="col">
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">Avg. BOT Conversation Time</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{
+                      getIntegerPart(
+                        avgBotConversationTime?.detail > 0
+                          ? avgBotConversationTime?.detail
+                          : 0
+                      )
+                    }}
+                    <small
+                      class="fs-12 coal"
+                      style="font-size: 12px !important"
+                      >{{ avgBotConversationTime?.unit || "min" }}</small
+                    >
+                  </h3>
+
+                  <small class="" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint':
+                          avgBotConversationTime?.percentage >= 0,
+                        'fa-arrow-down text-danger':
+                          avgBotConversationTime?.percentage < 0
+                      }"
+                    ></i>
+                    <span
+                      [ngClass]="{
+                        mint: avgBotConversationTime?.percentage >= 0,
+                        'text-danger': avgBotConversationTime?.percentage < 0
+                      }"
+                    >
+                      {{ avgBotConversationTime?.percentage }}%
+                    </span>
+                    than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">BOT Containment Rate</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{ sessionContainmentRate?.containment_rate || 0 }}
+                    <small>{{ sessionContainmentRate?.unit || "%" }}</small>
+                  </h3>
+                  <small class="ms-2" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint':
+                          sessionContainmentRate?.percentage_change >= 0,
+                        'fa-arrow-down text-danger':
+                          sessionContainmentRate?.percentage_change < 0
+                      }"
+                    ></i
+                    ><span
+                      [ngClass]="
+                        sessionContainmentRate?.percentage_change >= 0
+                          ? 'mint'
+                          : 'text-danger'
+                      "
+                      >{{ sessionContainmentRate?.percentage_change }}%</span
+                    >
+                    &nbsp; than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">User Retention Rate</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{ userRetentionRate?.retention_rate || 0
+                    }}<small>{{ userRetentionRate?.unit || "%" }}</small>
+                  </h3>
+                  <small class="ms-2" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint':
+                          userRetentionRate?.percentage_change >= 0,
+                        'fa-arrow-down text-danger':
+                          userRetentionRate?.percentage_change < 0
+                      }"
+                    ></i
+                    ><span
+                      [ngClass]="
+                        userRetentionRate?.percentage_change >= 0
+                          ? 'mint'
+                          : 'text-danger'
+                      "
+                      >{{ userRetentionRate?.percentage_change }}%</span
+                    >&nbsp; than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">Handover Rate</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{
+                      getIntegerPart(
+                        botEsclationRate?.detail > 0
+                          ? botEsclationRate?.detail
+                          : 0
+                      )
+                    }}
+                    <small>%</small>
+                  </h3>
+                  <small class="" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint': botEsclationRate?.percentage >= 0,
+                        'fa-arrow-down text-danger':
+                          botEsclationRate?.percentage < 0
+                      }"
+                    ></i>
+                    <span
+                      [ngClass]="{
+                        mint: botEsclationRate?.percentage >= 0,
+                        'text-danger': botEsclationRate?.percentage < 0
+                      }"
+                    >
+                      {{ botEsclationRate?.percentage }}%
+                    </span>
+                    than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-3" style="min-height: 168px">
+            <div class="card-body d-flex flex-column">
+              <h6 class="mb-5">Handover Time</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="">
+                  <h3 class="m-0 fw-bold">
+                    {{ avgWaitTime?.detail || 0 }}
+                    <small>min</small>
+                  </h3>
+                  <small class="" style="font-size: 12px !important">
+                    <i
+                      class="fa-light"
+                      [ngClass]="{
+                        'fa-arrow-up mint': avgWaitTime?.percentage >= 0,
+                        'fa-arrow-down text-danger': avgWaitTime?.percentage < 0
+                      }"
+                    ></i>
+                    <span
+                      [ngClass]="{
+                        mint: avgWaitTime?.percentage >= 0,
+                        'text-danger': avgWaitTime?.percentage < 0
+                      }"
+                    >
+                      {{ avgWaitTime?.percentage }}%
+                    </span>
+                    than
+                    <span *ngIf="getTimeSpan !== 'day'; else yesterday"
+                      >last {{ getTimeSpan }}</span
+                    >
+                    <ng-template #yesterday>Yesterday</ng-template>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-start mb-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <div
+                class="d-flex align-items-center justify-content-between mb-4"
+              >
+                <h6 class="">Conversations Over Time</h6>
+              </div>
+              <div class="chartcontainer d-flex justify-content-center">
+                <div
+                  id="main"
+                  style="height: 250px; width: 100%; max-width: 800px"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="mb-4">Messages Over Time</h6>
+              <div class="chartcontainer d-flex justify-content-center">
+                <div
+                  id="totalMessages"
+                  style="height: 260px; width: 100%; max-width: 800px"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-start mb-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <div
+                class="d-flex align-items-center justify-content-between mb-4"
+              >
+                <h6 class="">BOT - Human Handover Delay</h6>
+              </div>
+              <div class="chartcontainer d-flex justify-content-center">
+                <div
+                  id="avgHandleTime"
+                  style="height: 250px; width: 100%; max-width: 800px"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="mb-4">Handovers Over Time</h6>
+              <div class="chartcontainer d-flex justify-content-center">
+                <div
+                  id="BotRate"
+                  style="height: 260px; width: 100%; max-width: 800px"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-start mb-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="mb-4">Sentiments Analysis</h6>
+              <div class="row p-4">
+                <div class="col-md-5 text-center">
+                  <div
+                    id="analysisCsat"
+                    style="height: 280px; width: 100%; max-width: 650px"
+                  ></div>
+                </div>
+                <div class="col-md-7">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-0">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <div class="d-flex align-items-center">
+                          <span
+                            class="iconButton medium night"
+                            style="background-color: #25D366 !important"
+                          >
+                            <i class="fa-light fa-face-smile"></i>
+                          </span>
+                          <div class="ms-3">
+                            <p class="mb-0">Positive</p>
+
+                            <p class="m-0">
+                              <small style="font-size: 12px !important">
+                                <i
+                                  class="fa-light"
+                                  [ngClass]="{
+                                    'fa-arrow-up mint':
+                                      sentimentAnalysis?.positive_percentage >=
+                                      0,
+                                    'fa-arrow-down text-danger':
+                                      sentimentAnalysis?.positive_percentage < 0
+                                  }"
+                                ></i>
+                                <span
+                                  [ngClass]="{
+                                    mint:
+                                      sentimentAnalysis?.positive_percentage >=
+                                      0,
+                                    'text-danger':
+                                      sentimentAnalysis?.positive_percentage < 0
+                                  }"
+                                >
+                                  {{ sentimentAnalysis?.positive_percentage }}%
+                                </span>
+                                than
+                                <span
+                                  *ngIf="getTimeSpan !== 'day'; else yesterday"
+                                  >last {{ getTimeSpan }}</span
+                                >
+                                <ng-template #yesterday>Yesterday</ng-template>
+                              </small>
+                            </p>
+                          </div>
+                        </div>
+                        <strong>{{ sentimentAnalysis?.positive }}</strong>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item px-0">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <div class="d-flex align-items-center">
+                          <span class="iconButton medium radicalTransBg night">
+                            <i class="fa-light fa-face-angry"></i>
+                          </span>
+                          <div class="ms-3">
+                            <p class="mb-0">Negative</p>
+
+                            <p class="m-0">
+                              <small style="font-size: 12px !important">
+                                <i
+                                  class="fa-light"
+                                  [ngClass]="{
+                                    'fa-arrow-up mint':
+                                      sentimentAnalysis?.negative_percentage >=
+                                      0,
+                                    'fa-arrow-down text-danger':
+                                      sentimentAnalysis?.negative_percentage < 0
+                                  }"
+                                ></i>
+                                <span
+                                  [ngClass]="{
+                                    mint:
+                                      sentimentAnalysis?.negative_percentage >=
+                                      0,
+                                    'text-danger':
+                                      sentimentAnalysis?.negative_percentage < 0
+                                  }"
+                                >
+                                  {{ sentimentAnalysis?.negative_percentage }}%
+                                </span>
+                                than
+                                <span
+                                  *ngIf="getTimeSpan !== 'day'; else yesterday"
+                                  >last {{ getTimeSpan }}</span
+                                >
+                                <ng-template #yesterday>Yesterday</ng-template>
+                              </small>
+                            </p>
+                          </div>
+                        </div>
+                        <strong>{{ sentimentAnalysis?.negative }}</strong>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item px-0">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <div class="d-flex align-items-center">
+                          <span class="iconButton medium mangoTransBg night">
+                            <i class="fa-light fa-face-meh"></i>
+                          </span>
+                          <div class="ms-3">
+                            <p class="mb-0">Neutral</p>
+
+                            <p class="m-0">
+                              <small style="font-size: 12px !important">
+                                <i
+                                  class="fa-light"
+                                  [ngClass]="{
+                                    'fa-arrow-up mint':
+                                      sentimentAnalysis?.neutral_percentage >=
+                                      0,
+                                    'fa-arrow-down text-danger':
+                                      sentimentAnalysis?.neutral_percentage < 0
+                                  }"
+                                ></i>
+                                <span
+                                  [ngClass]="{
+                                    mint:
+                                      sentimentAnalysis?.neutral_percentage >=
+                                      0,
+                                    'text-danger':
+                                      sentimentAnalysis?.neutral_percentage < 0
+                                  }"
+                                >
+                                  {{ sentimentAnalysis?.neutral_percentage }}%
+                                </span>
+                                than
+                                <span
+                                  *ngIf="getTimeSpan !== 'day'; else yesterday"
+                                  >last {{ getTimeSpan }}</span
+                                >
+                                <ng-template #yesterday>Yesterday</ng-template>
+                              </small>
+                            </p>
+                          </div>
+                        </div>
+                        <strong>{{ sentimentAnalysis?.neutral }}</strong>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-6">
+                        <div class="card sentimentcard">
+                            <div class="card-body">
+                                <h6 class="mb-4 ">Sentiments Analysis</h6>
+                                <div class="chartcontainer d-flex justify-content-center my-4">
+                                    <div id="analysisCsat" style="height: 300%; width: 100%; max-width:650px"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="d-flex align-items-left ">
+                                            <span class="iconButton large mintTransBg night"
+                                                style="width:60px; height: 60px; margin-top:18px">
+                                                <i class="fa-light fa-face-smile"></i>
+                                            </span>
+                                            <div class="row">
+                                                <h5 style="margin-top: 15px; !important"> &nbsp; Positive</h5>
+                                                <h3 class="m-0 fw-bold">&nbsp;&nbsp;{{ sentimentAnalysis?.positive }}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" style="margin-left:10px">
+
+                                            <small style="font-size: 12px !important;">
+                                                <i class="fa-light" [ngClass]="{
+                                             'fa-arrow-up mint': sentimentAnalysis?.positive_percentage >= 0,
+                                             'fa-arrow-down text-danger': sentimentAnalysis?.positive_percentage < 0
+                                           }"></i>
+                                                <span [ngClass]="{
+                                          'mint': sentimentAnalysis?.positive_percentage >= 0,
+                                          'text-danger': sentimentAnalysis?.positive_percentage < 0
+                                        }">
+                                                    {{ sentimentAnalysis?.positive_percentage }}%
+                                                </span>
+                                                than <span *ngIf="getTimeSpan !== 'day' else yesterday">last
+                                                    {{getTimeSpan}}</span>
+                                                <ng-template #yesterday>Yesterday</ng-template>
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="d-flex align-items-left ">
+                                            <span class="iconButton large radicalTransBg night"
+                                                style="width:60px; height: 60px; margin-top:18px">
+                                                <i class="fa-light fa-face-angry"></i>
+                                            </span>
+                                            <div class="row">
+                                                <h5 style="margin-top: 15px; !important">&nbsp; Negative</h5>
+                                                <h3 class="m-0 fw-bold">&nbsp;&nbsp;{{ sentimentAnalysis?.negative }}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" style="margin-left:10px">
+
+                                            <small style="font-size: 12px !important;">
+                                                <i class="fa-light" [ngClass]="{
+                                             'fa-arrow-up mint': sentimentAnalysis?.negative_percentage >= 0,
+                                             'fa-arrow-down text-danger': sentimentAnalysis?.negative_percentage < 0
+                                           }"></i>
+                                                <span [ngClass]="{
+                                          'mint': sentimentAnalysis?.negative_percentage >= 0,
+                                          'text-danger': sentimentAnalysis?.negative_percentage < 0
+                                        }">
+                                                    {{ sentimentAnalysis?.negative_percentage }}%
+                                                </span>
+                                                than <span *ngIf="getTimeSpan !== 'day' else yesterday">last
+                                                    {{getTimeSpan}}</span>
+                                                <ng-template #yesterday>Yesterday</ng-template>
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="d-flex align-items-left ">
+                                            <span class="iconButton large mangoTransBg night"
+                                                style="width:60px; height: 60px; margin-top:18px">
+                                                <i class="fa-light fa-face-meh"></i>
+                                            </span>
+                                            <div class="row">
+                                                <h5 style="margin-top: 15px; !important">&nbsp; Neutral</h5>
+                                                <h3 class="m-0 fw-bold">&nbsp;&nbsp;{{ sentimentAnalysis?.neutral }}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3" style="margin-left:10px">
+
+                                            <small style="font-size: 12px !important;">
+                                                <i class="fa-light" [ngClass]="{
+                                             'fa-arrow-up mint': sentimentAnalysis?.neutral_percentage >= 0,
+                                             'fa-arrow-down text-danger': sentimentAnalysis?.neutral_percentage < 0
+                                           }"></i>
+                                                <span [ngClass]="{
+                                          'mint': sentimentAnalysis?.neutral_percentage >= 0,
+                                          'text-danger': sentimentAnalysis?.neutral_percentage < 0
+                                        }">
+                                                    {{ sentimentAnalysis?.neutral_percentage }}%
+                                                </span>
+                                                than <span *ngIf="getTimeSpan !== 'day' else yesterday">last
+                                                    {{getTimeSpan}}</span>
+                                                <ng-template #yesterday>Yesterday</ng-template>
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="mb-4">Auto Tags Analysis</h6>
+              <div class="row p-4">
+                <div class="col-md-5 text-center">
+                  <div
+                    id="Botatgs"
+                    style="height: 280px; width: 100%; max-width: 800px"
+                  ></div>
+                </div>
+                <div class="col-md-7">
+                  <ul class="list-group list-group-flush">
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span>
+                        <i class="fa-regular fa-circle me-2 sky"></i>
+                        Information
+                      </span>
+                      <strong>{{ tagsAnalatics?.Information }}</strong>
+                    </li>
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span>
+                        <i class="fa-regular fa-circle me-2 cherry"></i>
+                        Investor
+                      </span>
+                      <strong>{{ tagsAnalatics?.Investor }}</strong>
+                    </li>
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span>
+                        <i class="fa-regular fa-circle me-2 berry"></i> Creditor
+                      </span>
+                      <strong>{{ tagsAnalatics?.Creditor }}</strong>
+                    </li>
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span>
+                        <i class="fa-regular fa-circle me-2 radical"></i>
+                        SQL
+                      </span>
+                      <strong>{{ tagsAnalatics?.SQL }}</strong>
+                    </li>
+                    <li
+                      class="list-group-item d-flex align-items-center justify-content-between px-0"
+                    >
+                      <span>
+                        <i class="fa-regular fa-circle me-2 pearl"></i> Customer
+                        Support
+                      </span>
+                      <strong>{{ tagsAnalatics?.Customer_Support }}</strong>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-start mb-4">
+        <div class="col-md-8">
+          <div class="card" style="height: 350px">
+            <div class="card-body">
+              <h6 class="mb-4">Tokens Consumption</h6>
+              <div class="chartcontainer d-flex justify-content-center">
+                <div
+                  id="average"
+                  style="height: 320px; width: 90%; max-width: 800px"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3" style="min-height: 105px">
+            <div class="card-body">
+              <h6 class="mb-2">Total Tokens</h6>
+              <h3>
+                {{ (totalTokenCount > 0 ? totalTokenCount : 0) | thousandSuff }}
+              </h3>
+            </div>
+          </div>
+          <div class="card mb-3" style="min-height: 105px">
+            <div class="card-body">
+              <h6 class="mb-2">
+                Average Token <small class="coal">per conversation</small>
+              </h6>
+              <h3>
+                {{
+                  getIntegerPart(avgTokenCount > 0 ? avgTokenCount : 0)
+                    | thousandSuff
+                }}
+              </h3>
+            </div>
+          </div>
+          <div class="card mb-3" style="min-height: 105px">
+            <div class="card-body">
+              <h6 class="mb-2">Tokens Consumed per day</h6>
+              <h3>
+                {{
+                  (tokenPerDayCount > 0 ? tokenPerDayCount : 0) | thousandSuff
+                }}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h6 class="mb-4">Peak Hours Analysis</h6>
+          <div class="chartcontainer d-flex justify-content-center">
+            <div
+              id="heatMap"
+              style="width: 100%; height: 550px; max-width: 1500px"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

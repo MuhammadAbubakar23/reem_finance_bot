@@ -1,0 +1,228 @@
+// All Buttons
+.iconButton {
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  @include flex();
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0px !important;
+  &.iconHover {
+    &:hover {
+      color: $night80;
+      background-color: hsla(0, 0%, 60%, .2);
+      border-color: hsla(0, 0%, 60%, .2);
+    }
+  }
+  &.char-btn{
+    background: transparent linear-gradient( 55deg, #FED655 0%, #F6428B 100%) 0% 0% no-repeat padding-box;
+    border-radius: 20px 20px 5px 20px;
+    color: $ice;
+    &:active {
+      background-color: inherit;
+      color: $ice;
+    }
+  }
+  &.dropdown-iconBtn{
+    display: inline-flex;
+    &.active{
+      background-color: transparent !important;
+      color: $radical !important;
+    }
+  }
+  a {
+    color: $coal;
+  }
+  &:active {
+    background-color: inherit;
+    color: inherit;
+  }
+  .count {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    font-size: 0.6rem;
+  }
+  &.extraSmall {
+    width: 30px;
+    height: 30px;
+    // font-size: 14px;
+  }
+  &.small {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    // font-size: 14px;
+  }
+  &.newSmall{
+    width: 26px;
+    height: 24px;
+    display: flex;
+    flex: 0 0 4%;
+  }
+  &.medium {
+    width: 40px;
+    height: 40px;
+    flex:  0 0 40px;
+  }
+  &.large {
+    width: 50px;
+    height: 50px;
+    // font-size: 18px;
+  }
+  &.exlarge{
+    width: 65px;
+    height: 65px;
+  }
+  i {
+    font-size: inherit;
+  }
+  &.active {
+    @extend .skyBg;
+  }
+  &.darkTrans {
+    background-color: $charcoal50;
+    color: $ice;
+  }
+  &.lightTrans {
+    background-color: $ice50;
+    color: $ice;
+  }
+  &.whiteTransBg {
+    &:hover {
+      background: $ice10;
+    }
+  }
+  &.orangeBtn{
+    border-color: $mango160;
+    background-color: $mango160;
+    color: $mango;
+  }
+  &.pearBtn{
+    border-color: $pearl126;
+    background-color: $pearl126;
+    color: $pearl;
+  }
+  &.cherryBtn{
+    border-color: $cherry117;
+    background-color: $cherry117;
+    color: $cherry;
+  }
+  &.inkblueBtn{
+    border-color: $inkblue20;
+    background-color: $inkblue20;
+    color: $inkblue;
+  }
+  &.emeraldBtn{
+    border-color: $emerald20;
+    background-color: $emerald20;
+    color: $emerald;
+  }
+  &.file-icon{
+    font-size: 1.740rem;
+  }
+}
+.rounded-btn {
+  border-radius: 50px;
+  padding: 13px 10px;
+}
+.btn {
+  border-radius: 8px;
+  &.btn-large{
+    min-width: 235px;
+    padding: 1rem;
+  }
+  &.btn-medium{
+    min-width: 130px;
+    padding: 0.75rem;
+  }
+  &.btn-small{
+    min-width: 96px;
+    height: 40px;
+  }
+}
+.btn-outline-secondary {
+  color: #6B7983;
+  border-color: $metal;
+  &:hover {
+    color: $ice;
+    background-color: #6B7983;
+    border-color: $metal;
+  }
+}
+
+.green-outline-btn {
+  border: 1px solid $mint;
+  color: $mint;
+  i,
+  svg {
+    color: $mint;
+  }
+  &:hover {
+    color: $ice;
+    background-color: $mint;
+    i,
+    svg {
+      color: $ice;
+    }
+  }
+}
+.btn-check:focus+.btn,
+.btn:focus {
+  box-shadow: none;
+}
+.btn-check:focus+.btn-secondary,
+.btn-secondary:focus {
+  box-shadow: none;
+  border: none;
+  background-color: none;
+}
+.btn-check:checked+.btn-secondary:focus,
+.btn-check:active+.btn-secondary:focus,
+.btn-secondary:active:focus,
+.btn-secondary.active:focus,
+.show>.btn-secondary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+.btn-check:checked+.btn-outline-secondary:focus,
+.btn-check:active+.btn-outline-secondary:focus,
+.btn-outline-secondary:active:focus,
+.btn-outline-secondary.active:focus,
+.btn-outline-secondary.dropdown-toggle.show:focus {
+  box-shadow: none;
+}
+
+
+
+@keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 
+  
+  .btn-white{
+    background-color: $ice;
+  }
+ 
+  .btn-link{
+    color: $brand-primary;
+  }
+ 
+  .btn-small{
+    min-width: 80px;
+  }
+  .btn-primary-light{
+    background: #DCE1F9;
+    color: $brand-primary;
+    &:hover{
+      background-color: darken( #DCE1F9, 10%);
+      color: darken( $brand-primary, 10%);
+    }
+  }

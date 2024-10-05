@@ -1,0 +1,226 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.75)"
+  size="small"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="false"
+  [name]="'agent-takeover'"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+<main class="">
+  <div
+    class="page-content-wrapper custom-scroll chatbot-main"
+    [ngClass]="{ thirdactive: chats.length === 3 }"
+  >
+    @if(chats.length === 0){
+    <div class="row">
+      <div class="col-sm-12">
+        <section
+          class="empty col d-flex flex-column justify-content-center h-100 align-items-center gap-3"
+        >
+          <img
+            src="../../../../../assets/images/empty.svg"
+            width="300px"
+            alt=""
+          />
+          <p class="m-0 coal">Select the conversation to load the messages</p>
+        </section>
+      </div>
+    </div>
+    } @if(chats.length > 0){
+    <div class="chatlisting row g-0 align-items-start">
+      @for(chat of chats; track chat){
+      <div class="col-8">
+        <app-chat-history
+          [chat]="chat"
+          (onSuggestion)="setSuggestion($event)"
+        ></app-chat-history>
+      </div>
+      }
+      <div class="col-4">
+        @if(knowledgeBase == true){
+          <ng-container>
+            <aside class="knowledgebase" id="knowledgebase">
+              <header class="mb-3">
+                <h6 class="mb-4">
+                  <i class="fa-solid fa-sparkles"></i> AI Recommendations
+                </h6>
+              </header>
+  
+              <div class="cardslist perfect-scrollbar">
+                <div class="aicard">
+                  <div class="card">
+                    <div class="card-body">
+                      {{ suggestion || "" }}
+                    </div>
+                  </div>
+                  <div class="row justify-content-between pt-3 aiactions">
+                    <div class="col">
+                      <a href="" class="btn btn-outline-secondary">Post</a>
+                      <a href="" class="btn btn-outline-secondary">Edit</a>
+                    </div>
+                    <div class="col">
+                      <div class="d-flex align-items-center justify-content-end">
+                        <span class="me-2">Source</span>
+                        <a href="" class="btn btn-outline-secondary rounded-pill"
+                          >Context</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <footer class="d-flex align-items-center">
+                <div class="row align-items-center">
+                  <div class="col-md-9">
+                    <p class="text-secondary m-0">
+                      This tool uses generative Al, which can produce inaccurate
+                      or harmful responses.
+                    </p>
+                  </div>
+                  <div class="col-md-3 text-end">
+                    <a class="text-primary">Learn More</a>
+                  </div>
+                </div>
+              </footer>
+            </aside>
+          </ng-container>
+        }
+        @if(knowledgeBase == false){
+          <ng-container>
+            <aside class="knowledgebase" id="kbinner">
+              <header class="mb-3">
+                <h6>
+                  <span class="iconButton small iconHover d-inline-flex openkb"
+                    ><i
+                      (click)="toggle(true)"
+                      class="fa-light fa-arrow-left"
+                      data-bs-target="#knowledgebase"
+                    ></i>
+                  </span>
+                  What shipping method do you offer
+                </h6>
+              </header>
+              <div class="cardslist perfect-scrollbar">
+                <div class="accordion mb-3" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                      >
+                        Information
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseOne"
+                      class="accordion-collapse collapse show"
+                      data-bs-parent="#accordionExample"
+                    >
+                      <div class="accordion-body">
+                        <p>
+                          We offer a variety of shipping methods to ensure that
+                          your orders are delivered to you in a timely and
+                          convenient manner. This guide will provide you with an
+                          overview of the shipping options available, helping you
+                          choose the method that best suits your needs.
+                        </p>
+                        <div class="text-end">
+                          <a href="" class="btn btn-small btn-primary-light"
+                            ><i class="fa-solid fa-share"></i> Edit as Draft</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                      >
+                        Details
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseTwo"
+                      class="accordion-collapse collapse"
+                      data-bs-parent="#accordionExample"
+                    >
+                      <div class="accordion-body">
+                        <p>What shipping methods do you offer?</p>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <h6>1-Standard Shipping</h6>
+                            <p>
+                              Our standard shipping option delivers your order
+                              within 10 business days. This is a cost-effective
+                              choice for customers who are not in a rush to
+                              receive their items.
+                            </p>
+                          </li>
+                          <li class="list-group-item">
+                            <h6>2-Expedited Shipping</h6>
+                            <p>
+                              Our standard shipping option delivers your order
+                              within 10 business days. This is a cost-effective
+                              choice for customers who are not in a rush to
+                              receive their items.
+                            </p>
+                          </li>
+                          <li class="list-group-item">
+                            <h6>3-Next-Day Shipping</h6>
+                            <p>
+                              Our standard shipping option delivers your order
+                              within 10 business days. This is a cost-effective
+                              choice for customers who are not in a rush to
+                              receive their items.
+                            </p>
+                          </li>
+                          <li class="list-group-item">
+                            <h6>4-International Shipping</h6>
+                            <p>
+                              Our standard shipping option delivers your order
+                              within 10 business days. This is a cost-effective
+                              choice for customers who are not in a rush to
+                              receive their items.
+                            </p>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <footer class="d-flex align-items-center">
+                <div class="row align-items-center">
+                  <div class="col-md-9">
+                    <p class="text-secondary m-0">
+                      This tool uses generative Al, which can produce inaccurate
+                      or harmful responses.
+                    </p>
+                  </div>
+                  <div class="col-md-3 text-end" (click)="toggle(true)">
+                    <a class="text-primary">Learn More</a>
+                  </div>
+                </div>
+              </footer>
+            </aside>
+          </ng-container>
+        }
+
+      </div>
+    </div>
+    }
+  </div>
+</main>
+<app-chat-widget2 [hasParent]="true"></app-chat-widget2>

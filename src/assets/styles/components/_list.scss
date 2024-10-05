@@ -1,0 +1,46 @@
+.list-group-section{
+    .list-group{
+        &.list-group-flush {
+            .list-group-item{
+                padding: 1rem 1rem;
+                &:last-child {
+                    border-bottom-width: 1px;
+                }
+                .icons-list{
+                    opacity: 0;
+                    visibility: hidden;
+                    -webkit-transition: 0.5s;
+                    transition: 0.5s;
+                }
+                &:hover{
+                    border-color: $sky;
+                    .icons-list{
+                        opacity: 1;
+                        visibility: visible; 
+                    }
+                    .user-selection-box{
+                        i{
+                            visibility: visible;
+                        }
+                    }
+                }
+                &.small-list-item{
+                    padding: 0.5rem;
+                }
+                .badge.blue-bg{
+                    background-color: $royalblue;
+                }
+                &.list-active{
+                    border-color: rgb(84, 84, 251);
+                    .icons-list{
+                        opacity: 1;
+                        visibility: visible; 
+                    }
+                }
+            }
+        }
+        a{
+            text-decoration: none;
+        }
+    }
+}

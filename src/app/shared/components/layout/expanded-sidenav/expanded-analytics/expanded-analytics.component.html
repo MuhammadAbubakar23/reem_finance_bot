@@ -1,0 +1,22 @@
+<nav  id="left-sidebar-expand" class="botleft">
+  <div class="multiple-screens secondary-bg">
+    <div id="all-inboxes-wrapper secondary-bg">
+      <div class="collapsible__header p-3">
+        <h3 class="fw-bold mt-3 ms-1">
+          <a>Analytics</a>
+        </h3>
+      </div>
+      <ul class="list-group console-list mt-2" data-scrollbar="data-scrollbar">
+        @for(menu of subMenus;track menu; let i = $index){
+          <li class="list-group-item list-group-item-action" type="button" [class.active] ="activeParentIndex == i" [routerLink]="menu.link ? ['analytics',menu.link] : null" (click)="toggleCollapse(i)">
+            <a class="d-flex align-items-center" >
+              <i  [ngClass]="menu.icon"></i>
+              {{menu['name']=='Analytics'? 'Conversations':menu['name']=='Dashboard'?'Sessions':menu['name'] }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+  <a (click)="toggleNavTest()" class="panelToggle"></a>
+</nav>

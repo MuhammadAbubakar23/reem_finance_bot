@@ -1,0 +1,395 @@
+<div class="agent-page-main-content">
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-clip-rotate"
+    [fullScreen]="false"
+  >
+    <p style="color: white">Loading...</p>
+  </ngx-spinner>
+  <form class="user-detail-form" [formGroup]="userForm" (ngReset)="onReset()">
+    <div
+      class="create-user console-body-wrapper footerheight"
+      data-scrollbar="true"
+      tabindex="-1"
+      style="overflow-y: auto; outline: none"
+    >
+      <div
+        class="console-contact-detail page-details perfect-scrollbar"
+        data-scrollbar="data-scrollbar"
+      >
+        <div
+          class="scroll-content perfect-scrollbar"
+          data-scrollbar="data-scrollbar"
+        >
+          <div class="wider-container pt-3">
+            <header class="tab-header">
+              <nav>
+                <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                  <button
+                    class="nav-link active"
+                    id="user-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#user-detail"
+                    type="button"
+                    role="tab"
+                    aria-controls="user-detail"
+                    aria-selected="false"
+                  >
+                    <h6>Details</h6>
+                  </button>
+                </div>
+              </nav>
+            </header>
+            <div class="tab-body">
+              <div class="tab-content" id="nav-tabContent">
+                <div
+                  id="user-detail"
+                  class="tab-pane fade active show"
+                  role="tabpanel"
+                  aria-labelledby="user-tab"
+                >
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="team-detail-form-box mb-5">
+                        <div class="floating-item mb-4">
+                          <div
+                            [ngClass]="{
+                              'was-validated':
+                                f['firstname']!.valid && f['firstname']!.touched
+                            }"
+                            class="form-floating mb-2"
+                          >
+                            <input
+                              [ngClass]="{
+                                'is-invalid':
+                                  f['firstname']!.errors &&
+                                  (f['firstname']!.touched ||
+                                    f['firstname']!.dirty)
+                              }"
+                              class="form-control"
+                              id="firstname"
+                              formControlName="firstname"
+                              placeholder="Enter First Name"
+                            />
+                            <label for="firstname">First Name</label>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="
+                                f['firstname']!.errors &&
+                                (f['firstname']!.touched ||
+                                  f['firstname']!.dirty)
+                              "
+                            >
+                              <div
+                                *ngIf="f['firstname']!.errors?.['maxlength'] || f['firstname']!.errors?.['minlength']"
+                              >
+                                First name must be grater than 1 character and
+                                less than 25 characters!
+                              </div>
+                              <div *ngIf="f['firstname']!.errors?.['required']">
+                                First Name is required!
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="floating-item mb-4">
+                          <div
+                            [ngClass]="{
+                              'was-validated':
+                                f['lastname']!.valid && f['lastname']!.touched
+                            }"
+                            class="form-floating mb-2"
+                          >
+                            <input
+                              [ngClass]="{
+                                'is-invalid':
+                                  f['lastname']!.errors &&
+                                  (f['lastname']!.touched ||
+                                    f['lastname']!.dirty)
+                              }"
+                              class="form-control"
+                              id="lastname"
+                              formControlName="lastname"
+                              placeholder="Enter Last Name"
+                            />
+                            <label for="lastname">Last Name</label>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="
+                                f['lastname']!.errors &&
+                                (f['lastname']!.touched || f['lastname']!.dirty)
+                              "
+                            >
+                              <div
+                                *ngIf="f['lastname']!.errors?.['maxlength'] || f['lastname']!.errors?.['minlength']"
+                              >
+                                Last name must be grater than 1 character and
+                                less than 25 characters!
+                              </div>
+                              <div *ngIf="f['lastname']!.errors?.['required']">
+                                Last Name is required!
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="floating-item mb-4">
+                          <div
+                            [ngClass]="{
+                              'was-validated':
+                                f['email']!.valid && f['email']!.touched
+                            }"
+                            class="form-floating mb-2"
+                          >
+                            <input
+                              [ngClass]="{
+                                'is-invalid':
+                                  f['email']!.errors &&
+                                  (f['email']!.touched || f['email']!.dirty)
+                              }"
+                              class="form-control"
+                              id="email"
+                              formControlName="email"
+                              placeholder="Enter Email"
+                            />
+                            <label for="email">Email</label>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="
+                                f['email']!.errors &&
+                                (f['email']!.touched || f['email']!.dirty)
+                              "
+                            >
+                              <div *ngIf="f['email']!.errors?.['required']">
+                                Email is required!
+                              </div>
+                              <div *ngIf="f['email']!.errors?.['email']">
+                                Email is not valid!
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="floating-item mb-4">
+                          <div
+                            [ngClass]="{
+                              'was-validated':
+                                f['phone']!.valid && f['phone']!.touched
+                            }"
+                            class="form-floating mb-2"
+                          >
+                            <input
+                              [ngClass]="{
+                                'is-invalid':
+                                  f['phone']!.errors &&
+                                  (f['phone']!.touched || f['phone']!.dirty)
+                              }"
+                              class="form-control"
+                              id="phone"
+                              formControlName="phone"
+                              placeholder="Enter Phone"
+                            />
+                            <label for="phone">Phone</label>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="
+                                f['phone']!.errors &&
+                                (f['phone']!.touched || f['phone']!.dirty)
+                              "
+                            >
+                              <div
+                                *ngIf="f['phone']!.errors?.['minlength'] || f['phone']!.errors?.['maxlength']"
+                              >
+                                Enter number between 11-14 digits
+                              </div>
+                              <div *ngIf="f['phone']!.errors?.['required']">
+                                Phone is required!
+                              </div>
+                              <div *ngIf="f['phone']!.errors?.['pattern']">
+                                Phone is not valid!
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="floating-item mb-4" *ngIf="id == null">
+                          <div
+                            [ngClass]="{
+                              'was-validated':
+                                f['password']!.valid && f['password']!.touched
+                            }"
+                            class="form-floating mb-2"
+                          >
+                            <input
+                              type="password"
+                              [ngClass]="{
+                                'is-invalid':
+                                  f['password']!.errors &&
+                                  (f['password']!.touched ||
+                                    f['password']!.dirty)
+                              }"
+                              class="form-control"
+                              id="password"
+                              formControlName="password"
+                              placeholder="Enter password"
+                              appPreventCopyPaste
+                            />
+                            <label for="password">Password</label>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="
+                                f['password']!.errors &&
+                                (f['password']!.touched || f['password']!.dirty)
+                              "
+                            >
+                              <div
+                                *ngIf="f['password']!.errors?.['maxlength'] || f['password']!.errors?.['minlength']"
+                              >
+                                Password must be grater than 8 character and
+                                less than 15 characters!
+                              </div>
+                              <div *ngIf="f['password']!.errors?.['required']">
+                                Password is required!
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="floating-item mb-4" *ngIf="id == null">
+                          <div
+                            [ngClass]="{
+                              'was-validated':
+                                f['confirmpassword']!.valid &&
+                                f['confirmpassword']!.touched
+                            }"
+                            class="form-floating mb-2"
+                          >
+                            <input
+                              type="password"
+                              [ngClass]="{
+                                'is-invalid':
+                                  f['confirmpassword']!.errors &&
+                                  (f['confirmpassword']!.touched ||
+                                    f['confirmpassword']!.dirty)
+                              }"
+                              class="form-control"
+                              id="confirmpassword"
+                              formControlName="confirmpassword"
+                              placeholder="Enter Confirm Password"
+                              appPreventCopyPaste
+                            />
+                            <label for="confirmpassword"
+                              >Confirm Password</label
+                            >
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="
+                                f['confirmpassword']!.errors &&
+                                (f['confirmpassword']!.touched ||
+                                  f['confirmpassword']!.dirty)
+                              "
+                            >
+                              <div
+                                *ngIf="f['confirmpassword']!.errors?.['maxlength'] || f['confirmpassword']!.errors?.['minlength']"
+                              >
+                                Confirm Password must be grater than 8 character
+                                and less than 15 characters!
+                              </div>
+                              <div
+                                *ngIf="f['confirmpassword']!.errors?.['required']"
+                              >
+                                Confirm Password is required!
+                              </div>
+                              <div
+                                *ngIf="f['confirmpassword']!.errors?.['mismatch']"
+                              >
+                                Passwords don't match.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="floating-item mb-4">
+                          <div>
+                            <label>Permissions</label>
+                            <ng-select class="custom-ng-select"
+                              [multiple]="true"
+                              [closeOnSelect]="false"
+                              formControlName="roleId"
+                              [class.is-invalid]="
+                                f['roleId'].invalid && f['roleId'].touched
+                              "
+                              [class.is-valid]="
+                                f['roleId'].valid && f['roleId'].touched
+                              "
+                            >
+                              <ng-template ng-header-tmp>
+                                <div>
+                                  <button
+                                    class="btn btn-link"
+                                    (click)="onSelectAll()"
+                                  >
+                                    Select All
+                                  </button>
+                                  <button
+                                    class="btn btn-link"
+                                    (click)="onClearAll()"
+                                  >
+                                    Clear All
+                                  </button>
+                                </div>
+                              </ng-template>
+                              @for(bot of botMenuList; track bot){
+                              <ng-option [value]="bot.id.toString()">{{
+                                bot.name
+                              }}</ng-option>
+                              }
+                            </ng-select>
+                            <div class="invalid-feedback">
+                              <div *ngIf="f['roleId'].errors?.['required']">
+                                Permission is required.
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="ps-3 pe-3">
+        <div
+          class="icon-buttons-wrapper d-flex justify-content-between pt-3 pb-4"
+        >
+          <div class="row w-100">
+            <div class="col-md-4"></div>
+            <div class="col-md-8 justify-content-end d-flex">
+              <div class="buttons-wrap d-flex">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-medium me-2 px-4"
+                  (click)="cancelForm()"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  class="btn skyBg ms-2 px-4 btn-medium saveBtn"
+                  (click)="onSubmit()"
+                >
+                  {{ btnText }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </form>
+</div>

@@ -1,0 +1,61 @@
+<nav id="left-sidebar-expand" class="botleft">
+  <div class="multiple-screens">
+    <div class="sidebar-header p-3 d-flex align-items-center">
+      <h5 class="m-0"> Conversations </h5>
+      <span class="badge text-dark rounded-pill">{{
+        activechatBotHistory.length
+      }}</span>
+    </div>
+
+    <div class="sidebar-search px-3 pt-3 pb-4 mb-3 ">
+      <div class="iconholder w-100">
+        <i class="fa-light fa-search iconleft"></i>
+        <input type="search" placeholder="Search Conversation" class="form-control" name=""  [(ngModel)]="searchText"
+        (input)="filterResults()">
+      </div>
+    </div>
+
+    <h6 class="ps-4 mb-3">Live BOTS</h6>
+    <div class="leftscroll perfect-scrollbar">
+
+      <ul class="list-group list-group-flush all-inboxes-menu" >
+        @for(item of activechatBotHistory.slice().reverse();track item){
+          <a   [ngClass]="{ active: item.active }" id="active1" class=" list-group-item list-group-item-action bg-transparent" (click)="toggleChatVisibility(item)">
+
+            <div class="d-flex align-items-center">
+              <h6 class="dark m-0"> {{
+                item.username != null
+                  ? item.username
+                  : item.session_id
+              }} </h6>
+              <span class="badge badge-parrot rounded-pill ms-2">BOT</span>
+              <small class=" ms-auto fs-10"><i class="fa-light fa-clock night"></i> <span class="coal">{{
+                item.last_timestamp | customDate
+              }}</span> </small>
+            </div>
+            <div class="d-flex align-items-center w-100">
+              <span class="coal text-truncate mw-160 small">
+                {{item?.username}}&#64;gmail.com
+              </span>
+              @if(item.sentiment == 'Negative'){
+                <span class="ms-auto badge rounded-pill badge-danger"><i class="fa-solid fa-angry"></i> -ve</span>
+              }
+              @else(){
+                <span class="ms-auto badge rounded-pill badge-success"><i class="fa-solid fa-smile"></i> +ve</span>
+              }
+
+            </div>
+
+          </a>
+        }
+          @if(activechatBotHistory.length == 0){
+            <div class="text-center fw-bold" style="margin-top: 70%">
+              No chats at this time
+            </div>
+          }
+      </ul>
+    </div>
+
+</div>
+  <a (click)="toggleNavTest()" class="panelToggle"></a>
+</nav>

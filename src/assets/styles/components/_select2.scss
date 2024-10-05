@@ -1,0 +1,197 @@
+.select2-container {
+  width: 100% !important;
+}
+.select2-container--classic .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: $sky;
+  color: white;
+}
+.select2-container--classic.select2-container--open .select2-dropdown {
+  border-color: $sky; 
+}
+.select-pills {
+  border: 1px solid $lightGray ;
+  padding: 5px 10px;
+  border-radius: 5px;
+  p {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .select2-container--classic {
+    &.select2-selection--multiple {
+      border: none;
+    }
+  }
+  .select2-container--classic {
+    .select2-selection--multiple {
+      border: none;
+      .select2-selection__choice {
+        display: inline-flex;
+        align-items: center;
+        flex-flow: row-reverse;
+        justify-content: space-between;
+        margin-top: 0;
+        background: $sky;
+        border: 1px solid $sky;
+        color: $white;
+        padding: 2px 12px 2px 6px;
+        border-radius: 50px;
+        font-size: 14px;
+        margin: 0 4px 4px 0px;
+        .select2-selection__choice__remove {
+          color: $white;
+          padding: 0;
+          font-weight: 100;
+          line-height: 0;
+          display: inline-flex;
+          padding-top: 3px;
+          height: 10px;
+          right: -4px;
+          position: relative;
+          font-size: 20px;
+          span {
+            height: 100%;
+            font-weight: 100;
+          }
+        }
+      }
+    }
+  }
+}
+.country-dropdown{
+  .select2-container--default {
+    .select2-selection--single{
+      height: 40px !important;
+      border-color: #ced4da !important;
+      .select2-selection__rendered{
+        color: $darkback !important;
+        line-height: 35px !important;
+      }
+      .select2-selection__arrow{
+        top: 8px !important;
+      }
+    }
+  }
+}
+.modal-choose-holiday{
+  .select2-container--default {
+    .select2-selection--single{
+      height: 45px !important;
+      .select2-selection__rendered{
+        color: $silver !important;
+        line-height: 42px !important;
+      }
+    }
+  }
+}
+.mark_as{
+  .select2-container{
+    .select2-selection--single{
+      &:before {
+        content: "\f879";
+        font-family: "Font Awesome 6 Pro";
+        font-weight: 400;
+        font-size: 10px;
+      }
+    }
+  }
+}
+.select2-container--default{
+  &.select2-container--focus{
+    .select2-selection--multiple{
+      border-color: $lightGray;
+    }
+  }
+  .select2-selection--multiple{
+    border-color: $lightGray;
+    padding: 12px 5px;
+    .select2-selection__choice{
+      background-color: $ocean !important;
+      border: 1px solid $ocean !important;
+      border-radius: 50rem !important;
+      .select2-selection__choice__remove{
+        border: none;
+        color: $ice;
+        &:hover{
+          background-color: $ocean !important;
+        }
+      }
+      .select2-selection__choice__display{
+        color: $ice;
+      }
+    }
+  }
+  .select2-results__options{
+    padding: .5rem;
+    .select2-results__option--selected{
+      background-color: $snow;
+      &:hover{
+        background-color: $snow;
+      }
+    }
+  }
+  .select2-results__option--highlighted{
+    &.select2-results__option--selectable{
+      background-color:$salt;
+      color: #000;
+    }
+  }
+  .select2-dropdown{
+    border-color: $lightGray;
+  }
+}
+.merge-search-sec{
+  position: relative;
+  .select2-container--default {
+    .select2-selection--single{
+      min-height: 51px;
+      padding: 11px 30px;
+      border-color: #ced4da;
+      .select2-selection__arrow{
+        top: 13px;
+        right: 9px;
+        b{
+          background-image: url(/2.0/images/chevron-down.svg);
+          width: 16px;
+          height: 16px;
+          border-style: none;
+          border-width: 0;
+          background-repeat: no-repeat;
+          top: 6px;
+          left: 0;
+          margin-left: 0;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  .searchbar-btn{
+    position: absolute;
+    left: 0;
+    top: 8px;
+  }
+}
+.select-type-field{
+  .select2-container--default {
+    .select2-selection--single{
+      min-height: 38px;
+      padding: 4px 2px;
+      border-color: #ced4da;
+      .select2-selection__arrow{
+        top: 13px;
+        right: 9px;
+        b{
+          background-image: url(/2.0/images/chevron-down.svg);
+          width: 16px;
+          height: 16px;
+          border-style: none;
+          border-width: 0;
+          background-repeat: no-repeat;
+          top: -2px;
+          left: 0;
+          margin-left: 0;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

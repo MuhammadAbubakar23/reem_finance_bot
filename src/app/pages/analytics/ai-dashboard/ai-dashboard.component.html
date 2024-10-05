@@ -1,0 +1,853 @@
+<div class="content-box-wrapper d-flex w-100">
+  <div class="middle-content d-flex">
+    <div class="py-4 d-grid w-100">
+      <div
+        class="px-4 analytics-dashboard analytics-dashboard"
+        data-scrollbar="true"
+        tabindex="-1"
+        style="overflow: auto; outline: none"
+      >
+        <div class="scroll-content">
+          <div class="analytics executive-dashboard">
+            <div
+              class="filter-toolbar border-0 d-flex align-items-center justify-content-between"
+            >
+              <h6 class="text-uppercase">Sessions</h6>
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <div class="dropdown">
+                    <button
+                      class="btn dropdown-toggle fw-bold"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fal fa-calendar"></i> {{ selectedTimeLabel }}
+                    </button>
+                    <ul
+                      class="dropdown-menu assignFirstDropdownList1"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li
+                        class="dropdown-item"
+                        (click)="refreshFilters(1, 'day', 'Last 24 hours')"
+                      >
+                        <a>Last 24 hours</a>
+                      </li>
+                      <li
+                        class="dropdown-item"
+                        (click)="refreshFilters(7, 'week', 'Last 7 days')"
+                      >
+                        <a>Last 7 days</a>
+                      </li>
+                      <li
+                        class="dropdown-item"
+                        (click)="
+                          refreshFilters(30, 'month', 'Older than a month')
+                        "
+                      >
+                        <a>Older than a month</a>
+                      </li>
+                      <li
+                        class="dropdown-item"
+                        (click)="
+                          refreshFilters(
+                            180,
+                            '6 months',
+                            'Older than a 6 months'
+                          )
+                        "
+                      >
+                        <a> Older than a 6 months</a>
+                      </li>
+                      <li
+                        class="dropdown-item"
+                        (click)="
+                          refreshFilters(365, 'year', 'Older than a year')
+                        "
+                      >
+                        <a>Older than a year</a>
+                      </li>
+                    </ul>
+                    <div
+                      class="dropdown-menu end-0 assignSecondDropdownList1"
+                      aria-labelledby="customrange1"
+                    >
+                      <form class="px-3 py-3">
+                        <div class="d-flex mb-3">
+                          <div class="form-floating">
+                            <input
+                              type="date"
+                              class="form-control border-0-0 rounded-0"
+                              id="start-date"
+                              placeholder="Start Date"
+                            />
+                            <label for="start-date">Start Date </label>
+                          </div>
+                          <div class="form-floating">
+                            <input
+                              type="date"
+                              class="form-control rounded-0"
+                              id="end-date"
+                              placeholder="End Date"
+                            />
+                            <label for="end-date">End Date</label>
+                          </div>
+                        </div>
+                        <div class="text-end">
+                          <button type="submit" class="btn skyBg btn-small">
+                            Apply
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="row align-items-start mb-3 g-2">
+              <div class="col-3">
+                <div class="card onerowcad mb-3">
+                  <div class="card-body">
+                    <h6 class="mb-3 text-center">Total Sessions</h6>
+                    <h3 class="mb-3 fw-bold text-center">
+                      {{ totalSessions?.total_sessions || 0 }}
+                    </h3>
+                    <ul
+                      class="list-inline d-flex align-items-center justify-content-center m-0"
+                    >
+                      <li class="list-group-item border-0 pe-3">
+                        <small>
+                          <i
+                            class="fa-light"
+                            [ngClass]="{
+                              'fa-arrow-up mint':
+                                totalSessions?.percentage_change >= 0,
+                              'fa-arrow-down text-danger':
+                                totalSessions?.percentage_change < 0
+                            }"
+                          ></i
+                          ><span
+                            [ngClass]="
+                              totalSessions?.percentage_change >= 0
+                                ? 'mint'
+                                : 'text-danger'
+                            "
+                            >{{ totalSessions?.percentage_change }}%</span
+                          >
+                          &nbsp; than @if(getTimeSpan !== 'day';){
+                          <span>last {{ getTimeSpan }}</span>
+                          } @else { Yesterday }
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="card onerowcad mb-3">
+                  <div class="card-body">
+                    <h6 class="mb-3 text-center">Average Session Per User</h6>
+                    <h3 class="mb-3 fw-bold text-center">
+                      {{ averageSessionPerUser?.average_session_per_user || 0 }}
+                    </h3>
+                    <ul
+                      class="list-inline d-flex align-items-center justify-content-center m-0"
+                    >
+                      <li class="list-group-item border-0 pe-3">
+                        <small>
+                          <i
+                            class="fa-light"
+                            [ngClass]="{
+                              'fa-arrow-up mint':
+                                averageSessionPerUser?.percentage_change >= 0,
+                              'fa-arrow-down text-danger':
+                                averageSessionPerUser?.percentage_change < 0
+                            }"
+                          ></i
+                          ><span
+                            [ngClass]="
+                              averageSessionPerUser?.percentage_change >= 0
+                                ? 'mint'
+                                : 'text-danger'
+                            "
+                            >{{
+                              averageSessionPerUser?.percentage_change
+                            }}%</span
+                          >
+                          &nbsp; than @if(getTimeSpan !== 'day'){
+                          <span>last {{ getTimeSpan }}</span>
+                          } @else { Yesterday }
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card onerowcad mb-3">
+                  <div class="card-body">
+                    <h6 class="mb-3 text-center">Total Users</h6>
+                    <h3 class="mb-3 fw-bold text-center">
+                      {{ totalUsersCount?.total_users || 0 }}
+                    </h3>
+                    <ul
+                      class="list-inline d-flex align-items-center justify-content-center m-0"
+                    >
+                      <li class="list-group-item border-0 pe-3">
+                        <small>
+                          <i
+                            class="fa-light"
+                            [ngClass]="{
+                              'fa-arrow-up mint':
+                                totalUsersCount?.percentage_change >= 0,
+                              'fa-arrow-down text-danger':
+                                totalUsersCount?.percentage_change < 0
+                            }"
+                          ></i
+                          ><span
+                            [ngClass]="
+                              totalUsersCount?.percentage_change >= 0
+                                ? 'mint'
+                                : 'text-danger'
+                            "
+                            >{{ totalUsersCount?.percentage_change }}%</span
+                          >
+                          than @if(getTimeSpan !== 'day'){
+                          <span>last {{ getTimeSpan }}</span>
+                          } @else { Yesterday }
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card onerowcad mb-3">
+                  <div class="card-body">
+                    <h6 class="mb-3 text-center">Session Time Out</h6>
+                    <h3 class="mb-3 fw-bold text-center">
+                      {{
+                        sessiontimeout?.detail > 0 ? sessiontimeout?.detail : 0
+                      }}
+                    </h3>
+                    <ul
+                      class="list-inline d-flex align-items-center justify-content-center m-0"
+                    >
+                      <li class="list-group-item border-0 pe-3">
+                        <small>
+                          <i
+                            class="fa-light"
+                            [ngClass]="{
+                              'fa-arrow-up mint':
+                                sessiontimeout?.percentage >= 0,
+                              'fa-arrow-down text-danger':
+                                sessiontimeout?.percentage < 0
+                            }"
+                          ></i
+                          ><span
+                            [ngClass]="{
+                              mint: sessiontimeout?.percentage >= 0,
+                              'text-danger': sessiontimeout?.percentage < 0
+                            }"
+                          >
+                            {{ sessiontimeout?.percentage }}%
+                          </span>
+                          than @if(getTimeSpan !== 'day'){
+                          <span>last {{ getTimeSpan }}</span>
+                          } @else { Yesterday }
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-start mb-3 g-2">
+              <h6 class="text-uppercase">Engaged Sessions</h6>
+              <div class="col-3">
+                <div class="card onerowcad mb-3">
+                  <div class="card-body">
+                    <h6 class="mb-3 text-center">Total Engaged Sessions</h6>
+                    <h3 class="mb-3 fw-bold text-center">
+                      {{ sessionSummary?.total_engaged_sessions || 0 }}
+                    </h3>
+                    <ul
+                      class="list-inline d-flex align-items-center justify-content-center m-0"
+                    >
+                      <li class="list-group-item border-0 pe-3">
+                        <small>
+                          <i
+                            class="fa-light"
+                            [ngClass]="{
+                              'fa-arrow-up mint':
+                                totalSessions?.percentage_change >= 0,
+                              'fa-arrow-down text-danger':
+                                totalSessions?.percentage_change < 0
+                            }"
+                          ></i
+                          ><span
+                            [ngClass]="
+                              totalSessions?.percentage_change >= 0
+                                ? 'mint'
+                                : 'text-danger'
+                            "
+                            >{{ totalSessions?.percentage_change }}%</span
+                          >
+                          &nbsp; than @if(getTimeSpan !== 'day'){
+                          <span>last {{ getTimeSpan }}</span>
+                          } @else { Yesterday }
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card onerowcad mb-3">
+                  <div class="card-body">
+                    <h6 class="mb-3 text-center">Engaged Session Rate</h6>
+                    <h3 class="mb-3 fw-bold text-center">
+                      {{ engagedSessionRate?.engaged_session_rate || 0
+                      }}<small>{{ engagedSessionRate?.unit || "%" }}</small>
+                    </h3>
+                    <ul
+                      class="list-inline d-flex align-items-center justify-content-center m-0"
+                    >
+                      <li class="list-group-item border-0 pe-3">
+                        <small>
+                          <i
+                            class="fa-light"
+                            [ngClass]="{
+                              'fa-arrow-up mint':
+                                engagedSessionRate?.percentage_change >= 0,
+                              'fa-arrow-down text-danger':
+                                engagedSessionRate?.percentage_change < 0
+                            }"
+                          ></i
+                          ><span
+                            [ngClass]="
+                              engagedSessionRate?.percentage_change >= 0
+                                ? 'mint'
+                                : 'text-danger'
+                            "
+                            >{{ engagedSessionRate?.percentage_change }}%</span
+                          >&nbsp; than @if(getTimeSpan !== 'day'){
+                          <span>last {{ getTimeSpan }}</span>
+                          } @else { Yesterday }
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card onerowcad mb-3">
+                  <div class="card-body">
+                    <h6 class="mb-3 text-center">
+                      Avg. Engaged Session Per User
+                    </h6>
+                    <h3 class="mb-3 fw-bold text-center">
+                      {{ sessionSummary?.avg_engaged_sessions || 0 }}
+                    </h3>
+                    <ul
+                      class="list-inline d-flex align-items-center justify-content-center m-0"
+                    >
+                      <li class="list-group-item border-0 pe-3">
+                        <small>
+                          <i
+                            class="fa-light"
+                            [ngClass]="{
+                              'fa-arrow-up mint':
+                                totalSessions?.percentage_change >= 0,
+                              'fa-arrow-down text-danger':
+                                totalSessions?.percentage_change < 0
+                            }"
+                          ></i
+                          ><span
+                            [ngClass]="
+                              totalSessions?.percentage_change >= 0
+                                ? 'mint'
+                                : 'text-danger'
+                            "
+                            >{{ totalSessions?.percentage_change }}%</span
+                          >
+                          &nbsp; than @if(getTimeSpan !== 'day'){
+                          <span>last {{ getTimeSpan }}</span>
+                          } @else { Yesterday }
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card onerowcad mb-3">
+                  <div class="card-body">
+                    <h6 class="mb-3 text-center">BOT Containment Rate</h6>
+                    <h3 class="mb-3 fw-bold text-center">
+                      {{ sessionContainmentRate?.containment_rate || 0 }}
+                      <small>{{ sessionContainmentRate?.unit || "%" }}</small>
+                    </h3>
+                    <ul
+                      class="list-inline d-flex align-items-center justify-content-center m-0"
+                    >
+                      <li class="list-group-item border-0 pe-3">
+                        <small>
+                          <i
+                            class="fa-light"
+                            [ngClass]="{
+                              'fa-arrow-up mint':
+                                sessionContainmentRate?.percentage_change >= 0,
+                              'fa-arrow-down text-danger':
+                                sessionContainmentRate?.percentage_change < 0
+                            }"
+                          ></i
+                          ><span
+                            [ngClass]="
+                              sessionContainmentRate?.percentage_change >= 0
+                                ? 'mint'
+                                : 'text-danger'
+                            "
+                            >{{
+                              sessionContainmentRate?.percentage_change
+                            }}%</span
+                          >
+                          &nbsp; than
+                          @if(getTimeSpan !== 'day'){
+                            <span
+                            >last {{ getTimeSpan }}</span
+                          >
+                          }
+                          @else {
+                            Yesterday
+                          }
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-start mb-3">
+              <div class="col-md-6">
+                <div class="card p-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-3"
+                  >
+                    <h6 class="">Session Ending Reasons Over Time</h6>
+                  </div>
+                  <div
+                    class="chartcontainer d-flex justify-content-center mt-4 pt-4"
+                  >
+                    <div
+                      id="sessionTime"
+                      style="height: 250px; width: 100%; max-width: 800px"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card p-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-3"
+                  >
+                    <h6 class="">Total Sessions Over Time</h6>
+                  </div>
+                  <div
+                    class="chartcontainer d-flex justify-content-center mt-4 pt-4"
+                  >
+                    <div
+                      id="totalSession"
+                      style="height: 250px; width: 100%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-start mb-3">
+              <div class="col-md-6">
+                <div class="card sentimentcard">
+                  <div class="card-body">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-4"
+                    >
+                      <h6 class="mb-0">Total Messages</h6>
+                    </div>
+                    <div
+                      class="chartcontainer d-flex justify-content-center my-4"
+                    >
+                      <div id="main2" style="height: 250px; width: 102%"></div>
+                    </div>
+                    <ul class="list-group list-group-flush mt-4 px-4 pb-2">
+                      <li
+                        class="list-group-item d-flex align-items-center justify-content-between"
+                      >
+                        <span>Inbound</span>
+                        <strong>{{ messagesChartData?.inbound }}</strong>
+                      </li>
+                      <li
+                        class="list-group-item d-flex align-items-center justify-content-between"
+                      >
+                        <span> Outbound</span>
+                        <strong> {{ messagesChartData?.outbound }}</strong>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-4"
+                    >
+                      <h6 class="mb-0">Total Users</h6>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="users1"
+                          (change)="onCheckboxChange($event)"
+                        />
+                        <label class="form-check-label small" for="users1"
+                          >Engaged Sessions</label
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="chartcontainer d-flex justify-content-center my-4"
+                    >
+                      <div id="users" style="height: 250px; width: 100%"></div>
+                    </div>
+                    <ul class="list-group list-group-flush mt-4 px-4 pb-2">
+                      <li
+                        class="list-group-item d-flex align-items-center justify-content-between"
+                      >
+                        <span>New Users</span>
+                        <strong>{{ usersChartData?.new_users || 0 }}</strong>
+                      </li>
+                      <li
+                        class="list-group-item d-flex align-items-center justify-content-between"
+                      >
+                        <span> Returning Users</span>
+                        <strong>
+                          {{ usersChartData?.returning_users || 0 }}</strong
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-start mb-3">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-4"
+                    >
+                      <h6 class="mb-0">Session Expiry Reason</h6>
+                    </div>
+                    <div class="row py-5 px-3">
+                      <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                          <li
+                            class="list-group-item d-flex align-items-center justify-content-between"
+                          >
+                            <span>
+                              <i class="fa-regular fa-circle me-2 sky"></i>
+                              Expired
+                            </span>
+                            <strong>{{
+                              sessionExpiryChartData?.expired_sessions
+                            }}</strong>
+                          </li>
+                          <li
+                            class="list-group-item d-flex align-items-center justify-content-between"
+                          >
+                            <span>
+                              <i class="fa-regular fa-circle me-2 berry"></i
+                              >Agent Handover
+                            </span>
+                            <strong>{{
+                              sessionExpiryChartData?.go_to_agent_action
+                            }}</strong>
+                          </li>
+                          <li
+                            class="list-group-item d-flex align-items-center justify-content-between"
+                          >
+                            <span>
+                              <i class="fa-regular fa-circle me-2 radical"></i>
+                              Agent Closed
+                            </span>
+                            <strong>{{
+                              sessionExpiryChartData?.close_session_action
+                            }}</strong>
+                          </li>
+                          <li
+                            class="list-group-item d-flex align-items-center justify-content-between"
+                          >
+                            <span>
+                              <i class="fa-regular fa-circle me-2 pearl"></i>
+                              User Closed
+                            </span>
+                            <strong>{{
+                              sessionExpiryChartData?.user_closed_session
+                            }}</strong>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-md-6 text-center">
+                        <div
+                          id="sessionExpiry"
+                          style="height: 250px; width: 100%"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card" style="height: 426px">
+                  <div class="card-body">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-4"
+                    >
+                      <h6 class="mb-0">Session Duration</h6>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-1"></div>
+                      <div class="col-md-4">
+                        <h3>{{ sessionDuration?.avg_session_duration }}</h3>
+                        <h6 class="coal">Avg session duration</h6>
+                      </div>
+                      <div class="col-md-7">
+                        <ul class="list-group list-group-flush">
+                          <li
+                            class="list-group-item d-flex align-items-center justify-content-between"
+                          >
+                            <span>
+                              <i class="fa-regular fa-circle me-2 sky"></i>
+                              Expired
+                            </span>
+                            <strong>{{
+                              sessionDuration?.expired_sessions
+                            }}</strong>
+                          </li>
+                          <li
+                            class="list-group-item d-flex align-items-center justify-content-between"
+                          >
+                            <span>
+                              <i class="fa-regular fa-circle me-2 berry"></i
+                              >Agent Handover
+                            </span>
+                            <strong>{{
+                              sessionDuration?.go_to_agent_action
+                            }}</strong>
+                          </li>
+                          <li
+                            class="list-group-item d-flex align-items-center justify-content-between"
+                          >
+                            <span>
+                              <i class="fa-regular fa-circle me-2 radical"></i>
+                              Agent Closed
+                            </span>
+                            <strong>{{
+                              sessionDuration?.close_session_action
+                            }}</strong>
+                          </li>
+                          <li
+                            class="list-group-item d-flex align-items-center justify-content-between"
+                          >
+                            <span>
+                              <i class="fa-regular fa-circle me-2 pearl"></i>
+                              User Closed
+                            </span>
+                            <strong>{{
+                              sessionDuration?.user_closed_session
+                            }}</strong>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- <div class="tab-content px-4 py-5" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                                aria-labelledby="home-tab" tabindex="0">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <h1>{{sessionDuration?.avg_session_duration}}</h1>
+                                                        <h6 class="coal">Avg session duration</h6>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 sky"></i>
+                                                                    Expired
+                                                                </span>
+                                                                <strong>{{sessionDuration?.expired_sessions}}</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 cherry"></i>
+                                                                    Agent Takeover
+                                                                </span>
+                                                                <strong>{{sessionDuration?.agent_takeover}}</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 berry"></i>
+                                                                    Go
+                                                                    to Agent Action
+                                                                </span>
+                                                                <strong>{{sessionDuration?.go_to_agent_action}}</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 radical"></i>
+                                                                    Agent closed
+                                                                </span>
+                                                                <strong>{{sessionDuration?.close_session_action}}</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 pearl"></i>
+                                                                    User
+                                                                    closed
+                                                                </span>
+                                                                <strong>{{sessionDuration?.user_closed_session}}</strong>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                                                aria-labelledby="profile-tab" tabindex="0">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <h1>00:03:45</h1>
+                                                        <h6 class="coal">Avg session duration</h6>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 sky"></i>
+                                                                    Expired Session
+                                                                </span>
+                                                                <strong>00:03:56</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 cherry"></i>
+                                                                    Agent Takeover
+                                                                </span>
+                                                                <strong>00:04:24</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 berry"></i>
+                                                                    Go
+                                                                    to Agent Action
+                                                                </span>
+                                                                <strong>00:11:44</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 radical"></i>
+                                                                    Close session action
+                                                                </span>
+                                                                <strong>00:00:50</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 pearl"></i>
+                                                                    user
+                                                                    closed session
+                                                                </span>
+                                                                <strong>00:02:51</strong>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
+                                                aria-labelledby="contact-tab" tabindex="0">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <h1>00:02:52</h1>
+                                                        <h6 class="coal">Avg session duration</h6>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 sky"></i>
+                                                                    Expired Session
+                                                                </span>
+                                                                <strong>00:03:56</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 cherry"></i>
+                                                                    Agent Takeover
+                                                                </span>
+                                                                <strong>00:04:24</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 berry"></i>
+                                                                    Go
+                                                                    to Agent Action
+                                                                </span>
+                                                                <strong>00:11:44</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 radical"></i>
+                                                                    Close session action
+                                                                </span>
+                                                                <strong>00:00:50</strong>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item d-flex align-items-center justify-content-between">
+                                                                <span>
+                                                                    <i class="fa-regular fa-circle me-2 pearl"></i>
+                                                                    user
+                                                                    closed session
+                                                                </span>
+                                                                <strong>00:02:51</strong>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

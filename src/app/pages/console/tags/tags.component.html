@@ -1,0 +1,179 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate"
+  [fullScreen]="false"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+<div
+  class="tags-wrap console-body-wrapper"
+  data-scrollbar="true"
+  tabindex="-1"
+  style="overflow: hidden; outline: none"
+>
+  <div class="scroll-content">
+    <div class="wider-container pt-3">
+      <div id="nav-team">
+        <div class="searchBar-wrapper mb-4">
+          <div class="row">
+            <div class="col-lg-4">
+              <ul class="list-group list-group-horizontal border-0">
+                <li class="list-group-item border-0 p-0">
+                  <div class="icon-input">
+                    <i class="fa-light fa-magnifying-glass"></i>
+                    <input
+                      class="form-control"
+                      placeholder="Search Tags.. "
+                      [(ngModel)]="searchText"
+                      (input)="refreshMessages()"
+                    />
+                  </div>
+                </li>
+                <li
+                  (click)="resetfilters()"
+                  class="list-group-item border-0 refreshicon iconHover iconButton medium rounded-circle"
+                  aria-label="..."
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  data-bs-original-title="Refresh"
+                >
+                  <i class="fal fa-redo"></i>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-8 d-flex align-items-center justify-content-end">
+              <a
+                data-bs-toggle="modal"
+                data-bs-target="#createtags"
+                class="ms-2"
+              >
+                <button type="button" class="btn btn-primary">
+                  <i class="fal fa-plus me-2"></i>
+                  Create Tags
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="table-section">
+          <table class="table mb-5 align-middle">
+            <thead>
+              <tr>
+                <th>Tag Name</th>
+                <th>
+                  <a href="javascript:" class="charcoal hover-icon">
+                    Bots Assigned
+                  </a>
+                </th>
+
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(tag of messages; track tag){
+              <tr>
+                <td>
+                  <a class="night">{{ tag.name }}</a>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center darkblue">
+                    <i class="fa-light fa-message-bot me-2"></i>
+                    3
+                  </div>
+                </td>
+
+                <td>
+                  <div class="d-flex justify-content-end dropstart">
+                    <button
+                      class="btn iconButton medium iconHover btn-group"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fa-light fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu fade">
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          data-bs-toggle="modal"
+                          data-bs-target="#createtags"
+                          (click)="getTagById(tag.id)"
+                          >Edit</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" (click)="deleteTemplate(tag)"
+                          >Delete</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="createtags"
+  tabindex="-1"
+  aria-labelledby="createtagsLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="createtagsLabel">Create Tags</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="resetForm()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="floating-wrap form-floating">
+          <form [formGroup]="TagForm">
+            <label for="floatingInputValue">Tag Name</label>
+            <input
+              [class.is-invalid]="cF['name'].invalid && cF['name'].touched"
+              [class.is-valid]="cF['name'].valid && cF['name'].touched"
+              class="form-control"
+              id="floatingInputValue"
+              placeholder="Complaint"
+              formControlName="name"
+            />
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="resetForm()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="submit()"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

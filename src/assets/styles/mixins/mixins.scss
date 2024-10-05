@@ -1,0 +1,36 @@
+/**** Variables & Mixins ****/
+@mixin webkit($property, $value) {
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
+  #{$property}: $value;
+}
+@mixin gradient($value) {
+  background-image: -webkit-linear-gradient($value);
+  background-image: -moz-linear-gradient($value);
+  background-image: -ms-linear-gradient($value);
+  background-image: -o-linear-gradient($value);
+  background-image: linear-gradient($value);
+}
+@mixin flex() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin ulFix() {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+@mixin objectFit {
+  width: 100%;
+  height: 100%;
+  @include webkit(object-fit, cover);
+}
+@mixin bCover($bVlaue) {
+  background: url($bVlaue) no-repeat center;
+  background-size: cover;
+}

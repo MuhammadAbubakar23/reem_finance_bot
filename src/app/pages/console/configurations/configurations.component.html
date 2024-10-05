@@ -1,0 +1,113 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="false">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<form [formGroup]="botsForm">
+
+            <!-- <div class="agent-page-main-content"> -->
+                <div class="preferences console-body-wrapper perfect-scrollbar" data-scrollbar="true" tabindex="-1"
+                    style="overflow: auto; outline: none; overflow-x: hidden;">
+                    <div class="scroll-content">
+                        <div class="row justify-content-center mt-4">
+
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <div class="form-floating mb-3">
+                                            <select name="" formControlName="botId" class="form-select" (change)="getBotDetails()">
+                                                <option [value]="null" selected disabled>Select Bot</option>
+                                                @for(bot of botIds;track bot; let i = $index){
+                                                    <option
+                                                        [value]="bot.id">{{ bot.name }}
+                                                    </option>
+                                                }
+                                            </select>
+                                            <label> Bot</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <div class="form-floating mb-3">
+                                            <select name="" class="form-select"
+                                                formControlName="platform" (change)="getBotDetails()">
+                                                <option [value]="null" selected disabled>Select Platform</option>
+                                                @for(channel of channels; track channel; let i = $index){
+                                                    <option [value]="channel.id">
+                                                        {{channel.name}}
+                                                    </option>
+                                                }
+                                            </select>
+                                            <label> Platform</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h5>Active Hours</h5>
+                                @if(!currentId){
+                                    <ul class="list-group list-group-flush mb-4" formArrayName="activeHoursDetails">
+                                        @for(day of daysOfWeek; track day;let i = $index){
+                                            <li class="list-group-item">
+                                                <div class="row justify-content-between align-items-center" [formGroupName]="i">
+                                                    <div class="col-3">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                                id="tuesday" [checked]="isDayEnabled(day)"
+                                                                (change)="DayEnableOrDisable(day)">
+                                                            <label class="form-check-label">{{day}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <div class="d-flex align-items-center justify-content-end ms-3">
+                                                            <div class="form-floating">
+                                                                <input type="time" class="form-control border-end-0 rounded-0"
+                                                                    id="start-date" placeholder="Start Time"
+                                                                    formControlName="activeFrom">
+                                                                <label>Start Time </label>
+                                                            </div>
+                                                            <div class="form-floating">
+                                                                <input type="time" class="form-control rounded-0" id="end-date"
+                                                                    placeholder="End Time" formControlName="activeTo">
+                                                                <label>End Time</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="ps-3 pe-3">
+                        <div class="icon-buttons-wrapper d-flex justify-content-between pt-3 pb-4">
+                            <div class="row w-100">
+                                <div class="col-md-4">
+
+                                    <div class="f-icon-txt-wrapper d-flex align-items-center">
+                                        <button class="iconButton medium iconHover" id="deleteModalBtn"
+                                            (click)="initializeForm()">
+                                            <i class="fal fa-redo-alt silver"></i>
+                                        </button>
+                                        <p class="f-icon-txt coal ms-1 m-0">Reset to default</p>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-8 justify-content-end d-flex">
+                                    <div class="buttons-wrap d-flex">
+                                        <button type="button"
+                                            class="btn btn-primary ms-e f-saveBtn btn-large d-none"></button>
+                                        <button type="button" class="btn skyBg ms-2 px-4 btn-medium saveBtn"
+                                            data-bs-toggle="modal" data-bs-target="" (click)="saveForm()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+            <!-- </div> -->
+</form>

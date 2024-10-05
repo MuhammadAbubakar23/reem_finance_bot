@@ -1,0 +1,537 @@
+<body class="agent-grid leftactive">
+  <main>
+    <div class="main-wrapper d-flex">
+      <div class="middle-wrapper d-flex w-100 flex-column">
+        <div class="content-box-wrapper d-flex w-100">
+          <div class="middle-content d-flex">
+            @if(!hasParent){
+            <div
+              class="chatbg"
+              style="
+                background: url(../../../../assets/images/chatbg.png) no-repeat
+                  top;
+              "
+            ></div>
+            }
+
+            <div
+              class="e-bot-icon d-flex align-items-center"
+              [ngClass]="{ active: isOpen }"
+              (click)="openChat()"
+            >
+              <div class="e_chat-icon">
+                <img
+                  src="../../../../../assets/images/ebot.svg"
+                  alt="Chat Icon"
+                />
+              </div>
+              <div class="chat-bubble">
+                <p>Click to initiate chat</p>
+              </div>
+            </div>
+
+            <div
+              class="enteract-chatbot"
+              [ngClass]="{ active: isOpen, removebot: !isOpen }"
+            >
+              <div class="e-chat-main">
+                <header>
+                  <div class="e_chat-icon">
+                    <img src="../../../../../assets/images/ebot.svg" />
+                  </div>
+                  <div>
+                    <h4>{{ bot_name }}</h4>
+                    <p class="coal">Online</p>
+                  </div>
+                  <div class="ebotclose mt-2" (click)="closeChat()">
+                    <i class="fa-light fa-minus"></i>
+                  </div>
+                </header>
+                <section
+                  class="chatbody"
+                  style="overflow: auto"
+                  #scrollMe
+                  [scrollTop]="scrollMe.scrollHeight"
+                >
+                  <div [ngSwitch]="currentView">
+                    <ng-container *ngSwitchCase="'EmailForm'">
+                      <div class="messagewrap e-left" data-first="true">
+                        <div class="messagebody">
+                          <div class="caption">
+                            <div class="name">
+                              <div class="e_chat-icon">
+                                <img
+                                  src="../../../../../assets/images/ebot.svg"
+                                />
+                              </div>
+                              {{ bot_name }}
+                            </div>
+                            <div class="time">{{ getCurrentTime() }}</div>
+                          </div>
+
+                          <div class="messagebubble">
+                            Hi! I'm {{ bot_name }} 😎 Nice to meet you! 👋
+                            Please don't hesitate to ask us anything or share
+                            your feedback.
+                          </div>
+                          <div class="coal mb-5"></div>
+                          <div
+                            class="login-form main-login-form agentExtensionWrapper mb-5"
+                          >
+                            <div class="form w-100">
+                              <form [formGroup]="registerForm">
+                                <div class="form-floating">
+                                  <h6 class="coal">
+                                    Please enter full name and email to start
+                                    chatting!
+                                  </h6>
+                                </div>
+                                <div class="form-floating mb-2">
+                                  <input
+                                    class="form-control"
+                                    id="register-username"
+                                    formControlName="fullName"
+                                    required
+                                    [class.is-invalid]="
+                                      registerForm.controls['fullName']
+                                        .invalid &&
+                                      registerForm.controls['fullName'].touched
+                                    "
+                                    [class.is-valid]="
+                                      registerForm.controls['fullName'].valid &&
+                                      registerForm.controls['fullName'].touched
+                                    "
+                                  />
+                                  <label for="register-username">Name</label>
+                                  <div class="invalid-feedback">
+                                    @if(registerForm.controls['fullName'].errors?.['required']){
+                                    <div>Name is required.</div>
+                                    }
+                                  </div>
+                                </div>
+                                <div class="form-floating mb-2">
+                                  <input
+                                    class="form-control"
+                                    id="register-email"
+                                    formControlName="email"
+                                    required
+                                    type="email"
+                                    [class.is-invalid]="
+                                      registerForm.controls['email'].invalid &&
+                                      registerForm.controls['email'].touched
+                                    "
+                                    [class.is-valid]="
+                                      registerForm.controls['email'].valid &&
+                                      registerForm.controls['email'].touched
+                                    "
+                                  />
+                                  <label for="register-email">Email</label>
+                                  <div class="invalid-feedback">
+                                    @if(registerForm.controls['email'].errors?.['required']){
+                                    <div>Email is required.</div>
+                                    }
+                                  </div>
+                                  <div class="invalid-feedback">
+                                    @if(registerForm.controls['email'].errors?.['email']
+                                    ||
+                                    registerForm.controls['email'].errors?.['pattern']){
+                                    <div>Please enter a valid email.</div>
+                                    }
+                                  </div>
+                                </div>
+                              </form>
+                              <div class="d-flex flex-column">
+                                <!-- <p>
+                                  <ng-toggle
+                                    [(ngModel)]="config.value"
+                                    [disabled]="config.disabled"
+                                    [width]="config.width"
+                                    [height]="config.height"
+                                    [margin]="config.margin"
+                                    [labels]="config.labels"
+                                    [color]="config.color"
+                                    [switchColor]="config.switchColor"
+                                    [fontColor]="config.fontColor"
+                                    [fontSize]="config.fontSize"
+                                    [textAlign]="config.textAlign"
+                                    required
+                                  ></ng-toggle>
+                                </p> -->
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value=""
+                                    id="flexCheckChecked"
+                                    [checked]="isParticipate"
+                                    (change)="toggleParticipation()"
+                                  />
+                                  <label
+                                    class="form-check-label"
+                                    for="flexCheckChecked"
+                                  >
+                                    Would you like to participate in a brief
+                                    satisfaction survey?
+                                  </label>
+                                </div>
+
+                                <!-- <p
+                        class="coal last-chatmsg"
+                        style="width: 250px !important"
+                      >
+                        Would you like to participate in a brief
+                        satisfaction survey?
+                      </p> -->
+                                <!-- <div class="d-flex justify-content-center">
+                        <button
+                          class="btn btn-primary btn-sm me-2"
+                          (click)="hideFeedbackQuestion('yes')"
+                        >
+                          Yes, I'll participate
+                        </button>
+                        <button
+                          class="btn btn-primary btn-sm"
+                          (click)="hideFeedbackQuestion('No')"
+                        >
+                          No, thanks
+                        </button>
+                      </div> -->
+                                <div
+                                  class="col-12 d-flex justify-content-between mb-4"
+                                ></div>
+                              </div>
+                              <div class="form-btn">
+                                <button
+                                  style="width: 100%"
+                                  type="submit"
+                                  class="btn btn-primary btn-lg loginbtn"
+                                  id="loginBtn"
+                                  tabindex="-1"
+                                  role="button"
+                                  (click)="submitCredentials()"
+                                >
+                                  <i class="fas fa-paper-plane-top"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'Messages'">
+                      <div class="messagewrap e-left" data-first="true">
+                        <div class="messagebody">
+                          <div class="caption">
+                            <div class="name">
+                              <div class="e_chat-icon">
+                                <img
+                                  src="../../../../../assets/images/ebot.svg"
+                                />
+                              </div>
+                              {{ bot_name }}
+                            </div>
+                            <div class="time">{{ getCurrentTime() }}</div>
+                          </div>
+
+                          <div class="messagebubble">
+                            Hi! I'm {{ bot_name }} 😎 Nice to meet you! 👋
+                            Please don't hesitate to ask us anything or share
+                            your feedback.
+                          </div>
+                          <div class="coal mb-5"></div>
+                        </div>
+                      </div>
+                      @for(msg of chatMessages; track trackChatMessage; let i =
+                      $index){
+                      <ng-container>
+                        @if(msg.text != '/arabic' && msg.text != '/english'){
+                        <div
+                          class="messagewrap"
+                          [ngClass]="{
+                            'e-right': msg.type === 'human',
+                            'e-left':
+                              msg.type === 'ai-agent' ||
+                              msg.type == 'human-agent'
+                          }"
+                          [attr.data-first]="msg.type === 'human' ? true : null"
+                          [attr.data-last]="
+                            msg.type === 'ai-agent' ||
+                            msg.type === 'human-agent'
+                              ? true
+                              : null
+                          "
+                        >
+                          <div class="messagebody">
+                            <div class="caption">
+                              <div class="name">
+                                @if(msg.type === 'ai-agent' || msg.type ==
+                                'human-agent'){
+                                <div class="e_chat-icon">
+                                  <img
+                                    src="../../../../../assets/images/ebot.svg"
+                                  />
+                                </div>
+                                }
+
+                                {{
+                                  msg.type === "human"
+                                    ? "You"
+                                    : msg.type === "ai-agent"
+                                    ? bot_name
+                                    : msg.type === "human-agent"
+                                    ? msg.agent_name || "Human Agent"
+                                    : "Human Agent"
+                                }}
+                              </div>
+                              <div class="time">
+                                {{ msg.timestamp }}
+                              </div>
+                            </div>
+                            <div class="messagebubble">
+                              <markdown
+                                [attr.dir]="isArabic(msg.text) ? 'rtl' : 'ltr'"
+                                [data]="msg.text"
+                                class="variable-binding"
+                              ></markdown>
+                            </div>
+                          </div>
+                        </div>
+                        }
+                      </ng-container>
+                      } @if(typing){
+                      <div class="messagewrap e-left">
+                        <div class="messagebody">
+                          <div class="caption">
+                            <div class="name">
+                              <div class="e_chat-icon">
+                                <img
+                                  src="../../../../../assets/images/ebot.svg"
+                                />
+                              </div>
+                              {{ bot_name }}
+                            </div>
+                            <div class="time">
+                              {{ currentTimestamp | date : "shortTime" }}
+                            </div>
+                          </div>
+                          <div class="messagebubble">
+                            <div class="typing">
+                              <div class="dot"></div>
+                              <div class="dot"></div>
+                              <div class="dot"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      }
+
+                      <form [formGroup]="chatForm">
+                        @if(buttonAlreadyClicked == false && conversation_end ==
+                        0 ){
+                        <ul
+                          class="list-inline d-flex align-items-center justify-content-center listbtns"
+                        >
+                          <li class="list-inline-item">
+                            <button
+                              class="btn btn-white px-3 rounded-pill bg-white"
+                              (click)="
+                                chatForm.controls['message'].setValue(
+                                  'Good Bye'
+                                );
+                                submitMessage('/bye')
+                              "
+                            >
+                              <i class="fas fa-sign-out"></i> Good Bye
+                            </button>
+                          </li>
+                          <li class="list-inline-item">
+                            <button
+                              class="btn btn-white px-3 rounded-pill bg-white"
+                              (click)="
+                                chatForm.controls['message'].setValue(
+                                  'Talk To Human'
+                                );
+                                submitMessage('/transfer')
+                              "
+                            >
+                              <i class="far fa-user-headset"></i> Talk To Human
+                            </button>
+                          </li>
+                        </ul>
+                        }
+                      </form>
+                      @if(byeClicked){
+                      <ng-container>
+                        <div
+                          class="d-flex align-items-center justify-content-center flex-column text-center px-4 py-3"
+                        >
+                          <p>Do you want to download chat?</p>
+                          <button
+                            class="btn btn-primary"
+                            (click)="downloadChatLog()"
+                          >
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </div>
+                      </ng-container>
+                      } @if(addFeedBack){
+                      <ng-container>
+                        <div
+                          class="d-flex align-items-center justify-content-center flex-column text-center px-4 py-3"
+                        >
+                          <p>How satisfied are you with our chat service?</p>
+                          <div class="mb-3 ratings">
+                            @for(star of stars;track star; let i = $index){
+                            <i
+                              class="fa-star"
+                              [ngClass]="{
+                                'fa-solid': i < currentRating,
+                                'fa-regular': i >= currentRating
+                              }"
+                              (click)="setRating(i + 1)"
+                              [attr.data-value]="i + 1"
+                            ></i>
+                            }
+                          </div>
+                          <button
+                            class="btn btn-primary"
+                            (click)="submitFeedback()"
+                            [disabled]="feedBackEnabled"
+                          >
+                            Submit Feedback
+                          </button>
+                        </div>
+                      </ng-container>
+                      }
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="'FeedBack Message'">
+                      <div class="thank-you-message">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <p style="font-size: 1.5rem; color: black">Thank You</p>
+                      </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="'Language Selection'">
+                      <div
+                        class="thank-you-message"
+                        style="font-size: 1.5rem !important"
+                      >
+                        <!-- <i class="fa-solid fa-circle-check"></i> -->
+                        <div style="padding-bottom: 20px">
+                          Please Select a Language
+                        </div>
+                        <div class="row w-100">
+                          <div
+                            class="col-md-3"
+                            style="width: 30% !important"
+                          ></div>
+                          <div class="col-md-8 justify-content-end d-flex">
+                            <div class="col-md-8 justify-content-end d-flex">
+                              <div class="buttons-wrap d-flex">
+                                <button
+                                  style="
+                                    background-color: #fff !important;
+                                    padding-right: 1.5rem !important;
+                                    padding-left: 1.5rem !important;
+                                  "
+                                  type="button"
+                                  class="btn btn-outline-secondary btn-medium me-2 px-4"
+                                  (click)="
+                                    chatForm.controls['message'].setValue(
+                                      '/english'
+                                    );
+                                    submitMessage('/english')
+                                  "
+                                  [disabled]="LanguageAlreadySelected"
+                                >
+                                  English
+                                </button>
+                                <button
+                                  style="
+                                    background-color: #fff !important;
+                                    padding-right: 1.5rem !important;
+                                    padding-left: 1.5rem !important;
+                                  "
+                                  type="submit"
+                                  class="btn btn-outline-secondary btn-medium me-2 px-4"
+                                  (click)="
+                                    chatForm.controls['message'].setValue(
+                                      '/arabic'
+                                    );
+                                    submitMessage('/arabic')
+                                  "
+                                  [disabled]="LanguageAlreadySelected"
+                                >
+                                  العربية
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <p style="font-size: 1.5rem; color:black">Thank You</p> -->
+                      </div>
+                    </ng-container>
+                  </div>
+                </section>
+                <div [ngSwitch]="currentView">
+                  <ng-container *ngSwitchCase="'Messages'">
+                    @if(conversation_end == 0 && byeClicked == false){
+                      <footer>
+                        <form [formGroup]="chatForm" (ngSubmit)="submitMessage(chatForm.value.message)">
+                          <div *ngIf="isRecording" class="wave-animation"></div>
+                          <input *ngIf="!isRecording"
+                            class="form-control"
+                            placeholder="Send a message.."
+                            formControlName="message"
+                          />
+                          <button type="submit" class="iconButton iconHover sendicon" *ngIf="!isRecording">
+                            <i class="fa-light fa-paper-plane-top"></i>
+                          </button>
+                        </form>
+                      
+                        <button
+                          *ngIf="!isRecording"
+                          class="iconButton iconHover sendicon"
+                          (click)="startRecording()"
+                        >
+                          <i class="fa-solid fa-microphone"></i>
+                        </button>
+                        <button style = "margin-right: 5px;"
+                          *ngIf="isRecording"
+                          class="iconButton iconHover stopIcon"
+                          (click)="stopRecording()"
+                        >
+                          <i class="fa-solid fa-stop"></i>
+                        </button>
+                      
+                        <button *ngIf="audioBlob" (click)="playAudio()" class="iconButton iconHover sendicon"><i class="fa-solid fa-play"></i></button>
+                        <button *ngIf="audioBlob" (click)="sendAudio()" class="iconButton iconHover sendicon"><i class="fa-regular fa-paper-plane"></i></button>
+                      
+                        <!-- <button (click)="startSpeechRecognition()">Voice to text</button> -->
+                      </footer>
+                      
+                      
+                    } @if(conversation_end == 1){
+                    <footer>
+                      <ul
+                        class="list-inline d-flex align-items-center justify-content-center listbtns"
+                      >
+                        <li class="list-inline-item">
+                          <div class="justify-content-center">
+                            Conversation ended by Agent
+                          </div>
+                        </li>
+                      </ul>
+                    </footer>
+                    }
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
